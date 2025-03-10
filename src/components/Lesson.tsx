@@ -28,17 +28,15 @@ const Lesson = ({ title, cards, onComplete }: LessonProps) => {
 
     const currentCard = cards[currentCardIndex];
 
-    // Calculate progress as a percentage
     const progress = ((currentCardIndex + 1) / cards.length);
 
     return (
         <section>
             <h2>{title}</h2>
-            {/* Progress bar using <progress> element */}
             <progress
                 value={progress}
                 max={1}
-                style={{ width: '100%', height: '10px', marginTop: '10px' }}
+                style={{ width: '100%', height: '5pt' }}
             ></progress>
             <Card
                 modern={currentCard.modern}
