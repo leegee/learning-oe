@@ -1,5 +1,7 @@
 // src/data/lessons.ts
-export const lessons = [
+import { Lesson } from '../types/lessons';
+
+export const lessons: Lesson[] = [
     {
         title: "1: Greetings",
         cards: [
