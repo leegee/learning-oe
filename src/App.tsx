@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// App
+import React, { useState } from 'react';
+import { lessons } from './data/lessons';
+import Lesson from './components/Lesson';
 
-function App() {
+const App: React.FC = () => {
+  const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(0);
+
+  const goToNextLesson = () => {
+    if (currentLessonIndex < lessons.length - 1) {
+      setCurrentLessonIndex(currentLessonIndex + 1);
+    }
+  };
+
+  const currentLesson = lessons[currentLessonIndex];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="min-h-screen p-8">
+      <h1 className="text-2xl font-bold mb-6">Old English Lessons</h1>
+
+      {lessons.length > 0 && (
+        <Lesson
+          key={currentLessonIndex}
+          title={currentLesson.title}
+          cards={currentLesson.cards}
+          onComplete={goToNextLesson}
+        />
+      )}
+    </main>
   );
-}
+};
 
 export default App;

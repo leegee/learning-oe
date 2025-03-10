@@ -1,0 +1,4 @@
+ .correct,
+ .incorrect {
+     color: var(--oe-clr-bg);
+ }
