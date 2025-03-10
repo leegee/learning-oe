@@ -1,30 +1,8 @@
-h3 {
-    margin-top: 2em;
-    font-size: 150%;
-}
-
-button {
+.multiple-choice .multiple-choice-button {
     width: 100%;
     margin-top: 1em;
-    border: 1pt solid grey;
-    font-size: 150%;
-    padding: 0.3em;
-    cursor: pointer;
 }
 
-.correct,
-.incorrect {
-    color: var(--oe-clr-fg);
-}
-
-.correct {
-    background-color: green;
-}
-
-.incorrect {
-    background-color: red;
-}
-
-.next-button {
-    background: blue;
+.multiple-choice .next-button {
+    width: 100%;
 }

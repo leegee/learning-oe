@@ -8,6 +8,33 @@
     color: var(--oe-clr-fg);
 }
 
+h3 {
+    margin-top: 2em;
+    font-size: 150%;
+}
+
 button {
     border-radius: 0.3em;
+    font-size: 150%;
+    border: 1pt solid grey;
+    padding: 0.3em;
+    cursor: pointer;
+}
+
+.correct,
+.incorrect {
+    color: var(--oe-clr-fg);
+}
+
+.correct {
+    background-color: green;
+}
+
+.incorrect {
+    background-color: red;
+}
+
+.next-button {
+    margin-top: 2em;
+    background: blue;
 }

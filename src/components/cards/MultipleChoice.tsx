@@ -54,7 +54,7 @@ const MultipleChoice = ({
                 <button
                     key={index}
                     onClick={() => handleOptionClick(option)}
-                    className={getButtonClassName(option, isCorrect, selectedOption)}
+                    className={'multiple-choice-button ' + getButtonClassName(option, isCorrect, selectedOption)}
                 >
                     {option}
                 </button>

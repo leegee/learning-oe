@@ -15,3 +15,11 @@
     margin-top: 10px;
     padding: 5px 10px;
 }
+
+.vocab-match button.vocab-match {
+    width: 100%;
+}
+
+.vocab-match .next-button {
+    width: 100%;
+}

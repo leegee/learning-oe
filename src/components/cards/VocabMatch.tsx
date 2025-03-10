@@ -72,7 +72,7 @@ const VocabMatch = ({ question, vocab, onComplete }: VocabMatchProps) => {
                             <tr key={index}>
                                 <td>
                                     <button
-                                        className={`left-word ${isMatched ? 'matched' : ''}`}
+                                        className={`vocab-match left-word ${isMatched ? 'matched' : ''}`}
                                         onClick={() => handleLeftClick(leftWord)}
                                     >
                                         {leftWord}
@@ -80,7 +80,7 @@ const VocabMatch = ({ question, vocab, onComplete }: VocabMatchProps) => {
                                 </td>
                                 <td>
                                     <button
-                                        className={`right-word ${isRightMatched ? 'matched' : ''}`}
+                                        className={`vocab-match right-word ${isRightMatched ? 'matched' : ''}`}
                                         onClick={() => handleRightClick(shuffledRightWord)}
                                     >
                                         {shuffledRightWord}

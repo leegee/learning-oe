@@ -1,8 +1,8 @@
-.word-options {
+.blanks-card .word-options {
     display: flex;
     gap: 1em;
 }
 
-button {
+.blanks-card button.word-option {
     width: auto;
 }
