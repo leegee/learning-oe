@@ -14,8 +14,8 @@ describe('App Component', () => {
           // Check if the "modern" sentence is rendered
           expect(screen.getByText(new RegExp(card.modern, 'i'))).toBeInTheDocument();
 
-          // Check if each "oldEnglish" option is rendered
-          card.oldEnglish.forEach(option => {
+          // Check if each "answers" option is rendered
+          card.answers.forEach(option => {
             expect(screen.getByText(new RegExp(option, 'i'))).toBeInTheDocument();
           });
         });
@@ -23,18 +23,18 @@ describe('App Component', () => {
         it(`should disable buttons after selecting an option for card ${cardIndex + 1}`, async () => {
           render(<App />);
 
-          // Select the first option (for example, the first option in oldEnglish)
-          fireEvent.click(screen.getByText(card.oldEnglish[0]));
+          // Select the first option (for example, the first option in answers)
+          fireEvent.click(screen.getByText(card.answers[0]));
 
           // Ensure the button is disabled
-          expect(screen.getByText(card.oldEnglish[0])).toBeDisabled();
+          expect(screen.getByText(card.answers[0])).toBeDisabled();
         });
 
         it(`should show a modal when an option is selected for card ${cardIndex + 1}`, async () => {
           render(<App />);
 
-          // Click on the first option (e.g., the first option in oldEnglish)
-          fireEvent.click(screen.getByText(card.oldEnglish[0]));
+          // Click on the first option (e.g., the first option in answers)
+          fireEvent.click(screen.getByText(card.answers[0]));
 
           // Wait for the modal to appear and show the correct message
           await waitFor(() => {
@@ -46,7 +46,7 @@ describe('App Component', () => {
           render(<App />);
 
           // Click on the first option
-          fireEvent.click(screen.getByText(card.oldEnglish[0]));
+          fireEvent.click(screen.getByText(card.answers[0]));
 
           // Wait for the modal to show
           await waitFor(() => {

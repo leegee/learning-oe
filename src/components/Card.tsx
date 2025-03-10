@@ -13,7 +13,7 @@ const shuffleArray = (array: string[]) => {
 
 interface CardProps {
     modern: string;
-    oldEnglish: string[];
+    answers: string[];
     answer: string;
     onComplete: () => void;
 }
@@ -30,7 +30,7 @@ const getButtonClassName = (option: string, isCorrect: boolean | null, selectedO
 
 const Card = ({
     modern,
-    oldEnglish,
+    answers,
     answer,
     onComplete,
 }: CardProps) => {
@@ -39,8 +39,8 @@ const Card = ({
     const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
 
     useEffect(() => {
-        setShuffledOptions(shuffleArray(oldEnglish));
-    }, [oldEnglish]);
+        setShuffledOptions(shuffleArray(answers));
+    }, [answers]);
 
     const handleOptionClick = (option: string) => {
         setSelectedOption(option);

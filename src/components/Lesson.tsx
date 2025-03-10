@@ -6,7 +6,7 @@ interface LessonProps {
     title: string;
     cards: {
         modern: string;
-        oldEnglish: string[];
+        answers: string[];
         answer: string;
     }[];
     onComplete: () => void;
@@ -41,7 +41,7 @@ const Lesson = ({ title, cards, onComplete }: LessonProps) => {
             ></progress>
             <Card
                 modern={currentCard.modern}
-                oldEnglish={currentCard.oldEnglish}
+                answers={currentCard.answers}
                 answer={currentCard.answer}
                 onComplete={goToNextCard}
             />
