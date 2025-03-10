@@ -21,25 +21,32 @@ const BlanksCard = ({ question, words, onComplete }: BlanksCardProps) => {
 
     // Handle word selection and updating sentence
     const handleWordClick = (word: string) => {
-        // Check if the word is correct
+        // Find the index of the first blank (__) that needs to be filled
+        const firstBlankIndex = currentSentence.indexOf('__');
+
+        // If there's no blank, don't proceed
+        if (firstBlankIndex === -1) {
+            return;
+        }
+
+        // Check if the word is correct and if it follows the selected order
         const isCorrect = words.find((item) => item.word === word && item.correct);
 
         if (isCorrect && selectedWords.length < words.filter(word => word.correct).length) {
-            setSelectedWords((prev) => [...prev, word]);
+            // Ensure the selected word matches the next blank's expected word in the correct order
+            const expectedWord = words.filter(word => word.correct)[selectedWords.length].word;
 
-            // Replace the next sequence of underscores (__) in the sentence with the selected word
-            let updatedSentence = currentSentence;
+            if (word === expectedWord) {
+                setSelectedWords((prev) => [...prev, word]);
 
-            // Replace the next occurrence of one or more underscores (using __+)
-            updatedSentence = updatedSentence.replace(/__+/,
-                (match) => {
-                    if (selectedWords.length < words.filter(word => word.correct).length) {
-                        return word; // Replace the first sequence of underscores with the selected word
-                    }
-                    return match; // Return the original match if no more words to fill
-                });
+                // Replace the first occurrence of underscores (__) with the selected word
+                let updatedSentence = currentSentence;
+                updatedSentence = updatedSentence.replace(/__+/, word);
 
-            setCurrentSentence(updatedSentence);
+                setCurrentSentence(updatedSentence);
+            } else {
+                alert('Please select the words in the correct order!');
+            }
         } else if (!isCorrect) {
             alert('Incorrect word, try again!');
         }
