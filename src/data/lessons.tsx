@@ -4,6 +4,17 @@ export const lessons = [
         title: "1: Greetings",
         cards: [
             {
+                class: 'vocab',
+                question: "Match the words",
+                vocab: [
+                    { "Hello": "Hāl" },
+                    { "Good morning": "Gōdmorgen" },
+                    { "Good evening": "Gōd æfen" },
+                    { "Good night": "Gōd niht" },
+                    { "How are you?": "Hwæt ēart þū?" }
+                ]
+            },
+            {
                 class: 'multiple-choice', question: "1. Hello, how are you?",
                 answers: ["Hālhwætsīeēow", "Godmorgen", "Gōdmorgen"],
                 answer: "Hālhwætsīeēow",

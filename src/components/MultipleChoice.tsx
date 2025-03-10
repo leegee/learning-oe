@@ -1,3 +1,4 @@
+// MultipleChoice.tsx
 import { useState, useEffect } from 'react';
 import './MultipleChoice.css';
 

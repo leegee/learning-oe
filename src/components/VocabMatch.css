@@ -1,0 +1,17 @@
+.vocab-match table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vocab-match td {
+    padding: 0.3em;
+}
+
+.vocab-match .matched {
+    color: #5959;
+}
+
+.vocab-match .next-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+}
