@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
     --oe-clr-fg: rgb(234, 234, 243);
     --oe-clr-bg: #001;
@@ -10,4 +6,8 @@
 * {
     background-color: var(--oe-clr-bg);
     color: var(--oe-clr-fg);
+}
+
+button {
+    border-radius: 0.3em;
 }

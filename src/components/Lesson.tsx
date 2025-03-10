@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import MultipleChoice from './MultipleChoice';
 import VocabMatch from './VocabMatch';
+import './Lesson.css';
 
 interface LessonProps {
     title: string;
