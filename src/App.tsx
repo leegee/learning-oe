@@ -1,16 +1,19 @@
 // App
 import React, { useState } from 'react';
-import { lessons } from './data/lessons';
+import { allLessons as lessons } from './data/lessons';
 import LessonComponent from './components/Lesson';
 
 import './App.css';
 
 const App: React.FC = () => {
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(0);
+  const [completed, setCompleted] = useState<boolean>(false);
 
   const goToNextLesson = () => {
     if (currentLessonIndex < lessons.length - 1) {
       setCurrentLessonIndex(currentLessonIndex + 1);
+    } else {
+      setCompleted(true);
     }
   };
 
@@ -20,7 +23,11 @@ const App: React.FC = () => {
     <main>
       <h1>Old English Lessons</h1>
 
-      {lessons.length > 0 && (
+      {completed && (
+        <p className="completed">Lessons complete!</p>
+      )}
+
+      {!completed && lessons.length > 0 && (
         <LessonComponent
           key={currentLessonIndex}
           title={currentLesson.title}
@@ -28,6 +35,7 @@ const App: React.FC = () => {
           onComplete={goToNextLesson}
         />
       )}
+
     </main>
   );
 };

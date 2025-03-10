@@ -25,7 +25,7 @@ const LessonComponent = ({ title, cards, onComplete }: LessonProps) => {
     const currentCard = cards[currentCardIndex];
     const progress = (currentCardIndex + 1) / cards.length;
 
-    console.log('Current card index is ', currentCardIndex);
+    console.log('Current card index is ', currentCardIndex, 'progress', progress);
 
     return (
         <section>

@@ -5,3 +5,8 @@ main {
     margin: 0 auto;
     padding-top: 2rem;
 }
+
+.completed {
+    font-size: 300%;
+    font-style: italic;
+}

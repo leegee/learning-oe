@@ -1,31 +1,23 @@
 // src/data/lessons.ts
 import { Lesson } from '../types/lessons';
 
-export const lessons: Lesson[] = [
+export const oneLesson: Lesson[] = [
+    {
+        title: "Test",
+        cards: [
+            {
+                class: 'multiple-choice', question: "10. I’m single.",
+                answers: ["Ic eom singel", "Ic eom in læf", "Ic eom bīdan"],
+                answer: "Ic eom singel",
+            }
+        ]
+    }
+];
+
+export const allLessons: Lesson[] = [
     {
         title: "1: Greetings",
         cards: [
-            {
-                class: 'blanks',
-                question: "Se ___ drincð ___",
-                words: [
-                    { word: 'drincks', correct: false },
-                    { word: 'cyning', correct: true },
-                    { word: 'wæter', correct: true },
-                    { word: 'heafod', correct: false },
-                    { word: 'hlaf', correct: false },]
-            },
-            {
-                class: 'vocab',
-                question: "Match the words",
-                vocab: [
-                    { "Hello": "Hāl" },
-                    { "Good morning": "Gōdmorgen" },
-                    { "Good evening": "Gōd æfen" },
-                    { "Good night": "Gōd niht" },
-                    { "How are you?": "Hwæt ēart þū?" }
-                ]
-            },
             {
                 class: 'multiple-choice',
                 question: "Hello, how are you?",
@@ -76,6 +68,17 @@ export const lessons: Lesson[] = [
                 class: 'multiple-choice', question: "10. Goodbye!",
                 answers: ["Gōdbye", "Wes þú hāl", "Far þú well"],
                 answer: "Wes þú hāl",
+            },
+            {
+                class: 'vocab',
+                question: "Match the words",
+                vocab: [
+                    { "Hello": "Hāl" },
+                    { "Good morning": "Gōdmorgen" },
+                    { "Good evening": "Gōd æfen" },
+                    { "Good night": "Gōd niht" },
+                    { "How are you?": "Hwæt ēart þū?" }
+                ]
             },
         ],
     },
@@ -242,6 +245,19 @@ export const lessons: Lesson[] = [
                 answers: ["Ic eom singel", "Ic eom in læf", "Ic eom bīdan"],
                 answer: "Ic eom singel",
             },
+            {
+                class: 'blanks',
+                question: "Se ___ drincð ___",
+                words: [
+                    { word: 'drincks', correct: false },
+                    { word: 'cyning', correct: true },
+                    { word: 'wæter', correct: true },
+                    { word: 'heafod', correct: false },
+                    { word: 'hlaf', correct: false },]
+            },
+
         ],
     },
 ];
+
+export const lessons: Lesson[] = oneLesson;
