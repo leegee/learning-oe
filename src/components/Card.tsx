@@ -22,12 +22,9 @@ interface CardProps {
 
 const getButtonClassName = (option: string, selectedOption: string | null, answer: string) => {
     if (selectedOption && option === selectedOption) {
-        if (option !== answer) {
-            return 'w-full p-2 border rounded bg-red-200 correct';
-        }
-        return 'w-full p-2 border rounded bg-green-200 incorrect';
+        return option !== answer ? 'incorrect' : 'correct';
     }
-    return 'w-full p-2 border rounded';
+    return '';
 };
 
 const Card = ({
@@ -49,31 +46,25 @@ const Card = ({
     const buttonText = isCorrect ? 'Next' : 'Try Again';
 
     return (
-        <div>
-            <h3 className="text-lg mb-4">Modern English: {modern}</h3>
-            <div className="space-y-2">
-                {shuffledOptions.map((option, index) => (
-                    <button
-                        key={index}
-                        onClick={() => handleOptionClick(option)}
-                        className={getButtonClassName(option, selectedOption, answer)}
-                        disabled={!!selectedOption} // Disable buttons after an option is selected
-                    >
-                        {option}
-                    </button>
-                ))}
-            </div>
-
-            {/* Render the action button */}
-            {selectedOption && (
+        <section className='card multiple-choice'>
+            <h3>{modern}</h3>
+            {shuffledOptions.map((option, index) => (
                 <button
-                    onClick={onComplete} // Proceed to the next lesson or card
-                    className="w-full p-2 mt-4 border rounded bg-blue-500 text-white"
+                    key={index}
+                    onClick={() => handleOptionClick(option)}
+                    className={getButtonClassName(option, selectedOption, answer)}
+                    disabled={!!selectedOption} // Disable buttons after an option is selected
                 >
+                    {option}
+                </button>
+            ))}
+
+            {selectedOption && (
+                <button className='next-button' onClick={onComplete}>
                     {buttonText}
                 </button>
             )}
-        </div>
+        </section>
     );
 };
 

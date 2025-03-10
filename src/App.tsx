@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { lessons } from './data/lessons';
 import Lesson from './components/Lesson';
 
+import './App.css';
+
 const App: React.FC = () => {
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(0);
 
@@ -15,8 +17,8 @@ const App: React.FC = () => {
   const currentLesson = lessons[currentLessonIndex];
 
   return (
-    <main className="min-h-screen p-8">
-      <h1 className="text-2xl font-bold mb-6">Old English Lessons</h1>
+    <main>
+      <h1>Old English Lessons</h1>
 
       {lessons.length > 0 && (
         <Lesson
