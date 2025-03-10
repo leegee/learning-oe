@@ -40,7 +40,7 @@ const Card = ({
 
     useEffect(() => {
         setShuffledOptions(shuffleArray(oldEnglish));
-    }, []);
+    }, [oldEnglish]);
 
     const handleOptionClick = (option: string) => {
         setSelectedOption(option);
