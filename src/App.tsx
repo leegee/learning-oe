@@ -21,7 +21,10 @@ const App: React.FC = () => {
 
   return (
     <main>
-      <h1>Old English Lessons</h1>
+      <header>
+        <h1 lang="ang">Eald Englisc Lārspel</h1>
+        <h2>Old English Lessons</h2>
+      </header>
 
       {completed && (
         <p className="completed">Lessons complete!</p>

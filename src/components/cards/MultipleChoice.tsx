@@ -52,6 +52,7 @@ const MultipleChoice = ({
             <h3>{question}</h3>
             {shuffledOptions.map((option, index) => (
                 <button
+                    lang="ang"
                     key={index}
                     onClick={() => handleOptionClick(option)}
                     className={'multiple-choice-button ' + getButtonClassName(option, isCorrect, selectedOption)}

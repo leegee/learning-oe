@@ -1,6 +1,9 @@
+@import './fonts.css';
+
 :root {
     --oe-clr-fg: rgb(234, 234, 243);
     --oe-clr-bg: #001;
+    --oe-border-radius: 0.3em;
 }
 
 * {
@@ -8,13 +11,16 @@
     color: var(--oe-clr-fg);
 }
 
-h3 {
-    margin-top: 2em;
-    font-size: 150%;
+body {
+    font-family: 'Work Sans';
+}
+
+[lang="ang"] {
+    font-family: 'Junicode', serif;
 }
 
 button {
-    border-radius: 0.3em;
+    border-radius: var(--oe-border-radius);
     font-size: 150%;
     border: 1pt solid grey;
     padding: 0.3em;
@@ -37,4 +43,16 @@ button {
 .next-button {
     margin-top: 2em;
     background: blue;
+}
+
+.card {
+    border: 1pt solid #fff6;
+    margin: 1em 0;
+    padding: 1em;
+    border-radius: var(--oe-border-radius);
+}
+
+.card h3 {
+    font-size: 150%;
+    margin: 1em 0;
 }

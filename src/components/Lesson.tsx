@@ -14,7 +14,6 @@ const LessonComponent = ({ title, cards, onComplete }: LessonProps) => {
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
 
     const goToNextCard = () => {
-        console.log('Going to next card from ', currentCardIndex);
         if (currentCardIndex < cards.length - 1) {
             setCurrentCardIndex((prevIndex) => prevIndex + 1);
         } else {
@@ -25,15 +24,12 @@ const LessonComponent = ({ title, cards, onComplete }: LessonProps) => {
     const currentCard = cards[currentCardIndex];
     const progress = (currentCardIndex + 1) / cards.length;
 
-    console.log('Current card index is ', currentCardIndex, 'progress', progress);
-
     return (
-        <section>
-            <h2>{title}</h2>
+        <section className='lesson'>
+            <h2>Lesson {title}</h2>
             <progress
                 value={progress}
                 max={1}
-                style={{ width: '100%', height: '5pt' }}
             ></progress>
 
             {currentCard.class === 'multiple-choice' && (
