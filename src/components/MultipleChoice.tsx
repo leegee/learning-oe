@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './Card.css';
+import './MultipleChoice.css';
 
 // Fisher-Yates shuffle algorithm
 const shuffleArray = (array: string[]) => {
@@ -11,7 +11,7 @@ const shuffleArray = (array: string[]) => {
     return shuffledArray;
 };
 
-interface CardProps {
+interface MultipleChoiceCardProps {
     question: string;
     answers: string[];
     answer: string;
@@ -28,12 +28,12 @@ const getButtonClassName = (option: string, isCorrect: boolean | null, selectedO
     return '';
 };
 
-const Card = ({
+const MultipleChoice = ({
     question,
     answers,
     answer,
     onComplete,
-}: CardProps) => {
+}: MultipleChoiceCardProps) => {
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
@@ -80,4 +80,4 @@ const Card = ({
     );
 };
 
-export default Card;
+export default MultipleChoice;

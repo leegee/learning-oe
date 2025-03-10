@@ -1,10 +1,11 @@
 // src/components/Lesson.tsx
 import { useState } from 'react';
-import Card from './Card';
+import MultipleChoice from './MultipleChoice';
 
 interface LessonProps {
     title: string;
     cards: {
+        class: 'multiple-choice' | 'vocab';
         question: string;
         answers: string[];
         answer: string;
@@ -39,12 +40,14 @@ const Lesson = ({ title, cards, onComplete }: LessonProps) => {
                 max={1}
                 style={{ width: '100%', height: '5pt' }}
             ></progress>
-            <Card
-                question={currentCard.question}
-                answers={currentCard.answers}
-                answer={currentCard.answer}
-                onComplete={goToNextCard}
-            />
+            {currentCard.class === 'multiple-choice' &&
+                <MultipleChoice
+                    question={currentCard.question}
+                    answers={currentCard.answers}
+                    answer={currentCard.answer}
+                    onComplete={goToNextCard}
+                />
+            }
         </section>
     );
 };
