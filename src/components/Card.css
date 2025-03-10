@@ -9,6 +9,7 @@ button {
     border: 1pt solid grey;
     font-size: 150%;
     padding: 0.3em;
+    cursor: pointer;
 }
 
 .correct,

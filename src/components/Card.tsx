@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Card.css';
 
 // Fisher-Yates shuffle algorithm
@@ -20,9 +20,12 @@ interface CardProps {
     onComplete: () => void;
 }
 
-const getButtonClassName = (option: string, selectedOption: string | null, answer: string) => {
+const getButtonClassName = (option: string, isCorrect: boolean | null, selectedOption: string | null) => {
+    if (isCorrect === null) {
+        return '';
+    }
     if (selectedOption && option === selectedOption) {
-        return option !== answer ? 'incorrect' : 'correct';
+        return isCorrect ? 'correct' : 'incorrect';
     }
     return '';
 };
@@ -35,15 +38,24 @@ const Card = ({
     setSelectedOption,
     onComplete,
 }: CardProps) => {
-    const [isCorrect, setIsCorrect] = useState(false);
-    const shuffledOptions = shuffleArray(oldEnglish);
+    const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+    const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
+
+    useEffect(() => {
+        setShuffledOptions(shuffleArray(oldEnglish));
+    }, []);
 
     const handleOptionClick = (option: string) => {
         setSelectedOption(option);
         setIsCorrect(option === answer);
     };
 
-    const buttonText = isCorrect ? 'Next' : 'Try Again';
+    const handleNextClick = () => {
+        setSelectedOption(null);
+        if (isCorrect) {
+            onComplete();
+        }
+    };
 
     return (
         <section className='card multiple-choice'>
@@ -52,16 +64,18 @@ const Card = ({
                 <button
                     key={index}
                     onClick={() => handleOptionClick(option)}
-                    className={getButtonClassName(option, selectedOption, answer)}
-                    disabled={!!selectedOption} // Disable buttons after an option is selected
+                    className={getButtonClassName(option, isCorrect, selectedOption)}
                 >
                     {option}
                 </button>
             ))}
 
             {selectedOption && (
-                <button className='next-button' onClick={onComplete}>
-                    {buttonText}
+                <button
+                    className='next-button'
+                    onClick={handleNextClick}
+                >
+                    {isCorrect ? 'Next' : 'Try Again'}
                 </button>
             )}
         </section>
