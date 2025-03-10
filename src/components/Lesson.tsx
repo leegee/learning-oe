@@ -14,13 +14,12 @@ interface LessonProps {
 
 const Lesson = ({ title, cards, onComplete }: LessonProps) => {
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
     const goToNextCard = () => {
-        setSelectedOption(null);
-
+        console.log('Going to next card from ', currentCardIndex);
         if (currentCardIndex < cards.length - 1) {
             setCurrentCardIndex(currentCardIndex + 1);
+            console.log('card index is now ', currentCardIndex + 1);
         } else {
             onComplete();
         }
@@ -29,6 +28,8 @@ const Lesson = ({ title, cards, onComplete }: LessonProps) => {
     const currentCard = cards[currentCardIndex];
 
     const progress = ((currentCardIndex + 1) / cards.length);
+
+    console.log('card index is now ', currentCardIndex);
 
     return (
         <section>
@@ -42,8 +43,6 @@ const Lesson = ({ title, cards, onComplete }: LessonProps) => {
                 modern={currentCard.modern}
                 oldEnglish={currentCard.oldEnglish}
                 answer={currentCard.answer}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
                 onComplete={goToNextCard}
             />
         </section>

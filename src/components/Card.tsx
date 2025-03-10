@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './Card.css';
 
 // Fisher-Yates shuffle algorithm
@@ -15,8 +15,6 @@ interface CardProps {
     modern: string;
     oldEnglish: string[];
     answer: string;
-    selectedOption: string | null;
-    setSelectedOption: React.Dispatch<React.SetStateAction<string | null>>;
     onComplete: () => void;
 }
 
@@ -34,10 +32,9 @@ const Card = ({
     modern,
     oldEnglish,
     answer,
-    selectedOption,
-    setSelectedOption,
     onComplete,
 }: CardProps) => {
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
 
@@ -51,6 +48,7 @@ const Card = ({
     };
 
     const handleNextClick = () => {
+        console.log('clicked next')
         setSelectedOption(null);
         if (isCorrect) {
             onComplete();
