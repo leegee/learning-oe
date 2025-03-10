@@ -12,7 +12,7 @@ const shuffleArray = (array: string[]) => {
 };
 
 interface CardProps {
-    modern: string;
+    question: string;
     answers: string[];
     answer: string;
     onComplete: () => void;
@@ -29,7 +29,7 @@ const getButtonClassName = (option: string, isCorrect: boolean | null, selectedO
 };
 
 const Card = ({
-    modern,
+    question,
     answers,
     answer,
     onComplete,
@@ -57,7 +57,7 @@ const Card = ({
 
     return (
         <section className='card multiple-choice'>
-            <h3>{modern}</h3>
+            <h3>{question}</h3>
             {shuffledOptions.map((option, index) => (
                 <button
                     key={index}

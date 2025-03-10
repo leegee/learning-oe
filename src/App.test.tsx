@@ -11,8 +11,8 @@ describe('App Component', () => {
         it(`should render card ${cardIndex + 1} with correct options`, async () => {
           render(<App />);
 
-          // Check if the "modern" sentence is rendered
-          expect(screen.getByText(new RegExp(card.modern, 'i'))).toBeInTheDocument();
+          // Check if the "question" sentence is rendered
+          expect(screen.getByText(new RegExp(card.question, 'i'))).toBeInTheDocument();
 
           // Check if each "answers" option is rendered
           card.answers.forEach(option => {
@@ -58,7 +58,7 @@ describe('App Component', () => {
 
           // Verify that the new card (next lesson) is displayed
           const nextCard = lesson.cards[cardIndex + 1] || lesson.cards[0]; // For the last card, loop back to the first card
-          expect(screen.getByText(new RegExp(nextCard.modern, 'i'))).toBeInTheDocument();
+          expect(screen.getByText(new RegExp(nextCard.question, 'i'))).toBeInTheDocument();
         });
       });
     });

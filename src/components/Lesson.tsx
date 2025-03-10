@@ -5,7 +5,7 @@ import Card from './Card';
 interface LessonProps {
     title: string;
     cards: {
-        modern: string;
+        question: string;
         answers: string[];
         answer: string;
     }[];
@@ -40,7 +40,7 @@ const Lesson = ({ title, cards, onComplete }: LessonProps) => {
                 style={{ width: '100%', height: '5pt' }}
             ></progress>
             <Card
-                modern={currentCard.modern}
+                question={currentCard.question}
                 answers={currentCard.answers}
                 answer={currentCard.answer}
                 onComplete={goToNextCard}
