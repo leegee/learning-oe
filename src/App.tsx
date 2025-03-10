@@ -1,7 +1,7 @@
 // App
 import React, { useState } from 'react';
 import { lessons } from './data/lessons';
-import Lesson from './components/Lesson';
+import LessonComponent from './components/Lesson';
 
 import './App.css';
 
@@ -21,7 +21,7 @@ const App: React.FC = () => {
       <h1>Old English Lessons</h1>
 
       {lessons.length > 0 && (
-        <Lesson
+        <LessonComponent
           key={currentLessonIndex}
           title={currentLesson.title}
           cards={currentLesson.cards}

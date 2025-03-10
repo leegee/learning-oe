@@ -1,28 +1,16 @@
 // src/components/Lesson.tsx
 import { useState } from 'react';
-import MultipleChoice from './MultipleChoice';
-import VocabMatch from './VocabMatch';
+import MultipleChoice from './cards/MultipleChoice';
+import VocabMatch from './cards/VocabMatch';
+import BlanksCard from './cards/BlanksCard';
+import { Lesson } from '../types/lessons';
 import './Lesson.css';
 
-interface LessonProps {
-    title: string;
-    cards: (
-        | {
-            class: 'multiple-choice';
-            question: string;
-            answers: string[];
-            answer: string;
-        }
-        | {
-            class: 'vocab';
-            question: string;
-            vocab: { [lang1: string]: string }[];
-        }
-    )[];
+interface LessonProps extends Lesson {
     onComplete: () => void;
-}
+};
 
-const Lesson = ({ title, cards, onComplete }: LessonProps) => {
+const LessonComponent = ({ title, cards, onComplete }: LessonProps) => {
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
 
     const goToNextCard = () => {
@@ -64,8 +52,16 @@ const Lesson = ({ title, cards, onComplete }: LessonProps) => {
                     onComplete={goToNextCard}
                 />
             )}
+
+            {currentCard.class === 'blanks' && (
+                <BlanksCard
+                    question={currentCard.question}
+                    words={currentCard.words}
+                    onComplete={goToNextCard}
+                />
+            )}
         </section>
     );
 };
 
-export default Lesson;
+export default LessonComponent;

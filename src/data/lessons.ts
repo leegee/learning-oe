@@ -6,6 +6,16 @@ export const lessons: Lesson[] = [
         title: "1: Greetings",
         cards: [
             {
+                class: 'blanks',
+                question: "Se ___ drincð ___",
+                words: [
+                    { word: 'drincks', correct: false },
+                    { word: 'cyning', correct: true },
+                    { word: 'wæter', correct: true },
+                    { word: 'heafod', correct: false },
+                    { word: 'hlaf', correct: false },]
+            },
+            {
                 class: 'vocab',
                 question: "Match the words",
                 vocab: [
