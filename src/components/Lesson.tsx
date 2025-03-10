@@ -29,8 +29,8 @@ const Lesson = ({ title, cards, onComplete }: LessonProps) => {
     const currentCard = cards[currentCardIndex];
 
     return (
-        <div className="mb-6 p-4 border rounded shadow-sm">
-            <h2 className="text-xl font-bold mb-2">Lesson: {title}</h2>
+        <section>
+            <h2>{title}</h2>
             <Card
                 modern={currentCard.modern}
                 oldEnglish={currentCard.oldEnglish}
@@ -39,7 +39,7 @@ const Lesson = ({ title, cards, onComplete }: LessonProps) => {
                 setSelectedOption={setSelectedOption}
                 onComplete={goToNextCard}
             />
-        </div>
+        </section>
     );
 };
 
