@@ -9,10 +9,11 @@ import { type Lesson } from '../Lessons';
 import './Lesson.css';
 
 interface LessonProps extends Lesson {
+    onIncorrectAnswer: (incorrectAnswer: string) => void;
     onComplete: () => void;
 };
 
-const LessonComponent = ({ title, cards, onComplete }: LessonProps) => {
+const LessonComponent = ({ title, cards, onIncorrectAnswer, onComplete }: LessonProps) => {
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
     const { t } = useTranslation();
 
@@ -26,6 +27,8 @@ const LessonComponent = ({ title, cards, onComplete }: LessonProps) => {
 
     const onIncorrect = () => {
         console.log('On Incorrect: ');
+        // TODO onIncorrect should receive something to store here
+        onIncorrectAnswer("incorrectAnswer");
     }
 
     const currentCard = cards[currentCardIndex];

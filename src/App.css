@@ -6,27 +6,31 @@ main {
     padding-top: 2rem;
 }
 
-.completed {
+main .completed {
     font-size: 300%;
     font-style: italic;
 }
 
-header {
+main header {
     display: flex;
     justify-content: space-between;
 }
 
-header h1,
+main header h1,
 header h2 {
     margin: 0;
     font-weight: normal;
     font-size: 1em;
 }
 
-header h1 {
+main header h1 {
     font-style: italic;
 }
 
-header h2 {
+main header h2 {
     font-weight: 100;
+}
+
+main header .incorrectAnswers {
+    color: red;
 }

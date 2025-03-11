@@ -1,24 +1,44 @@
-// App
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 
 import { lessons } from './Lessons';
 import LessonComponent from './components/Lesson';
 import config from './config';
+import * as state from './state';
 
 import './App.css';
 
 const App: React.FC = () => {
-  const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(0);
-  const [completed, setCompleted] = useState<boolean>(false);
+  const initialLessonIndex = state.loadCurrentLesson();
+  const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
+  const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>(state.loadIncorrectAnswers(currentLessonIndex));
+  const [completed, setCompleted] = useState<boolean>(false); // Track if all lessons are completed
   const { t } = useTranslation();
 
+  // Update incorrect answers when the current lesson changes
+  useEffect(() => {
+    setIncorrectAnswers(state.loadIncorrectAnswers(currentLessonIndex));
+  }, [currentLessonIndex]);
+
+  const onIncorrectAnswer = (incorrectAnswer: string) => {
+    setIncorrectAnswers((prev) => {
+      const updatedAnswers = [...prev, incorrectAnswer];
+      state.saveIncorrectAnswers(currentLessonIndex, updatedAnswers);
+      return updatedAnswers;
+    });
+  };
+
+  // Move to the next lesson
   const goToNextLesson = () => {
+    const nextLessonIndex = currentLessonIndex + 1;
     if (currentLessonIndex < lessons.length - 1) {
-      setCurrentLessonIndex(currentLessonIndex + 1);
+      setCurrentLessonIndex(nextLessonIndex);
+      state.saveCurrentLesson(nextLessonIndex);
     } else {
       setCompleted(true);
     }
+    // Even if completed
+    state.saveCurrentLesson(nextLessonIndex);
   };
 
   const currentLesson = lessons[currentLessonIndex];
@@ -27,6 +47,7 @@ const App: React.FC = () => {
     <main>
       <header>
         <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
+        <span className='incorrectAnswers' title={t('incorrect_answer_count_alt')}>{t('incorrect_answer_count')} -{incorrectAnswers.length}</span>
         <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
       </header>
 
@@ -40,9 +61,9 @@ const App: React.FC = () => {
           title={currentLesson.title}
           cards={currentLesson.cards}
           onComplete={goToNextLesson}
+          onIncorrectAnswer={onIncorrectAnswer}
         />
       )}
-
     </main>
   );
 };

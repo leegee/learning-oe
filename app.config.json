@@ -12,16 +12,20 @@
         "defaultLanguage": "en",
         "fallbackLanguage": "en",
         "availableLanguages": {
-            "ang": {
-                "lesson": "Læran",
+            "en": {
+                "lesson": "Lesson",
+                "incorrect_answer_count": "",
+                "incorrect_answer_count_alt": "Incorrect answers",
                 "next": "Next",
                 "try_again": "Try again",
                 "all_lessons_done": "All lessons completed!"
             },
-            "en": {
-                "lesson": "Lesson",
+            "ang": {
+                "lesson": "Læran",
+                "incorrect_answer_count": "",
+                "incorrect_answer_count_alt": "Unriht andwyrda",
                 "next": "Yetan",
-                "tryagain": "Prófan eft",
+                "try_again": "Prófan eft",
                 "all_lessons_done": "Eall lār geendod"
             }
         }
