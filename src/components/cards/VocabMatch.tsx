@@ -1,4 +1,3 @@
-// src/components/VocabMatch.tsx
 import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 
@@ -13,12 +12,13 @@ interface VocabMatchProps {
     onComplete: () => void;
 }
 
-
 const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
     const [langs] = useState<setQandALangsReturnType>(setQandALangs(card.qlang));
     const [shuffledRightColumn, setShuffledRightColumn] = useState<string[]>([]);
-    const [selectedPair, setSelectedPair] = useState<[string, string] | null>(null);
+    const [selectedLeftWord, setSelectedLeftWord] = useState<string | null>(null);
+    const [selectedRightWord, setSelectedRightWord] = useState<string | null>(null);
     const [correctMatches, setCorrectMatches] = useState<{ [key: string]: string }>({});
+    const [shakeRightWord, setShakeRightWord] = useState<string | null>(null);
     const [isComplete, setIsComplete] = useState(false);
     const { t } = useTranslation();
 
@@ -27,26 +27,45 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
         setShuffledRightColumn(shuffleArray(rightColumn));
     }, [card.vocab]);
 
-    const handleLeftClick = (leftWord: string) => {
-        if (selectedPair) {
-            setSelectedPair([leftWord, selectedPair[1]]);
+    const processMatch = (leftWord: string, rightWord: string) => {
+        const correctMatch = card.vocab.find((pair) => pair[leftWord] === rightWord);
+
+        if (correctMatch) {
+            setCorrectMatches((prev) => ({ ...prev, [leftWord]: rightWord }));
         } else {
-            setSelectedPair([leftWord, '']);
+            setShakeRightWord(rightWord);
+            setTimeout(() => {
+                setShakeRightWord(null);
+            }, 1000);
+            onIncorrect();
+        }
+
+        // Reset selections after processing
+        setSelectedLeftWord(null);
+        setSelectedRightWord(null);
+    };
+
+    const handleQuestionClick = (leftWord: string) => {
+        if (selectedLeftWord === leftWord) {
+            setSelectedLeftWord(null);
+        } else {
+            setSelectedLeftWord(leftWord);
+        }
+
+        if (selectedRightWord) {
+            processMatch(leftWord, selectedRightWord);
         }
     };
 
-    const handleRightClick = (rightWord: string) => {
-        if (selectedPair) {
-            const [leftWord] = selectedPair;
-            const correctMatch = card.vocab.find((pair) => pair[leftWord] === rightWord);
-            if (correctMatch) {
-                setCorrectMatches((prev) => ({ ...prev, [leftWord]: rightWord }));
-            } else {
-                onIncorrect();
-            }
-            setSelectedPair(null);
+    const handleAnswerClick = (rightWord: string) => {
+        if (selectedRightWord === rightWord) {
+            setSelectedRightWord(null);
         } else {
-            setSelectedPair(['', rightWord]);
+            setSelectedRightWord(rightWord);
+        }
+
+        if (selectedLeftWord) {
+            processMatch(selectedLeftWord, rightWord);
         }
     };
 
@@ -73,7 +92,6 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
                         const shuffledRightWord = shuffledRightColumn[index];
 
                         const isMatched = correctMatches[leftWord] === correctRightWord;
-
                         const isRightMatched = Object.values(correctMatches).includes(shuffledRightWord);
 
                         return (
@@ -81,8 +99,10 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
                                 <td>
                                     <button
                                         lang={langs.q}
-                                        className={`vocab-match left-word ${isMatched ? 'matched' : ''}`}
-                                        onClick={() => handleLeftClick(leftWord)}
+                                        className={`vocab-match left-word 
+                                            ${isMatched ? 'matched' : ''} 
+                                            ${selectedLeftWord === leftWord ? 'selected' : ''}`}
+                                        onClick={() => handleQuestionClick(leftWord)}
                                     >
                                         {leftWord}
                                     </button>
@@ -90,8 +110,11 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
                                 <td>
                                     <button
                                         lang={langs.a}
-                                        className={`vocab-match right-word ${isRightMatched ? 'matched' : ''}`}
-                                        onClick={() => handleRightClick(shuffledRightWord)}
+                                        className={`vocab-match right-word 
+                                            ${isRightMatched ? 'matched' : ''} 
+                                            ${selectedRightWord === shuffledRightWord ? 'selected' : ''}
+                                            ${shakeRightWord === shuffledRightWord ? 'shake' : ''}`}
+                                        onClick={() => handleAnswerClick(shuffledRightWord)}
                                     >
                                         {shuffledRightWord}
                                     </button>

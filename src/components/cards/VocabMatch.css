@@ -9,14 +9,23 @@
 
 .vocab-match .matched {
     color: #5959;
+    border-color: #5959;
+}
+
+.vocab-match .selected {
+    border-color: var(--oe-clr-fg);
 }
 
 .vocab-match .next-button {
     margin-top: 10px;
-    /* padding: 5px 10px; */
     width: 100%;
 }
 
 .vocab-match button.vocab-match {
     width: 100%;
+}
+
+.vocab-match .shake {
+    color: white;
+    background-color: red;
 }

@@ -7,22 +7,22 @@
                 "qlang": "default",
                 "question": "Hello, how are you?",
                 "answers": [
-                    "Hālhwætsīeēow",
-                    "Godmorgen",
+                    "Hāl, hu gǽþ hit þē?",
+                    "Hey, hu gos it?",
                     "Gōdmorgen"
                 ],
-                "answer": "Hālhwætsīeēow"
+                "answer": "Hāl, hu gǽþ hit þē?"
             },
             {
                 "class": "multiple-choice",
                 "qlang": "target",
-                "question": "Hālhwætsīeēow",
+                "question": "Hāl",
                 "answers": [
                     "Hello",
-                    "Hale, what's new?",
-                    "Hale and good health"
+                    "Hi",
+                    "Hail"
                 ],
-                "answer": "Hale and good health"
+                "answer": "Hail"
             },
             {
                 "class": "multiple-choice",

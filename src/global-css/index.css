@@ -1,4 +1,5 @@
 @import './fonts.css';
+@import './animations.css';
 
 :root {
     --oe-clr-fg: rgb(234, 234, 243);
