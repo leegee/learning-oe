@@ -72,8 +72,7 @@ const App: React.FC = () => {
         !allCompleted && lessons.length > 0 && (
           <LessonComponent
             key={currentLessonIndex}
-            title={currentLesson.title}
-            cards={currentLesson.cards}
+            lesson={currentLesson}
             onComplete={goToNextLesson}
             onIncorrectAnswer={onIncorrectAnswer}
           />

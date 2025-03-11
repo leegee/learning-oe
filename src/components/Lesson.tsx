@@ -8,17 +8,18 @@ import BlanksCard from './cards/BlanksCard';
 import { type Lesson } from '../Lessons';
 import './Lesson.css';
 
-interface LessonProps extends Lesson {
+interface LessonProps {
+    lesson: Lesson;
     onIncorrectAnswer: (incorrectAnswer: string) => void;
     onComplete: () => void;
 };
 
-const LessonComponent = ({ title, cards, onIncorrectAnswer, onComplete }: LessonProps) => {
+const LessonComponent = ({ lesson, onIncorrectAnswer, onComplete }: LessonProps) => {
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
     const { t } = useTranslation();
 
     const goToNextCard = () => {
-        if (currentCardIndex < cards.length - 1) {
+        if (currentCardIndex < lesson.cards.length - 1) {
             setCurrentCardIndex((prevIndex) => prevIndex + 1);
         } else {
             onComplete();
@@ -31,12 +32,12 @@ const LessonComponent = ({ title, cards, onIncorrectAnswer, onComplete }: Lesson
         onIncorrectAnswer("incorrectAnswer");
     }
 
-    const currentCard = cards[currentCardIndex];
-    const progress = (currentCardIndex + 1) / cards.length;
+    const currentCard = lesson.cards[currentCardIndex];
+    const progress = (currentCardIndex + 1) / lesson.cards.length;
 
     return (
         <section className='lesson'>
-            <h2>{t('lesson')}: <em>{title}</em></h2>
+            <h2>{t('lesson')}: <em>{lesson.title}</em></h2>
             <progress
                 value={progress}
                 max={1}
