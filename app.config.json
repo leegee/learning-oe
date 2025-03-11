@@ -19,7 +19,8 @@
                 "incorrect_answer_count_alt": "Incorrect answers",
                 "next": "Next",
                 "try_again": "Try again",
-                "all_lessons_done": "All lessons completed!"
+                "all_lessons_done": "All lessons completed!",
+                "lesson_progress": "Lessons"
             },
             "ang": {
                 "lesson": "Læran",
@@ -27,7 +28,8 @@
                 "incorrect_answer_count_alt": "Unriht andwyrda",
                 "next": "Yetan",
                 "try_again": "Prófan eft",
-                "all_lessons_done": "Eall lār geendod"
+                "all_lessons_done": "Eall lār geendod",
+                "lesson_progress": "Læran"
             }
         }
     }

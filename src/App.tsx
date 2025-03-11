@@ -50,21 +50,34 @@ const App: React.FC = () => {
         <span className='incorrectAnswers' title={t('incorrect_answer_count_alt')}>{t('incorrect_answer_count')} {incorrectAnswers && '-' + incorrectAnswers.length}</span>
         <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
       </header>
-
-      {completed && (
-        <p className="completed">{t('all_lessons_done')}</p>
-      )}
-
-      {!completed && lessons.length > 0 && (
-        <LessonComponent
-          key={currentLessonIndex}
-          title={currentLesson.title}
-          cards={currentLesson.cards}
-          onComplete={goToNextLesson}
-          onIncorrectAnswer={onIncorrectAnswer}
+      <aside>
+        <progress
+          value={currentLessonIndex}
+          max={lessons.length - 1}
+          className="lesson-progress"
+          aria-label={t('lesson_progress')}
+          title={t('lesson') + ' ' + ((currentLessonIndex + 1) / lessons.length)}
         />
-      )}
-    </main>
+      </aside>
+
+      {
+        completed && (
+          <p className="completed">{t('all_lessons_done')}</p>
+        )
+      }
+
+      {
+        !completed && lessons.length > 0 && (
+          <LessonComponent
+            key={currentLessonIndex}
+            title={currentLesson.title}
+            cards={currentLesson.cards}
+            onComplete={goToNextLesson}
+            onIncorrectAnswer={onIncorrectAnswer}
+          />
+        )
+      }
+    </main >
   );
 };
 
