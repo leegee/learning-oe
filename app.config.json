@@ -1,0 +1,19 @@
+{
+    "defaultLanguage": "en",
+    "targetLanguage": "ang",
+    "i18n": {
+        "detectUserLanguage": false,
+        "defaultLanguage": "en",
+        "fallbackLanguage": "en",
+        "availableLanguages": {
+            "ang": {
+                "apptitle": "Eald Englisc Lārspel",
+                "lesson": "Læran"
+            },
+            "en": {
+                "apptitle": "Old English Lessons",
+                "lesson": "Lesson"
+            }
+        }
+    }
+}

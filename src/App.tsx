@@ -1,13 +1,17 @@
 // App
 import React, { useState } from 'react';
+import { useTranslation } from "react-i18next";
+
 import { allLessons as lessons } from './data/lessons';
 import LessonComponent from './components/Lesson';
+import config from './config';
 
 import './App.css';
 
 const App: React.FC = () => {
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(0);
   const [completed, setCompleted] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   const goToNextLesson = () => {
     if (currentLessonIndex < lessons.length - 1) {
@@ -19,11 +23,13 @@ const App: React.FC = () => {
 
   const currentLesson = lessons[currentLessonIndex];
 
+  console.log('xxx', config);
+
   return (
     <main>
       <header>
-        <h1 lang="ang">Eald Englisc Lārspel</h1>
-        <h2>Old English Lessons</h2>
+        <h1 lang={config.targetLanguage}>{t("apptitle", { lng: config.targetLanguage })}</h1>
+        <h2 lang={config.defaultLanguage}>{t("apptitle", { lng: config.defaultLanguage })}</h2>
       </header>
 
       {completed && (
