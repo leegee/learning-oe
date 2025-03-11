@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import { shuffleArray } from '../../lib/shuffle-array.ts'
 import { type VocabCard } from '../../Lessons.ts';
+import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
 import './VocabMatch.css';
 
 interface VocabMatchProps {
@@ -14,6 +15,7 @@ interface VocabMatchProps {
 
 
 const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
+    const [langs] = useState<setQandALangsReturnType>(setQandALangs(card.qlang));
     const [shuffledRightColumn, setShuffledRightColumn] = useState<string[]>([]);
     const [selectedPair, setSelectedPair] = useState<[string, string] | null>(null);
     const [correctMatches, setCorrectMatches] = useState<{ [key: string]: string }>({});
@@ -62,7 +64,7 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
 
     return (
         <section className="card vocab-match">
-            <h3>{card.question}</h3>
+            <h3 lang={langs.q}>{card.question}</h3>
             <table>
                 <tbody>
                     {card.vocab.map((pair, index) => {
@@ -78,6 +80,7 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
                             <tr key={index}>
                                 <td>
                                     <button
+                                        lang={langs.q}
                                         className={`vocab-match left-word ${isMatched ? 'matched' : ''}`}
                                         onClick={() => handleLeftClick(leftWord)}
                                     >
@@ -86,6 +89,7 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
                                 </td>
                                 <td>
                                     <button
+                                        lang={langs.a}
                                         className={`vocab-match right-word ${isRightMatched ? 'matched' : ''}`}
                                         onClick={() => handleRightClick(shuffledRightWord)}
                                     >

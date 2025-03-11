@@ -1,8 +1,10 @@
+// BlanksCard.tsx
 import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 
 import { shuffleArray } from '../../lib/shuffle-array.ts';
 import { type BlanksCard } from '../../Lessons.ts';
+import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
 import './BlanksCard.css';
 
 interface BlanksCardProps {
@@ -12,6 +14,7 @@ interface BlanksCardProps {
 }
 
 const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
+    const [langs] = useState<setQandALangsReturnType>(setQandALangs(card.qlang));
     const [shuffledWords, setShuffledWords] = useState<string[]>([]);
     const [selectedWords, setSelectedWords] = useState<string[]>([]);
     const [isComplete, setIsComplete] = useState(false);
@@ -74,7 +77,7 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
 
     return (
         <section className="card blanks-card">
-            <h3>{currentSentence}</h3>
+            <h3 lang={langs.q}>{currentSentence}</h3>
             <div className="word-options">
                 {shuffledWords.map((word, index) => {
                     const isSelected = selectedWords.includes(word);
@@ -84,6 +87,7 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
                     return (
                         <button
                             key={index}
+                            lang={langs.a}
                             className={`word-option ${isSelected ? isCorrect ? 'correct' : 'incorrect' : ''}`}
                             onClick={() => handleWordClick(word)}
                             disabled={isSelected}
