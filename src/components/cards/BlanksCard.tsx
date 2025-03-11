@@ -19,6 +19,8 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
     const [selectedWords, setSelectedWords] = useState<string[]>([]);
     const [isComplete, setIsComplete] = useState(false);
     const [currentSentence, setCurrentSentence] = useState<string>(card.question);
+    const [shake, setShake] = useState<string | null>(null);
+
     const { t } = useTranslation();
 
     useEffect(() => {
@@ -48,15 +50,15 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
                 // Replace the first occurrence of underscores (__) with the selected word
                 let updatedSentence = currentSentence;
                 updatedSentence = updatedSentence.replace(/__+/, word);
-
                 setCurrentSentence(updatedSentence);
-            } else {
-                alert('Please select the words in the correct order!');
+            }
+            else {
+                // alert('Please select the words in the correct order!');
                 onIncorrect();
             }
         } else if (!isCorrect) {
-            // TODO UI
-            alert(t('try_again'));
+            setShake(word);
+            setTimeout(() => setShake(null), 1000);
             onIncorrect();
         }
     };
@@ -67,7 +69,8 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
         if (selectedWords.length === correctOrder.length && selectedWords.every((word, index) => word === correctOrder[index])) {
             setIsComplete(true);
         }
-    }, [selectedWords, card.words]);
+        console.log(selectedWords.length, correctOrder.length, selectedWords.every((word, index) => word === correctOrder[index]))
+    }, [selectedWords, card]);
 
     const handleNextClick = () => {
         if (isComplete) {
@@ -89,9 +92,13 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
                             <button
                                 key={index}
                                 lang={langs.a}
-                                className={`word-option ${isSelected ? isCorrect ? 'correct' : 'incorrect' : ''}`}
                                 onClick={() => handleWordClick(word)}
                                 disabled={isSelected}
+                                className={
+                                    `word-option 
+                                    ${isSelected ? isCorrect ? 'correct' : 'incorrect' : ''}
+                                    ${shake === word ? 'shake' : ''}
+                                `}
                             >
                                 {word}
                             </button>

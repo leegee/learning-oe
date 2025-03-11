@@ -26,19 +26,18 @@ section.card {
     margin-bottom: 1em;
 }
 
-button {
+.card {
+    border: 1pt solid #fff6;
+    margin: 1em 0;
+    padding: 1em;
     border-radius: var(--oe-border-radius);
-    font-size: 150%;
-    border: 1pt solid grey;
-    padding: 0.3em;
-    cursor: pointer;
 }
 
-.next-button {
-    background: blue;
-    width: calc(100% - 2em);
-    margin-left: 1em;
+.card h3 {
+    font-size: 150%;
+    margin: 0.3em 0 0.6em 0;
 }
+
 
 .correct,
 .incorrect {
@@ -53,14 +52,25 @@ button {
     background-color: red;
 }
 
-.card {
-    border: 1pt solid #fff6;
-    margin: 1em 0;
-    padding: 1em;
-    border-radius: var(--oe-border-radius);
+.shake {
+    color: white;
+    background-color: red;
 }
 
-.card h3 {
+button {
+    border-radius: var(--oe-border-radius);
     font-size: 150%;
-    margin: 0.3em 0 0.6em 0;
+    border: 1pt solid grey;
+    padding: 0.3em;
+    cursor: pointer;
+}
+
+button:hover {
+    outline: 1px solid var(--oe-clr-fg);
+}
+
+.next-button {
+    background: blue;
+    width: calc(100% - 2em);
+    margin-left: 1em;
 }

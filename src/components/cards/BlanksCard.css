@@ -1,6 +1,8 @@
 .blanks-card .word-options {
     display: flex;
+    justify-content: space-evenly;
     gap: 1em;
+    margin: 2em 0;
 }
 
 .blanks-card button.word-option {

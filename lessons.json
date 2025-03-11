@@ -69,6 +69,29 @@
                 "answer": "Ic eom god, þancie þē"
             },
             {
+                "class": "blanks",
+                "qlang": "default",
+                "question": "___ morgen þē",
+                "words": [
+                    {
+                        "word": "Gōd",
+                        "correct": true
+                    },
+                    {
+                        "word": "Cyning",
+                        "correct": false
+                    },
+                    {
+                        "word": "Good",
+                        "correct": false
+                    },
+                    {
+                        "word": "God",
+                        "correct": false
+                    }
+                ]
+            },
+            {
                 "class": "multiple-choice",
                 "qlang": "default",
                 "question": "Goodbye!",

@@ -34,9 +34,7 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
             setCorrectMatches((prev) => ({ ...prev, [leftWord]: rightWord }));
         } else {
             setShakeRightWord(rightWord);
-            setTimeout(() => {
-                setShakeRightWord(null);
-            }, 1000);
+            setTimeout(() => setShakeRightWord(null), 1000);
             onIncorrect();
         }
 
