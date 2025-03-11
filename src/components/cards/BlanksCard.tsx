@@ -69,7 +69,6 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
         if (selectedWords.length === correctOrder.length && selectedWords.every((word, index) => word === correctOrder[index])) {
             setIsComplete(true);
         }
-        console.log(selectedWords.length, correctOrder.length, selectedWords.every((word, index) => word === correctOrder[index]))
     }, [selectedWords, card]);
 
     const handleNextClick = () => {
