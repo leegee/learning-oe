@@ -1,33 +1,36 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import en from "./locales/en.json"; // Static English file
-import appConfig from "../app.config.json"; // App config with i18n settings
+import appConfig from "../app.config.json";
 
 const loadLocales = () => {
-    const resources: Record<string, { translation: any }> = {
-        en: { translation: en }, // Always load English from file
-    };
+    const resources: Record<string, { translation: any }> = {};
 
-    const targetLang = appConfig.i18n?.targetLanguage as keyof typeof appConfig.i18n.availableLanguages;
-    const targetData = appConfig.i18n?.availableLanguages?.[targetLang];
+    const defaultLang = appConfig.defaultLanguage as keyof typeof appConfig.i18n.availableLanguages;
+    const targetLang = appConfig.targetLanguage as keyof typeof appConfig.i18n.availableLanguages;
 
-    if (targetLang && targetData) {
-        resources[targetLang] = { translation: targetData };
+    if (defaultLang && defaultLang in appConfig.i18n.availableLanguages) {
+        resources[defaultLang] = { translation: appConfig.i18n.availableLanguages[defaultLang] };
+    } else {
+        console.warn(`No data found for default language: ${defaultLang}`);
+    }
+
+    if (targetLang && targetLang in appConfig.i18n.availableLanguages) {
+        resources[targetLang] = { translation: appConfig.i18n.availableLanguages[targetLang] };
     } else {
         console.warn(`No data found for target language: ${targetLang}`);
     }
 
-    return { resources, targetLang };
+    return { resources, defaultLang, targetLang };
 };
 
-const { resources, targetLang } = loadLocales();
+const { resources, defaultLang, targetLang } = loadLocales();
 
 i18n
     .use(initReactI18next)
     .init({
         resources,
-        lng: targetLang || "en", // Default to English
-        fallbackLng: "en",
+        lng: targetLang || defaultLang,
+        fallbackLng: defaultLang,
         interpolation: { escapeValue: false },
     });
 
