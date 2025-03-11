@@ -82,55 +82,57 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
     };
 
     return (
-        <section className="card vocab-match">
-            <h3 lang={langs.q}>{card.question}</h3>
-            <table>
-                <tbody>
-                    {card.vocab.map((pair, index) => {
-                        const leftWord = Object.keys(pair)[0];
-                        const correctRightWord = Object.values(pair)[0];
-                        const shuffledRightWord = shuffledRightColumn[index];
+        <>
+            <section className="card vocab-match">
+                <h3 lang={langs.q}>{card.question}</h3>
+                <table>
+                    <tbody>
+                        {card.vocab.map((pair, index) => {
+                            const leftWord = Object.keys(pair)[0];
+                            const correctRightWord = Object.values(pair)[0];
+                            const shuffledRightWord = shuffledRightColumn[index];
 
-                        const isMatched = correctMatches[leftWord] === correctRightWord;
-                        const isRightMatched = Object.values(correctMatches).includes(shuffledRightWord);
+                            const isMatched = correctMatches[leftWord] === correctRightWord;
+                            const isRightMatched = Object.values(correctMatches).includes(shuffledRightWord);
 
-                        return (
-                            <tr key={index}>
-                                <td>
-                                    <button
-                                        lang={langs.q}
-                                        className={`vocab-match left-word 
+                            return (
+                                <tr key={index}>
+                                    <td>
+                                        <button
+                                            lang={langs.q}
+                                            className={`vocab-match left-word 
                                             ${isMatched ? 'matched' : ''} 
                                             ${selectedLeftWord === leftWord ? 'selected' : ''}`}
-                                        onClick={() => handleQuestionClick(leftWord)}
-                                    >
-                                        {leftWord}
-                                    </button>
-                                </td>
-                                <td>
-                                    <button
-                                        lang={langs.a}
-                                        className={`vocab-match right-word 
+                                            onClick={() => handleQuestionClick(leftWord)}
+                                        >
+                                            {leftWord}
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button
+                                            lang={langs.a}
+                                            className={`vocab-match right-word 
                                             ${isRightMatched ? 'matched' : ''} 
                                             ${selectedRightWord === shuffledRightWord ? 'selected' : ''}
                                             ${shakeRightWord === shuffledRightWord ? 'shake' : ''}`}
-                                        onClick={() => handleAnswerClick(shuffledRightWord)}
-                                    >
-                                        {shuffledRightWord}
-                                    </button>
-                                </td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+                                            onClick={() => handleAnswerClick(shuffledRightWord)}
+                                        >
+                                            {shuffledRightWord}
+                                        </button>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </section>
 
             {isComplete && (
                 <button className="next-button" onClick={handleNextClick}>
                     {t('next')}
                 </button>
             )}
-        </section>
+        </>
     );
 };
 

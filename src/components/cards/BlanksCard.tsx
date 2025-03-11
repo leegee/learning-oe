@@ -76,34 +76,36 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
     };
 
     return (
-        <section className="card blanks-card">
-            <h3 lang={langs.q}>{currentSentence}</h3>
-            <div className="word-options">
-                {shuffledWords.map((word, index) => {
-                    const isSelected = selectedWords.includes(word);
-                    const isCorrect = card.words.find((item) => item.word === word && item.correct);
+        <>
+            <section className="card blanks-card">
+                <h3 lang={langs.q}>{currentSentence}</h3>
+                <div className="word-options">
+                    {shuffledWords.map((word, index) => {
+                        const isSelected = selectedWords.includes(word);
+                        const isCorrect = card.words.find((item) => item.word === word && item.correct);
 
-                    // We apply the coloring logic only after the word is selected
-                    return (
-                        <button
-                            key={index}
-                            lang={langs.a}
-                            className={`word-option ${isSelected ? isCorrect ? 'correct' : 'incorrect' : ''}`}
-                            onClick={() => handleWordClick(word)}
-                            disabled={isSelected}
-                        >
-                            {word}
-                        </button>
-                    );
-                })}
-            </div>
+                        // We apply the coloring logic only after the word is selected
+                        return (
+                            <button
+                                key={index}
+                                lang={langs.a}
+                                className={`word-option ${isSelected ? isCorrect ? 'correct' : 'incorrect' : ''}`}
+                                onClick={() => handleWordClick(word)}
+                                disabled={isSelected}
+                            >
+                                {word}
+                            </button>
+                        );
+                    })}
+                </div>
+            </section>
 
             {isComplete && (
                 <button className="next-button" onClick={handleNextClick}>
                     {t('next')}
                 </button>
             )}
-        </section>
+        </>
     );
 };
 

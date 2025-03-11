@@ -21,7 +21,7 @@ const App: React.FC = () => {
   }, [currentLessonIndex]);
 
   const onIncorrectAnswer = (incorrectAnswer: string) => {
-    setIncorrectAnswers((prev) => {
+    setIncorrectAnswers((prev = []) => {
       const updatedAnswers = [...prev, incorrectAnswer];
       state.saveIncorrectAnswers(currentLessonIndex, updatedAnswers);
       return updatedAnswers;
