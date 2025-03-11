@@ -1,6 +1,7 @@
 {
     "defaultLanguage": "en",
     "targetLanguage": "ang",
+    "uiLanguage": "en",
     "default": {
         "apptitle": "Old English Lessons"
     },

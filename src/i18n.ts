@@ -7,6 +7,7 @@ const loadLocales = () => {
 
     const defaultLang = appConfig.defaultLanguage as keyof typeof appConfig.i18n.availableLanguages;
     const targetLang = appConfig.targetLanguage as keyof typeof appConfig.i18n.availableLanguages;
+    const uiLang = appConfig.uiLanguage as keyof typeof appConfig.i18n.availableLanguages;
 
     if (defaultLang && defaultLang in appConfig.i18n.availableLanguages) {
         resources[defaultLang] = { translation: appConfig.i18n.availableLanguages[defaultLang] };
@@ -20,17 +21,23 @@ const loadLocales = () => {
         console.warn(`No data found for target language: ${targetLang}`);
     }
 
-    return { resources, defaultLang, targetLang };
+    if (uiLang && uiLang in appConfig.i18n.availableLanguages) {
+        resources[uiLang] = { translation: appConfig.i18n.availableLanguages[uiLang] };
+    } else {
+        console.warn(`No data found for ui language: ${uiLang}`);
+    }
+
+    return { resources, defaultLang, targetLang, uiLang };
 };
 
-const { resources, defaultLang, targetLang } = loadLocales();
+const { resources, defaultLang, targetLang, uiLang } = loadLocales();
 
 i18n
     .use(initReactI18next)
     .init({
         resources,
-        lng: targetLang || defaultLang,
-        fallbackLng: defaultLang,
+        lng: uiLang || targetLang || defaultLang,
+        fallbackLng: uiLang || defaultLang,
         interpolation: { escapeValue: false },
     });
 
