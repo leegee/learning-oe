@@ -4,6 +4,7 @@
         "cards": [
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "Hello, how are you?",
                 "answers": [
                     "Hālhwætsīeēow",
@@ -14,6 +15,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "Good morning!",
                 "answers": [
                     "Hālhwætsīeēow",
@@ -24,6 +26,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "Good evening!",
                 "answers": [
                     "Gōd æfen",
@@ -34,6 +37,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "How are you today?",
                 "answers": [
                     "Hū gǣþ þīn dæg?",
@@ -44,6 +48,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "I’m fine, thank you.",
                 "answers": [
                     "Ic eom gesund, þancie þē",
@@ -54,6 +59,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "What’s your name?",
                 "answers": [
                     "Hwæt is þīn nama?",
@@ -64,6 +70,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "My name is John.",
                 "answers": [
                     "Ic eom John",
@@ -74,6 +81,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "Where are you from?",
                 "answers": [
                     "Hwaer cōmest þū?",
@@ -84,6 +92,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "I am from England.",
                 "answers": [
                     "Ic com of Englalond",
@@ -94,6 +103,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "10. Goodbye!",
                 "answers": [
                     "Gōdbye",
@@ -104,6 +114,7 @@
             },
             {
                 "class": "vocab",
+                "qlang": "default",
                 "question": "Match the words",
                 "vocab": [
                     {
@@ -130,6 +141,7 @@
         "cards": [
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "My name is John.",
                 "answers": [
                     "Ic eom John",
@@ -140,6 +152,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "I am from England.",
                 "answers": [
                     "Ic com of Englalond",
@@ -150,6 +163,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "What is your occupation?",
                 "answers": [
                     "Hū wyrce þū?",
@@ -160,6 +174,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "I am a teacher.",
                 "answers": [
                     "Ic eom lārēow",
@@ -170,6 +185,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "What languages do you speak?",
                 "answers": [
                     "Hwilc spræce sprece þū?",
@@ -180,6 +196,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "I speak English and Old English.",
                 "answers": [
                     "Ic spræc Englisc and Eald Englisc",
@@ -190,6 +207,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "How old are you?",
                 "answers": [
                     "Hū eald eart þū?",
@@ -200,6 +218,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "I am twenty-five years old.",
                 "answers": [
                     "Ic eom twēntig fīf geara eald",
@@ -210,6 +229,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "Where do you live?",
                 "answers": [
                     "Hwaer lyft þū?",
@@ -220,6 +240,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "10. I live in London.",
                 "answers": [
                     "Ic lyfe in Lundon",
@@ -235,6 +256,7 @@
         "cards": [
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "Please pass me the salt.",
                 "answers": [
                     "Wille þū gēaf mē þone sealt?",
@@ -245,6 +267,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "Thank you very much.",
                 "answers": [
                     "Þancie þē swīðe",
@@ -255,6 +278,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "Can I help you?",
                 "answers": [
                     "Mæg ic þē helpon?",
@@ -265,6 +289,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "I need to go to the store.",
                 "answers": [
                     "Ic behōf þæt ic gā tō þǣm stōre",
@@ -275,6 +300,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "Where is the nearest bank?",
                 "answers": [
                     "Hwaer is þæt neārest banc?",
@@ -285,6 +311,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "How much does it cost?",
                 "answers": [
                     "Hū micel costað hit?",
@@ -295,6 +322,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "What time is it?",
                 "answers": [
                     "Hwæt tīma is hit?",
@@ -305,6 +333,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "I would like a coffee.",
                 "answers": [
                     "Ic wīllæc cōfīe",
@@ -315,6 +344,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "It’s very hot today.",
                 "answers": [
                     "Hit is swīðe hāt tōdæg",
@@ -325,6 +355,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "10. I’ll see you later.",
                 "answers": [
                     "Ic seō þē hēr",
@@ -340,6 +371,7 @@
         "cards": [
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "This is my mother.",
                 "answers": [
                     "Þis is mín mōdor",
@@ -350,6 +382,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "This is my father.",
                 "answers": [
                     "Þis is mín fāder",
@@ -360,6 +393,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "I have two siblings.",
                 "answers": [
                     "Ic hæbbe twēon",
@@ -370,6 +404,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "My sister is very kind.",
                 "answers": [
                     "Mīn sweoster is swīðe cīgend",
@@ -380,6 +415,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "I have one brother.",
                 "answers": [
                     "Ic hæbbe ān broþor",
@@ -390,6 +426,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "Where is your family from?",
                 "answers": [
                     "Hwaer is þīn cyn?",
@@ -400,6 +437,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "I have a large family.",
                 "answers": [
                     "Ic hæbbe mǣre cyn",
@@ -410,6 +448,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "I’m married.",
                 "answers": [
                     "Ic eom gehāten",
@@ -420,6 +459,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "My children are at school.",
                 "answers": [
                     "Mīn cildra bēo on scole",
@@ -430,6 +470,7 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "default",
                 "question": "10. I’m single.",
                 "answers": [
                     "Ic eom singel",
@@ -440,6 +481,7 @@
             },
             {
                 "class": "blanks",
+                "qlang": "default",
                 "question": "Se ___ drincð ___",
                 "words": [
                     {

@@ -3,12 +3,12 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 
 import { shuffleArray } from '../../lib/shuffle-array.ts'
+import config from '../../config.ts';
+import { type MultipleChoiceCard } from '../../Lessons.ts';
 import './MultipleChoice.css';
 
 interface MultipleChoiceCardProps {
-    question: string;
-    answers: string[];
-    answer: string;
+    card: MultipleChoiceCard;
     onIncorrect: () => void;
     onComplete: () => void;
 }
@@ -24,9 +24,7 @@ const getButtonClassName = (option: string, isCorrect: boolean | null, selectedO
 };
 
 const MultipleChoice = ({
-    question,
-    answers,
-    answer,
+    card,
     onIncorrect,
     onComplete,
 }: MultipleChoiceCardProps) => {
@@ -36,12 +34,12 @@ const MultipleChoice = ({
     const { t } = useTranslation();
 
     useEffect(() => {
-        setShuffledOptions(shuffleArray(answers));
-    }, [answers]);
+        setShuffledOptions(shuffleArray(card.answers));
+    }, [card.answers]);
 
     const handleOptionClick = (option: string) => {
         setSelectedOption(option);
-        setIsCorrect(option === answer);
+        setIsCorrect(option === card.answer);
     };
 
     const handleNextClick = () => {
@@ -55,10 +53,10 @@ const MultipleChoice = ({
 
     return (
         <section className='card multiple-choice'>
-            <h3>{question}</h3>
+            <h3>{card.question}</h3>
             {shuffledOptions.map((option, index) => (
                 <button
-                    lang="ang"
+                    lang={config.targetLanguage}
                     key={index}
                     onClick={() => handleOptionClick(option)}
                     className={'multiple-choice-button ' + getButtonClassName(option, isCorrect, selectedOption)}

@@ -3,17 +3,17 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 
 import { shuffleArray } from '../../lib/shuffle-array.ts'
+import { type VocabCard } from '../../Lessons.ts';
 import './VocabMatch.css';
 
 interface VocabMatchProps {
-    question: string;
-    vocab: { [lang1: string]: string }[];
+    card: VocabCard;
     onIncorrect: () => void;
     onComplete: () => void;
 }
 
 
-const VocabMatch = ({ question, vocab, onIncorrect, onComplete }: VocabMatchProps) => {
+const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
     const [shuffledRightColumn, setShuffledRightColumn] = useState<string[]>([]);
     const [selectedPair, setSelectedPair] = useState<[string, string] | null>(null);
     const [correctMatches, setCorrectMatches] = useState<{ [key: string]: string }>({});
@@ -21,9 +21,9 @@ const VocabMatch = ({ question, vocab, onIncorrect, onComplete }: VocabMatchProp
     const { t } = useTranslation();
 
     useEffect(() => {
-        const rightColumn = vocab.map((pair) => Object.values(pair)[0]);
+        const rightColumn = card.vocab.map((pair) => Object.values(pair)[0]);
         setShuffledRightColumn(shuffleArray(rightColumn));
-    }, [vocab]);
+    }, [card.vocab]);
 
     const handleLeftClick = (leftWord: string) => {
         if (selectedPair) {
@@ -36,7 +36,7 @@ const VocabMatch = ({ question, vocab, onIncorrect, onComplete }: VocabMatchProp
     const handleRightClick = (rightWord: string) => {
         if (selectedPair) {
             const [leftWord] = selectedPair;
-            const correctMatch = vocab.find((pair) => pair[leftWord] === rightWord);
+            const correctMatch = card.vocab.find((pair) => pair[leftWord] === rightWord);
             if (correctMatch) {
                 setCorrectMatches((prev) => ({ ...prev, [leftWord]: rightWord }));
             } else {
@@ -49,10 +49,10 @@ const VocabMatch = ({ question, vocab, onIncorrect, onComplete }: VocabMatchProp
     };
 
     useEffect(() => {
-        if (Object.keys(correctMatches).length === vocab.length) {
+        if (Object.keys(correctMatches).length === card.vocab.length) {
             setIsComplete(true);
         }
-    }, [correctMatches, vocab.length]);
+    }, [correctMatches, card.vocab.length]);
 
     const handleNextClick = () => {
         if (isComplete) {
@@ -62,10 +62,10 @@ const VocabMatch = ({ question, vocab, onIncorrect, onComplete }: VocabMatchProp
 
     return (
         <section className="card vocab-match">
-            <h3>{question}</h3>
+            <h3>{card.question}</h3>
             <table>
                 <tbody>
-                    {vocab.map((pair, index) => {
+                    {card.vocab.map((pair, index) => {
                         const leftWord = Object.keys(pair)[0];
                         const correctRightWord = Object.values(pair)[0];
                         const shuffledRightWord = shuffledRightColumn[index];

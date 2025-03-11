@@ -1,10 +1,10 @@
-# Language Learning
+# Quiz Lessons: learn Old English or anything
 
 ## Features
 
-* Easy to create lessons in [JSON](lessons.json)
+* Easy to create quiz lessons in [JSON](lessons.json)
 * Easy to create translations in [JSON](app.config.json)
-* Three types of lessons:
+* Three types of quiz lessons:
     1. fill in the blanks
     1. match vocabulary
     1. multiple choice

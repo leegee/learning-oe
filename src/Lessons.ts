@@ -16,22 +16,25 @@ export type Lesson = {
     cards: (VocabCard | BlanksCard | MultipleChoiceCard)[];
 };
 
-export type VocabCard = {
-    class: 'vocab';
+type Card = {
+    qlang: 'default' | 'target';
     question: string;
+    class: string;
+}
+
+export type VocabCard = Card & {
+    class: 'vocab';
     vocab: { [key: string]: string }[]; // Each entry is a key-value pair of word translation
 };
 
-export type MultipleChoiceCard = {
+export type MultipleChoiceCard = Card & {
     class: 'multiple-choice';
-    question: string;
     answers: string[]; // Array of possible answers
     answer: string; // Correct answer
 };
 
-export type BlanksCard = {
+export type BlanksCard = Card & {
     class: 'blanks';
-    question: string;
     words: { word: string; correct: boolean }[]; // Array of words with a correct boolean flag
 };
 

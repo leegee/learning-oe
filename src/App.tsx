@@ -15,7 +15,7 @@ const App: React.FC = () => {
   const [completed, setCompleted] = useState<boolean>(false); // Track if all lessons are completed
   const { t } = useTranslation();
 
-  // Update incorrect answers when the current lesson changes
+  // When the current lesson changes:
   useEffect(() => {
     setIncorrectAnswers(state.loadIncorrectAnswers(currentLessonIndex));
   }, [currentLessonIndex]);

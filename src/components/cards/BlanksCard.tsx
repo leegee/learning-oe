@@ -2,25 +2,25 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 
 import { shuffleArray } from '../../lib/shuffle-array.ts';
+import { type BlanksCard } from '../../Lessons.ts';
 import './BlanksCard.css';
 
 interface BlanksCardProps {
-    question: string;
-    words: { word: string; correct: boolean }[]; // Array of words with correct boolean
+    card: BlanksCard;
     onIncorrect: () => void;
     onComplete: () => void;
 }
 
-const BlanksCard = ({ question, words, onIncorrect, onComplete }: BlanksCardProps) => {
+const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
     const [shuffledWords, setShuffledWords] = useState<string[]>([]);
     const [selectedWords, setSelectedWords] = useState<string[]>([]);
     const [isComplete, setIsComplete] = useState(false);
-    const [currentSentence, setCurrentSentence] = useState<string>(question); // Sentence with inserted words
+    const [currentSentence, setCurrentSentence] = useState<string>(card.question);
     const { t } = useTranslation();
 
     useEffect(() => {
-        setShuffledWords(shuffleArray(words.map(word => word.word)));
-    }, [words]);
+        setShuffledWords(shuffleArray(card.words.map(word => word.word)));
+    }, [card.words]);
 
     // Handle word selection and updating sentence
     const handleWordClick = (word: string) => {
@@ -33,11 +33,11 @@ const BlanksCard = ({ question, words, onIncorrect, onComplete }: BlanksCardProp
         }
 
         // Check if the word is correct and if it follows the selected order
-        const isCorrect = words.find((item) => item.word === word && item.correct);
+        const isCorrect = card.words.find((item) => item.word === word && item.correct);
 
-        if (isCorrect && selectedWords.length < words.filter(word => word.correct).length) {
+        if (isCorrect && selectedWords.length < card.words.filter(word => word.correct).length) {
             // Ensure the selected word matches the next blank's expected word in the correct order
-            const expectedWord = words.filter(word => word.correct)[selectedWords.length].word;
+            const expectedWord = card.words.filter(word => word.correct)[selectedWords.length].word;
 
             if (word === expectedWord) {
                 setSelectedWords((prev) => [...prev, word]);
@@ -60,11 +60,11 @@ const BlanksCard = ({ question, words, onIncorrect, onComplete }: BlanksCardProp
 
     // Check if all correct words are selected in the correct order
     useEffect(() => {
-        const correctOrder = words.filter(word => word.correct).map(item => item.word);
+        const correctOrder = card.words.filter(word => word.correct).map(item => item.word);
         if (selectedWords.length === correctOrder.length && selectedWords.every((word, index) => word === correctOrder[index])) {
             setIsComplete(true);
         }
-    }, [selectedWords, words]);
+    }, [selectedWords, card.words]);
 
     const handleNextClick = () => {
         if (isComplete) {
@@ -78,7 +78,7 @@ const BlanksCard = ({ question, words, onIncorrect, onComplete }: BlanksCardProp
             <div className="word-options">
                 {shuffledWords.map((word, index) => {
                     const isSelected = selectedWords.includes(word);
-                    const isCorrect = words.find((item) => item.word === word && item.correct);
+                    const isCorrect = card.words.find((item) => item.word === word && item.correct);
 
                     // We apply the coloring logic only after the word is selected
                     return (

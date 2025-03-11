@@ -36,7 +36,7 @@ const LessonComponent = ({ title, cards, onIncorrectAnswer, onComplete }: Lesson
 
     return (
         <section className='lesson'>
-            <h2>{t('lesson')} {title}</h2>
+            <h2>{t('lesson')}: <em>{title}</em></h2>
             <progress
                 value={progress}
                 max={1}
@@ -44,9 +44,7 @@ const LessonComponent = ({ title, cards, onIncorrectAnswer, onComplete }: Lesson
 
             {currentCard.class === 'multiple-choice' && (
                 <MultipleChoice
-                    question={currentCard.question}
-                    answers={currentCard.answers}
-                    answer={currentCard.answer}
+                    card={currentCard}
                     onComplete={goToNextCard}
                     onIncorrect={onIncorrect}
                 />
@@ -54,8 +52,7 @@ const LessonComponent = ({ title, cards, onIncorrectAnswer, onComplete }: Lesson
 
             {currentCard.class === 'vocab' && (
                 <VocabMatch
-                    question={currentCard.question}
-                    vocab={currentCard.vocab}
+                    card={currentCard}
                     onIncorrect={onIncorrect}
                     onComplete={goToNextCard}
                 />
@@ -63,8 +60,7 @@ const LessonComponent = ({ title, cards, onIncorrectAnswer, onComplete }: Lesson
 
             {currentCard.class === 'blanks' && (
                 <BlanksCard
-                    question={currentCard.question}
-                    words={currentCard.words}
+                    card={currentCard}
                     onIncorrect={onIncorrect}
                     onComplete={goToNextCard}
                 />
