@@ -15,6 +15,17 @@
             },
             {
                 "class": "multiple-choice",
+                "qlang": "target",
+                "question": "Hālhwætsīeēow",
+                "answers": [
+                    "Hello",
+                    "Hale, what's new?",
+                    "Hale and good health"
+                ],
+                "answer": "Hale and good health"
+            },
+            {
+                "class": "multiple-choice",
                 "qlang": "default",
                 "question": "Good morning!",
                 "answers": [
@@ -57,6 +68,44 @@
                 ],
                 "answer": "Ic eom god, þancie þē"
             },
+            {
+                "class": "multiple-choice",
+                "qlang": "default",
+                "question": "Goodbye!",
+                "answers": [
+                    "Gōdbye",
+                    "Wes þú hāl",
+                    "Far þú well"
+                ],
+                "answer": "Wes þú hāl"
+            },
+            {
+                "class": "vocab",
+                "qlang": "default",
+                "question": "Match the words",
+                "vocab": [
+                    {
+                        "Hello": "Hāl"
+                    },
+                    {
+                        "Good morning": "Gōdmorgen"
+                    },
+                    {
+                        "Good evening": "Gōd æfen"
+                    },
+                    {
+                        "Good night": "Gōd niht"
+                    },
+                    {
+                        "How are you?": "Hwæt ēart þū?"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Introducing Yourself",
+        "cards": [
             {
                 "class": "multiple-choice",
                 "qlang": "default",
@@ -104,67 +153,7 @@
             {
                 "class": "multiple-choice",
                 "qlang": "default",
-                "question": "10. Goodbye!",
-                "answers": [
-                    "Gōdbye",
-                    "Wes þú hāl",
-                    "Far þú well"
-                ],
-                "answer": "Wes þú hāl"
-            },
-            {
-                "class": "vocab",
-                "qlang": "default",
-                "question": "Match the words",
-                "vocab": [
-                    {
-                        "Hello": "Hāl"
-                    },
-                    {
-                        "Good morning": "Gōdmorgen"
-                    },
-                    {
-                        "Good evening": "Gōd æfen"
-                    },
-                    {
-                        "Good night": "Gōd niht"
-                    },
-                    {
-                        "How are you?": "Hwæt ēart þū?"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "title": "Introducing Yourself",
-        "cards": [
-            {
-                "class": "multiple-choice",
-                "qlang": "default",
-                "question": "My name is John.",
-                "answers": [
-                    "Ic eom John",
-                    "Min nama is John",
-                    "Min nama is Iohannes"
-                ],
-                "answer": "Ic eom John"
-            },
-            {
-                "class": "multiple-choice",
-                "qlang": "default",
-                "question": "I am from England.",
-                "answers": [
-                    "Ic com of Englalond",
-                    "Ic eom of Englalond",
-                    "Ic eom fram Englaland"
-                ],
-                "answer": "Ic com of Englalond"
-            },
-            {
-                "class": "multiple-choice",
-                "qlang": "default",
-                "question": "What is your occupation?",
+                "question": "What is your job?",
                 "answers": [
                     "Hū wyrce þū?",
                     "Hū eart þū on weorc?",
