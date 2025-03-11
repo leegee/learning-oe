@@ -1,0 +1,126 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "title": {
+                "type": "string"
+            },
+            "cards": {
+                "type": "array",
+                "items": {
+                    "anyOf": [
+                        {
+                            "type": "object",
+                            "properties": {
+                                "class": {
+                                    "type": "string",
+                                    "enum": [
+                                        "vocab"
+                                    ]
+                                },
+                                "question": {
+                                    "type": "string"
+                                },
+                                "vocab": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "word": {
+                                                "type": "string"
+                                            },
+                                            "translation": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "word",
+                                            "translation"
+                                        ]
+                                    }
+                                }
+                            },
+                            "required": [
+                                "class",
+                                "question",
+                                "vocab"
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "class": {
+                                    "type": "string",
+                                    "enum": [
+                                        "multiple-choice"
+                                    ]
+                                },
+                                "question": {
+                                    "type": "string"
+                                },
+                                "answers": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "answer": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "class",
+                                "question",
+                                "answers",
+                                "answer"
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "class": {
+                                    "type": "string",
+                                    "enum": [
+                                        "blanks"
+                                    ]
+                                },
+                                "question": {
+                                    "type": "string"
+                                },
+                                "words": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "word": {
+                                                "type": "string"
+                                            },
+                                            "correct": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "required": [
+                                            "word",
+                                            "correct"
+                                        ]
+                                    }
+                                }
+                            },
+                            "required": [
+                                "class",
+                                "question",
+                                "words"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "required": [
+            "title",
+            "cards"
+        ]
+    }
+}

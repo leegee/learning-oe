@@ -1,4 +1,15 @@
+import Ajv from 'ajv';
+
+import lessonsSchema from '../lessons.schema.json';
 import lessonsData from '../lessons.json';
+
+const ajv = new Ajv();
+const validate = ajv.compile(lessonsSchema);
+const valid = validate(lessonsData);
+
+if (!valid) {
+    console.log('Invalid data:', validate.errors);
+}
 
 export type Lesson = {
     title: string;

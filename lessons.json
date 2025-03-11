@@ -1,6 +1,6 @@
 [
     {
-        "title": "1: Greetings",
+        "title": "Greetings",
         "cards": [
             {
                 "class": "multiple-choice",
@@ -126,7 +126,7 @@
         ]
     },
     {
-        "title": "2: Introducing Yourself",
+        "title": "Introducing Yourself",
         "cards": [
             {
                 "class": "multiple-choice",
@@ -231,7 +231,7 @@
         ]
     },
     {
-        "title": "3: Everyday Phrases",
+        "title": "Everyday Phrases",
         "cards": [
             {
                 "class": "multiple-choice",
@@ -336,7 +336,7 @@
         ]
     },
     {
-        "title": "4: Family and Relationships",
+        "title": "Family and Relationships",
         "cards": [
             {
                 "class": "multiple-choice",
