@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from "react-i18next";
 
-import { allLessons as lessons } from './data/lessons';
+import { lessons } from './Lessons';
 import LessonComponent from './components/Lesson';
 import config from './config';
 
@@ -22,8 +22,6 @@ const App: React.FC = () => {
   };
 
   const currentLesson = lessons[currentLessonIndex];
-
-  console.log('xxx', config);
 
   return (
     <main>

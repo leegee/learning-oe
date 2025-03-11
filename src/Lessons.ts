@@ -1,8 +1,8 @@
-// src/types/lessons.ts
+import lessonsData from '../lessons.json';
 
 export type Lesson = {
     title: string;
-    cards: (VocabCard | BlanksCard | MultipleChoiceCard)[]; // Cards can be any of the three types
+    cards: (VocabCard | BlanksCard | MultipleChoiceCard)[];
 };
 
 export type VocabCard = {
@@ -23,3 +23,5 @@ export type BlanksCard = {
     question: string;
     words: { word: string; correct: boolean }[]; // Array of words with a correct boolean flag
 };
+
+export const lessons: Lesson[] = lessonsData as Lesson[];

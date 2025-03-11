@@ -13,13 +13,10 @@
 
 .vocab-match .next-button {
     margin-top: 10px;
-    padding: 5px 10px;
-}
-
-.vocab-match button.vocab-match {
+    /* padding: 5px 10px; */
     width: 100%;
 }
 
-.vocab-match .next-button {
+.vocab-match button.vocab-match {
     width: 100%;
 }

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import MultipleChoice from './cards/MultipleChoice';
 import VocabMatch from './cards/VocabMatch';
 import BlanksCard from './cards/BlanksCard';
-import { Lesson } from '../types/lessons';
+import { type Lesson } from '../Lessons';
 import './Lesson.css';
 
 interface LessonProps extends Lesson {
