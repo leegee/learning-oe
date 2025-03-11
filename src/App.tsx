@@ -12,7 +12,7 @@ const App: React.FC = () => {
   const initialLessonIndex = state.loadCurrentLesson();
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
   const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>(state.loadIncorrectAnswers(currentLessonIndex));
-  const [completed, setCompleted] = useState<boolean>(false); // Track if all lessons are completed
+  const [allCompleted, setAllCompleted] = useState<boolean>(false);
   const { t } = useTranslation();
 
   // When the current lesson changes:
@@ -35,7 +35,7 @@ const App: React.FC = () => {
       setCurrentLessonIndex(nextLessonIndex);
       state.saveCurrentLesson(nextLessonIndex);
     } else {
-      setCompleted(true);
+      setAllCompleted(true);
     }
     // Even if completed
     state.saveCurrentLesson(nextLessonIndex);
@@ -61,13 +61,13 @@ const App: React.FC = () => {
       </aside>
 
       {
-        completed && (
+        allCompleted && (
           <p className="completed">{t('all_lessons_done')}</p>
         )
       }
 
       {
-        !completed && lessons.length > 0 && (
+        !allCompleted && lessons.length > 0 && (
           <LessonComponent
             key={currentLessonIndex}
             title={currentLesson.title}
