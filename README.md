@@ -9,6 +9,12 @@
     1. match vocabulary
     1. multiple choice
 
+## Future Work
+
+Create components that can use data from other components.
+
+Eg: a component to create a `VocabMatch` card from all the `answer` fields of a multiple-choice card.
+
 ## NB
 
 Any resemblance to other language learning apps  is purely coincidence. 
