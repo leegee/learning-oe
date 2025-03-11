@@ -1,5 +1,7 @@
 // src/components/VocabMatch.tsx
 import { useState, useEffect } from 'react';
+import { useTranslation } from "react-i18next";
+
 import { shuffleArray } from '../../lib/shuffle-array.ts'
 import './VocabMatch.css';
 
@@ -15,6 +17,7 @@ const VocabMatch = ({ question, vocab, onComplete }: VocabMatchProps) => {
     const [selectedPair, setSelectedPair] = useState<[string, string] | null>(null);
     const [correctMatches, setCorrectMatches] = useState<{ [key: string]: string }>({});
     const [isComplete, setIsComplete] = useState(false);
+    const { t } = useTranslation();
 
     useEffect(() => {
         const rightColumn = vocab.map((pair) => Object.values(pair)[0]);
@@ -94,7 +97,7 @@ const VocabMatch = ({ question, vocab, onComplete }: VocabMatchProps) => {
 
             {isComplete && (
                 <button className="next-button" onClick={handleNextClick}>
-                    Next
+                    {t('next')}
                 </button>
             )}
         </section>

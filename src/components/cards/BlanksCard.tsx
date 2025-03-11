@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import './BlanksCard.css';
+import { useTranslation } from "react-i18next";
+
 import { shuffleArray } from '../../lib/shuffle-array.ts';
+import './BlanksCard.css';
 
 interface BlanksCardProps {
     question: string;
@@ -9,12 +11,12 @@ interface BlanksCardProps {
 }
 
 const BlanksCard = ({ question, words, onComplete }: BlanksCardProps) => {
-    const [shuffledWords, setShuffledWords] = useState<string[]>([]); // Shuffled words to display
-    const [selectedWords, setSelectedWords] = useState<string[]>([]); // Track selected words in order
-    const [isComplete, setIsComplete] = useState(false); // To check if the task is complete
+    const [shuffledWords, setShuffledWords] = useState<string[]>([]);
+    const [selectedWords, setSelectedWords] = useState<string[]>([]);
+    const [isComplete, setIsComplete] = useState(false);
     const [currentSentence, setCurrentSentence] = useState<string>(question); // Sentence with inserted words
+    const { t } = useTranslation();
 
-    // Shuffle words when the component is mounted or words change
     useEffect(() => {
         setShuffledWords(shuffleArray(words.map(word => word.word)));
     }, [words]);
@@ -48,7 +50,8 @@ const BlanksCard = ({ question, words, onComplete }: BlanksCardProps) => {
                 alert('Please select the words in the correct order!');
             }
         } else if (!isCorrect) {
-            alert('Incorrect word, try again!');
+            // TODO UI
+            alert(t('try_again'));
         }
     };
 
@@ -68,7 +71,7 @@ const BlanksCard = ({ question, words, onComplete }: BlanksCardProps) => {
 
     return (
         <section className="card blanks-card">
-            <h3>{currentSentence}</h3> {/* Display the current sentence with blanks replaced */}
+            <h3>{currentSentence}</h3>
             <div className="word-options">
                 {shuffledWords.map((word, index) => {
                     const isSelected = selectedWords.includes(word);
@@ -90,7 +93,7 @@ const BlanksCard = ({ question, words, onComplete }: BlanksCardProps) => {
 
             {isComplete && (
                 <button className="next-button" onClick={handleNextClick}>
-                    Next
+                    {t('next')}
                 </button>
             )}
         </section>

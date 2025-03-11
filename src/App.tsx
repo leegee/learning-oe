@@ -28,12 +28,12 @@ const App: React.FC = () => {
   return (
     <main>
       <header>
-        <h1 lang={config.targetLanguage}>{t("apptitle", { lng: config.targetLanguage })}</h1>
-        <h2 lang={config.defaultLanguage}>{t("apptitle", { lng: config.defaultLanguage })}</h2>
+        <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
+        <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
       </header>
 
       {completed && (
-        <p className="completed">Lessons complete!</p>
+        <p className="completed">{t('all_lessons_done')}</p>
       )}
 
       {!completed && lessons.length > 0 && (

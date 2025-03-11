@@ -1,18 +1,28 @@
 {
     "defaultLanguage": "en",
-    "targetLanguage": "ang",
+    "targetLanguage": "en",
+    "default": {
+        "apptitle": "Old English Lessons"
+    },
+    "target": {
+        "apptitle": "Eald Englisc Lārspel"
+    },
     "i18n": {
         "detectUserLanguage": false,
         "defaultLanguage": "en",
         "fallbackLanguage": "en",
         "availableLanguages": {
             "ang": {
-                "apptitle": "Eald Englisc Lārspel",
-                "lesson": "Læran"
+                "lesson": "Læran",
+                "next": "Next",
+                "try_again": "Try again",
+                "all_lessons_done": "All lessons completed!"
             },
             "en": {
-                "apptitle": "Old English Lessons",
-                "lesson": "Lesson"
+                "lesson": "Lesson",
+                "next": "Yetan",
+                "tryagain": "Prófan eft",
+                "all_lessons_done": "Eall lār geendod"
             }
         }
     }

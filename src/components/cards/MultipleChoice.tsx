@@ -1,5 +1,7 @@
 // MultipleChoice.tsx
 import { useState, useEffect } from 'react';
+import { useTranslation } from "react-i18next";
+
 import { shuffleArray } from '../../lib/shuffle-array.ts'
 import './MultipleChoice.css';
 
@@ -29,6 +31,7 @@ const MultipleChoice = ({
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         setShuffledOptions(shuffleArray(answers));
@@ -66,7 +69,7 @@ const MultipleChoice = ({
                     className='next-button'
                     onClick={handleNextClick}
                 >
-                    {isCorrect ? 'Next' : 'Try Again'}
+                    {isCorrect ? t('next') : t('try_again')}
                 </button>
             )}
         </section>

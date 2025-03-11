@@ -1,5 +1,7 @@
 // src/components/Lesson.tsx
 import { useState } from 'react';
+import { useTranslation } from "react-i18next";
+
 import MultipleChoice from './cards/MultipleChoice';
 import VocabMatch from './cards/VocabMatch';
 import BlanksCard from './cards/BlanksCard';
@@ -12,6 +14,7 @@ interface LessonProps extends Lesson {
 
 const LessonComponent = ({ title, cards, onComplete }: LessonProps) => {
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
+    const { t } = useTranslation();
 
     const goToNextCard = () => {
         if (currentCardIndex < cards.length - 1) {
@@ -26,7 +29,7 @@ const LessonComponent = ({ title, cards, onComplete }: LessonProps) => {
 
     return (
         <section className='lesson'>
-            <h2>Lesson {title}</h2>
+            <h2>{t('lesson')} {title}</h2>
             <progress
                 value={progress}
                 max={1}
