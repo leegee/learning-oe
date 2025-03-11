@@ -28,7 +28,6 @@ const App: React.FC = () => {
     });
   };
 
-  // Move to the next lesson
   const goToNextLesson = () => {
     const nextLessonIndex = currentLessonIndex + 1;
     if (currentLessonIndex < lessons.length - 1) {
@@ -47,9 +46,12 @@ const App: React.FC = () => {
     <main>
       <header>
         <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
-        <span className='incorrectAnswers' title={t('incorrect_answer_count_alt')}>{t('incorrect_answer_count')} {incorrectAnswers && '-' + incorrectAnswers.length}</span>
+        <span className='incorrectAnswers' title={t('incorrect_answer_count_alt')}>
+          {t('incorrect_answer_count')} {incorrectAnswers && '-' + incorrectAnswers.length}
+        </span>
         <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
       </header>
+
       <aside>
         <progress
           value={currentLessonIndex}
