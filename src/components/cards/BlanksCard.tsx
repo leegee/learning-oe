@@ -7,10 +7,11 @@ import './BlanksCard.css';
 interface BlanksCardProps {
     question: string;
     words: { word: string; correct: boolean }[]; // Array of words with correct boolean
+    onIncorrect: () => void;
     onComplete: () => void;
 }
 
-const BlanksCard = ({ question, words, onComplete }: BlanksCardProps) => {
+const BlanksCard = ({ question, words, onIncorrect, onComplete }: BlanksCardProps) => {
     const [shuffledWords, setShuffledWords] = useState<string[]>([]);
     const [selectedWords, setSelectedWords] = useState<string[]>([]);
     const [isComplete, setIsComplete] = useState(false);
@@ -48,10 +49,12 @@ const BlanksCard = ({ question, words, onComplete }: BlanksCardProps) => {
                 setCurrentSentence(updatedSentence);
             } else {
                 alert('Please select the words in the correct order!');
+                onIncorrect();
             }
         } else if (!isCorrect) {
             // TODO UI
             alert(t('try_again'));
+            onIncorrect();
         }
     };
 

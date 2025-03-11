@@ -8,11 +8,12 @@ import './VocabMatch.css';
 interface VocabMatchProps {
     question: string;
     vocab: { [lang1: string]: string }[];
+    onIncorrect: () => void;
     onComplete: () => void;
 }
 
 
-const VocabMatch = ({ question, vocab, onComplete }: VocabMatchProps) => {
+const VocabMatch = ({ question, vocab, onIncorrect, onComplete }: VocabMatchProps) => {
     const [shuffledRightColumn, setShuffledRightColumn] = useState<string[]>([]);
     const [selectedPair, setSelectedPair] = useState<[string, string] | null>(null);
     const [correctMatches, setCorrectMatches] = useState<{ [key: string]: string }>({});
@@ -38,6 +39,8 @@ const VocabMatch = ({ question, vocab, onComplete }: VocabMatchProps) => {
             const correctMatch = vocab.find((pair) => pair[leftWord] === rightWord);
             if (correctMatch) {
                 setCorrectMatches((prev) => ({ ...prev, [leftWord]: rightWord }));
+            } else {
+                onIncorrect();
             }
             setSelectedPair(null);
         } else {

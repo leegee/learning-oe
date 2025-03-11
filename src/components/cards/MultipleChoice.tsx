@@ -9,6 +9,7 @@ interface MultipleChoiceCardProps {
     question: string;
     answers: string[];
     answer: string;
+    onIncorrect: () => void;
     onComplete: () => void;
 }
 
@@ -26,6 +27,7 @@ const MultipleChoice = ({
     question,
     answers,
     answer,
+    onIncorrect,
     onComplete,
 }: MultipleChoiceCardProps) => {
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -43,10 +45,11 @@ const MultipleChoice = ({
     };
 
     const handleNextClick = () => {
-        console.log('clicked next')
         setSelectedOption(null);
         if (isCorrect) {
             onComplete();
+        } else {
+            onIncorrect();
         }
     };
 

@@ -24,6 +24,10 @@ const LessonComponent = ({ title, cards, onComplete }: LessonProps) => {
         }
     };
 
+    const onIncorrect = () => {
+        console.log('On Incorrect: ');
+    }
+
     const currentCard = cards[currentCardIndex];
     const progress = (currentCardIndex + 1) / cards.length;
 
@@ -41,6 +45,7 @@ const LessonComponent = ({ title, cards, onComplete }: LessonProps) => {
                     answers={currentCard.answers}
                     answer={currentCard.answer}
                     onComplete={goToNextCard}
+                    onIncorrect={onIncorrect}
                 />
             )}
 
@@ -48,6 +53,7 @@ const LessonComponent = ({ title, cards, onComplete }: LessonProps) => {
                 <VocabMatch
                     question={currentCard.question}
                     vocab={currentCard.vocab}
+                    onIncorrect={onIncorrect}
                     onComplete={goToNextCard}
                 />
             )}
@@ -56,6 +62,7 @@ const LessonComponent = ({ title, cards, onComplete }: LessonProps) => {
                 <BlanksCard
                     question={currentCard.question}
                     words={currentCard.words}
+                    onIncorrect={onIncorrect}
                     onComplete={goToNextCard}
                 />
             )}
