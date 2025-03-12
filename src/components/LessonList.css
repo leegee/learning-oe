@@ -24,6 +24,7 @@
 
 .lesson-list button .index {
     color: inherit;
+    background-color: inherit;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -32,4 +33,8 @@
     min-width: 1.2em;
     max-width: 1.2em;
     font-size: 100%;
+}
+
+.lesson-list button .index::after {
+    content: '.';
 }
