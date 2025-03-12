@@ -6,9 +6,11 @@ main {
     padding-top: 2rem;
 }
 
-main .completed {
-    font-size: 300%;
+main .all-lessons-completed {
+    font-size: 200%;
     font-style: italic;
+    text-align: center;
+    margin: 2em;
 }
 
 main header {

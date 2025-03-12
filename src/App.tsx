@@ -18,6 +18,7 @@ const App: React.FC = () => {
   // When the current lesson changes:
   useEffect(() => {
     setIncorrectAnswers(state.loadIncorrectAnswers(currentLessonIndex));
+    console.log('allCompleted', allCompleted)
   }, [currentLessonIndex]);
 
   const onIncorrectAnswer = (incorrectAnswer: string) => {
@@ -64,7 +65,7 @@ const App: React.FC = () => {
 
       {
         allCompleted && (
-          <p className="completed">{t('all_lessons_done')}</p>
+          <p className="all-lessons-completed">{t('all_lessons_done')}</p>
         )
       }
 
