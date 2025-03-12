@@ -14,18 +14,18 @@
     align-items: center;
 }
 
-.lesson-list .list-marker {
-    width: 1.2em;
-    height: 1.2em;
-    min-width: 1.2em;
-    max-width: 1.2em;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 100%;
+.lesson-list button.done {
+    background-color: green;
 }
 
-.lesson-list .index {
+.lesson-list button.current {}
+
+.lesson-list button.todo {
+    color: grey;
+}
+
+.lesson-list button .index {
+    color: inherit;
     display: inline-flex;
     justify-content: center;
     align-items: center;

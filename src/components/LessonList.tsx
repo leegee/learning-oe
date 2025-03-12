@@ -7,28 +7,32 @@ import './LessonList.css';
 interface LessonListProps {
     lessons: LessonSummary[];
     currentLessonIndex: number;
+    onLessonSelected: (lessonIndex: number) => void;
 }
 
-const LessonList = ({ lessons, currentLessonIndex }: LessonListProps) => {
+const LessonList = ({ lessons, currentLessonIndex, onLessonSelected }: LessonListProps) => {
     const { t } = useTranslation();
 
     return (
         <section className="lesson-list">
             <h2>{t('lessons')}</h2>
-            <ol>
+            <ol >
                 {lessons.map((lessonSummary, index) => (
                     <li key={index}>
-                        <span className='list-marker'>
-                            {index < currentLessonIndex ? '✔️' : ''}
-                            {index === currentLessonIndex ? '👉' : ''}
-                            {index > currentLessonIndex ? '.' : ''}
-                        </span>
-                        <span className='index'>{index + 1}</span>
-                        {lessonSummary.title}
+                        <button onClick={() => { if (index < currentLessonIndex) { onLessonSelected(index) } }}
+                            className={[
+                                index < currentLessonIndex && 'completed',
+                                index === currentLessonIndex && 'current',
+                                index > currentLessonIndex && 'todo'
+                            ].filter(Boolean).join(' ')}
+                        >
+                            <span className='index'>{index + 1}</span>
+                            {lessonSummary.title}
+                        </button>
                     </li>
                 ))}
             </ol>
-        </section>
+        </section >
 
     );
 };

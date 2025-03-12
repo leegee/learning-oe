@@ -45,6 +45,12 @@ const App: React.FC = () => {
     });
   };
 
+  const onLessonSelected = (lessonIndex: number) => {
+    if (confirm('Do you wish to learn lesson ' + (lessonIndex + 1))) {
+      setCurrentLessonIndex(lessonIndex);
+    }
+  };
+
   const goToNextLesson = () => {
     if (currentLessonIndex < lessons.length - 1) {
       const nextLessonIndex = currentLessonIndex + 1;
@@ -95,6 +101,7 @@ const App: React.FC = () => {
           <LessonList
             currentLessonIndex={currentLessonIndex}
             lessons={lessonTitles2Indicies()}
+            onLessonSelected={onLessonSelected}
           />
         </CompletedAllLessons>
 
@@ -109,6 +116,7 @@ const App: React.FC = () => {
           <LessonList
             currentLessonIndex={currentLessonIndex}
             lessons={lessonTitles2Indicies()}
+            onLessonSelected={onLessonSelected}
           />
         </LessonIntro>
 
