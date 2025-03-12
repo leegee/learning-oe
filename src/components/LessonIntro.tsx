@@ -21,7 +21,7 @@ const LessonIntro = ({ title, index, children, onContinue, onBack, }: LessonIntr
                 </h3>
                 <h2>{title}</h2>
                 <div className="buttons">
-                    <button onClick={onBack}>{t('back')}</button>
+                    {/* <button onClick={onBack}>{t('back')}</button> */}
                     <button className='next-button' onClick={onContinue}>{t('begin')}</button>
                 </div>
 
