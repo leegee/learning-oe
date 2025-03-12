@@ -22,6 +22,7 @@ export default defineConfig({
         description: 'Old English Learning',
         orientation: "portrait",
         theme_color: '#000033',
+        scope: '/',
         icons: [
           {
             src: base + 'icons/pwa-512x512.png',
