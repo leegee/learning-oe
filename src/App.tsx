@@ -101,6 +101,7 @@ const App: React.FC = () => {
 
         <LessonIntro
           title={currentLesson.title}
+          index={currentLessonIndex}
           onContinue={() => setShowIntro(false)}
           onBack={goBackLesson}
         />

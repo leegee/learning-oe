@@ -3,19 +3,23 @@ import './LessonIntro.css';
 
 interface LessonIntroProps {
     title: string;
+    index: number;
     onContinue: () => void;
     onBack: () => void;
 }
 
-const LessonIntro = ({ title, onContinue, onBack, }: LessonIntroProps) => {
+const LessonIntro = ({ title, index, onContinue, onBack, }: LessonIntroProps) => {
     const { t } = useTranslation();
 
     return (
         <div className="lesson-intro">
+            <h3>
+                {t('lesson')} {index + 1}
+            </h3>
             <h2>{title}</h2>
             <div className="buttons">
                 <button onClick={onBack}>{t('back')}</button>
-                <button onClick={onContinue}>{t('continue')}</button>
+                <button className='next-button' onClick={onContinue}>{t('begin')}</button>
             </div>
         </div>
     );

@@ -1,1 +1,16 @@
 /* LessonIntro.css */
+
+.lesson-intro {
+    width: auto;
+    margin: auto;
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.lesson-intro .buttons {
+    margin-top: 2em;
+    display: flex;
+    gap: 2em;
+}
