@@ -3,6 +3,7 @@ import Ajv from 'ajv';
 import { type MultipleChoiceCard } from './components/cards/MultipleChoice';
 import { type VocabCard } from './components/cards/VocabMatch';
 import { type BlanksCard } from './components/cards/BlanksCard';
+import { type WritingCard } from './components/cards/WritingCard';
 
 import lessonsSchema from '../lessons.schema.json';
 import lessonsData from '../lessons.json';
@@ -17,7 +18,7 @@ if (!valid) {
 
 export type Lesson = {
     title: string;
-    cards: (VocabCard | BlanksCard | MultipleChoiceCard)[];
+    cards: (WritingCard | VocabCard | BlanksCard | MultipleChoiceCard)[];
 };
 
 export type LessonSummary = {

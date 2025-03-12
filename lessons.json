@@ -3,12 +3,24 @@
         "title": "Greetings",
         "cards": [
             {
+                "class": "writing",
+                "qlang": "target",
+                "question": "Hāl",
+                "answer": "Hello"
+            },
+            {
+                "class": "writing",
+                "qlang": "default",
+                "question": "Hello",
+                "answer": "Hāl"
+            },
+            {
                 "class": "multiple-choice",
                 "qlang": "default",
                 "question": "Hello, how are you?",
                 "answers": [
                     "Hāl, hu gǽþ hit þē?",
-                    "Hey, hu gos it?",
+                    "Hej, hu gos it?",
                     "Gōdmorgen"
                 ],
                 "answer": "Hāl, hu gǽþ hit þē?"

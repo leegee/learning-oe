@@ -71,6 +71,9 @@ button:not([disabled]):hover {
 
 .next-button {
     background: blue;
-    width: calc(100% - 2em);
-    margin-left: 1em;
+    width: 100%;
+}
+
+.try-again-button {
+    width: 100%;
 }

@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import MultipleChoice from './cards/MultipleChoice';
 import VocabMatch from './cards/VocabMatch';
 import BlanksCard from './cards/BlanksCard';
+import WritingCard from './cards/WritingCard';
 import { type Lesson } from '../Lessons';
 import './Lesson.css';
 
@@ -42,6 +43,14 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onComplete }: LessonProps)
                 value={progress}
                 max={1}
             ></progress>
+
+            {currentCard.class === 'writing' && (
+                <WritingCard
+                    card={currentCard}
+                    onComplete={goToNextCard}
+                    onIncorrect={onIncorrect}
+                />
+            )}
 
             {currentCard.class === 'multiple-choice' && (
                 <MultipleChoice

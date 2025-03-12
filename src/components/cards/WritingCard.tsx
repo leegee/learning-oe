@@ -7,6 +7,7 @@ import './WritingCard.css';
 
 export type WritingCard = Card & {
     class: 'writing';
+    answer: string;
 };
 
 interface WritingCardProps {
@@ -25,12 +26,12 @@ const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const { t } = useTranslation();
 
-    const normalizedQuestion = useMemo(() => normalizeText(card.question), [card.question]);
+    const normalizedAnswer = useMemo(() => normalizeText(card.answer), [card.answer]);
 
     const handleNextClick = () => {
         const normalizedUserInput = normalizeText(userInput);
-
-        if (normalizedUserInput === normalizedQuestion) {
+        setUserInput('');
+        if (normalizedUserInput === normalizedAnswer) {
             setIsCorrect(true);
             onComplete();
         } else {
@@ -44,6 +45,8 @@ const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
             <section className='card multiple-choice'>
                 <h3 lang={langs.q}>{card.question}</h3>
                 <textarea
+                    autoFocus={true}
+                    className='answer'
                     lang={langs.a}
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
@@ -51,7 +54,7 @@ const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
             </section>
 
             <button
-                className='next-button'
+                className={isCorrect ? 'next-button' : 'try-again-button'}
                 onClick={handleNextClick}
             >
                 {isCorrect === false ? t('try_again') : t('next')}

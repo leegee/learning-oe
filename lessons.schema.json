@@ -92,6 +92,35 @@
                                 "class": {
                                     "type": "string",
                                     "enum": [
+                                        "writing"
+                                    ]
+                                },
+                                "qlang": {
+                                    "type": "string",
+                                    "enum": [
+                                        "default",
+                                        "target"
+                                    ]
+                                },
+                                "question": {
+                                    "type": "string"
+                                },
+                                "answer": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "class",
+                                "qlang",
+                                "question"
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "class": {
+                                    "type": "string",
+                                    "enum": [
                                         "blanks"
                                     ]
                                 },
