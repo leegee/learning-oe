@@ -20,9 +20,9 @@
                 "answers": [
                     "What",
                     "Hi",
-                    "Hail"
+                    "Hello"
                 ],
-                "answer": "Hail"
+                "answer": "Hello"
             },
             {
                 "class": "multiple-choice",
@@ -180,7 +180,7 @@
                         "Night": "Niht"
                     },
                     {
-                        "You": "Þū?"
+                        "You": "Þū"
                     }
                 ]
             }
