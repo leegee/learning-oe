@@ -24,14 +24,24 @@ export default defineConfig({
         theme_color: '#000033',
         icons: [
           {
-            src: base + 'icons/icon-512x512.png',
+            src: base + 'icons/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
           },
           {
-            src: base + 'icons/icon-192x192.png',
+            src: base + 'icons/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
+          },
+          {
+            src: base + 'icons/pwa-64x64.png',
+            sizes: '64x64',
+            type: 'image/png',
+          },
+          {
+            src: base + "icons/apple-touch-icon-180x180.png",
+            sizes: "512x512",
+            type: "image/png"
           },
           {
             src: base + "icons/maskable-icon-512x512.png",
