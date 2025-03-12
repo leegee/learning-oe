@@ -18,7 +18,7 @@ interface VocabMatchProps {
 }
 
 const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
-    const [langs] = useState<setQandALangsReturnType>(setQandALangs(card.qlang));
+    const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card.qlang));
     const [shuffledRightColumn, setShuffledRightColumn] = useState<string[]>([]);
     const [selectedLeftWord, setSelectedLeftWord] = useState<string | null>(null);
     const [selectedRightWord, setSelectedRightWord] = useState<string | null>(null);
@@ -30,6 +30,7 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
     useEffect(() => {
         const rightColumn = card.vocab.map((pair) => Object.values(pair)[0]);
         setShuffledRightColumn(shuffleArray(rightColumn));
+        setLangs(setQandALangs(card.qlang));
     }, [card.vocab]);
 
     const processMatch = (leftWord: string, rightWord: string) => {

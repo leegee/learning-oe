@@ -19,7 +19,7 @@ interface BlanksCardProps {
 }
 
 const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
-    const [langs] = useState<setQandALangsReturnType>(setQandALangs(card.qlang));
+    const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card.qlang));
     const [shuffledWords, setShuffledWords] = useState<string[]>([]);
     const [selectedWords, setSelectedWords] = useState<string[]>([]);
     const [isComplete, setIsComplete] = useState(false);
@@ -30,6 +30,7 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
 
     useEffect(() => {
         setShuffledWords(shuffleArray(card.words.map(word => word.word)));
+        setLangs(setQandALangs(card.qlang));
     }, [card.words]);
 
     // Handle word selection and updating sentence
@@ -91,7 +92,7 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
                         const isSelected = selectedWords.includes(word);
                         const isCorrect = card.words.find((item) => item.word === word && item.correct);
 
-                        // We apply the coloring logic only after the word is selected
+                        // Apply the coloring logic only after the word is selected
                         return (
                             <button
                                 key={index}

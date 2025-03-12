@@ -1,4 +1,4 @@
-import { useRef, useMemo, useState, } from 'react';
+import { useRef, useMemo, useState, useEffect, } from 'react';
 import { useTranslation } from "react-i18next";
 
 import { type Card } from './Card.ts';
@@ -38,7 +38,7 @@ const normalizeText = (text: string): string => {
 };
 
 const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
-    const [langs] = useState<setQandALangsReturnType>(setQandALangs(card.qlang));
+    const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card.qlang));
     const [userInput, setUserInput] = useState<string>('');
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const { t } = useTranslation();
@@ -66,6 +66,10 @@ const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
             onIncorrect();
         }
     };
+
+    useEffect(() => {
+        setLangs(setQandALangs(card.qlang));
+    }, [card]);
 
     return (
         <>
