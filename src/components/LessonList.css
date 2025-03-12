@@ -14,11 +14,9 @@
     align-items: center;
 }
 
-.lesson-list button.done {
-    background-color: green;
+.lesson-list button.completed {
+    background-color: #174f17;
 }
-
-.lesson-list button.current {}
 
 .lesson-list button.todo {
     color: grey;
