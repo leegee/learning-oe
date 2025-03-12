@@ -16,14 +16,21 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
+        start_url: 'https://leegee.github.io/' + base,
         name: 'Learn Old English',
         short_name: 'Old English',
         description: 'Old English Learning',
-        theme_color: '#ffffff',
+        orientation: "portrait",
+        theme_color: '#000033',
         icons: [
           {
-            src: base + '/icons/icon-512x512.jpg',
+            src: base + 'icons/icon-512x512.png',
             sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: base + 'icons/icon-192x192',
+            sizes: '192x192',
             type: 'image/png',
           },
         ],
