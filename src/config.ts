@@ -1,11 +1,6 @@
 import defaultConfig from './default.config.json';
 import appConfigRaw from '../app.config.json';
 
-// Add logging to confirm what you're importing
-console.log("defaultConfig:", defaultConfig);
-console.log("appConfigRaw:", appConfigRaw);
-
-// Deep merge function
 const deepMerge = (target: any, source: any): any => {
     if (typeof target !== 'object' || typeof source !== 'object') return source;
 
