@@ -26,6 +26,11 @@ const App: React.FC = () => {
   const [showIntro, setShowIntro] = useState<boolean>(true);
   const { t } = useTranslation();
 
+  const totalQuestionsAnswered = lessons.reduce((sum, lesson) => sum + lesson.cards.length, 0);
+  const currentLesson = lessons[currentLessonIndex];
+  const totalIncorrectAnswers = state.countTotalIncorrectAnswers();
+
+  // When the current lesson index changes, a new lesson begins
   useEffect(() => {
     setIncorrectAnswers(state.loadIncorrectAnswers(currentLessonIndex));
     setAllCompleted(currentLessonIndex >= lessons.length);
@@ -57,10 +62,6 @@ const App: React.FC = () => {
       state.saveCurrentLesson(prevLessonIndex);
     }
   };
-
-  const totalQuestionsAnswered = lessons.reduce((sum, lesson) => sum + lesson.cards.length, 0);
-  const currentLesson = lessons[currentLessonIndex];
-  const totalIncorrectAnswers = state.countTotalIncorrectAnswers();
 
   return (
     <main>
