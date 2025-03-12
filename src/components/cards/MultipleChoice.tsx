@@ -53,8 +53,6 @@ const MultipleChoice = ({ card, onIncorrect, onComplete, }: MultipleChoiceCardPr
         setSelectedOption(null);
         if (isCorrect) {
             onComplete();
-        } else {
-            onIncorrect();
         }
     };
 
