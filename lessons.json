@@ -5,48 +5,13 @@
             {
                 "class": "multiple-choice",
                 "qlang": "default",
-                "question": "Hello, how are you?",
+                "question": "Hello!",
                 "answers": [
-                    "Hāl, hu gǽþ hit þē?",
-                    "Hej, hu gos it?",
-                    "Gōdmorgen"
+                    "Hāl",
+                    "Hej",
+                    "Hale"
                 ],
-                "answer": "Hāl, hu gǽþ hit þē?"
-            },
-            {
-                "class": "writing",
-                "qlang": "default",
-                "question": "Hello",
                 "answer": "Hāl"
-            },
-            {
-                "class": "writing",
-                "qlang": "target",
-                "question": "Hāl",
-                "answer": "Hello"
-            },
-            {
-                "class": "blanks",
-                "qlang": "default",
-                "question": "___, hu gǽþ hit þē?",
-                "words": [
-                    {
-                        "word": "Gōd",
-                        "correct": false
-                    },
-                    {
-                        "word": "Hāl",
-                        "correct": true
-                    },
-                    {
-                        "word": "Hal",
-                        "correct": false
-                    },
-                    {
-                        "word": "Hell",
-                        "correct": false
-                    }
-                ]
             },
             {
                 "class": "multiple-choice",
@@ -58,6 +23,17 @@
                     "Hail"
                 ],
                 "answer": "Hail"
+            },
+            {
+                "class": "multiple-choice",
+                "qlang": "default",
+                "question": "Hello, how are you?",
+                "answers": [
+                    "Hāl, hu gǽþ hit þē?",
+                    "Hej, hu gos it?",
+                    "Gōdmorgen"
+                ],
+                "answer": "Hāl, hu gǽþ hit þē?"
             },
             {
                 "class": "multiple-choice",
@@ -122,6 +98,41 @@
                     },
                     {
                         "word": "God",
+                        "correct": false
+                    }
+                ]
+            },
+            {
+                "class": "writing",
+                "qlang": "default",
+                "question": "Hello",
+                "answer": "Hāl"
+            },
+            {
+                "class": "writing",
+                "qlang": "target",
+                "question": "Hāl",
+                "answer": "Hello"
+            },
+            {
+                "class": "blanks",
+                "qlang": "default",
+                "question": "___, hu gǽþ hit þē?",
+                "words": [
+                    {
+                        "word": "Gōd",
+                        "correct": false
+                    },
+                    {
+                        "word": "Hāl",
+                        "correct": true
+                    },
+                    {
+                        "word": "Hal",
+                        "correct": false
+                    },
+                    {
+                        "word": "Hell",
                         "correct": false
                     }
                 ]
