@@ -29,6 +29,9 @@ export default defineConfig({
         ],
       },
 
+      pwaAssets: {
+        image: 'public/icons/icon-512x512.jpg'
+      },
     }),
   ],
 
