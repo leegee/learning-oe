@@ -22,7 +22,7 @@ export default defineConfig({
         theme_color: '#ffffff',
         icons: [
           {
-            src: '/icons/icon-512x512.jpg',
+            src: base + '/icons/icon-512x512.jpg',
             sizes: '512x512',
             type: 'image/png',
           },
