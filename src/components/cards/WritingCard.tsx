@@ -34,7 +34,7 @@ const OldEnglishLetters = [
 ];
 
 const normalizeText = (text: string): string => {
-    return text.trim().toLowerCase().replace(/\s+/g, ' ');
+    return text.trim().toLowerCase().replace(/\W+/g, '').replace(/\s+/g, ' ');
 };
 
 const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
