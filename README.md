@@ -1,5 +1,7 @@
 # Quiz Lessons: learn Old English or anything
 
+Configurable quiz cards for language learning or other quizes
+
 ## Features
 
 * Three types of quiz lessons:
