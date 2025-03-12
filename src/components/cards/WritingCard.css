@@ -13,3 +13,8 @@
     gap: 0.2em;
     margin-top: 0.6em;
 }
+
+.writing-card textarea::placeholder {
+    font-size: 0.8em;
+    padding-top: 0.2em;
+}

@@ -72,11 +72,12 @@ const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
             <section className='card writing-card'>
                 <h3 lang={langs.q}>{card.question}</h3>
                 <textarea
-                    ref={inputRef}
-                    autoFocus={true}
                     className='answer'
+                    placeholder={t('type_in') + ' ' + t(langs.a) + '...'}
+                    ref={inputRef}
                     lang={langs.a}
                     value={userInput}
+                    autoFocus={true}
                     onChange={(e) => setUserInput(e.target.value)}
                 />
 
