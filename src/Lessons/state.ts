@@ -35,11 +35,10 @@ export const saveIncorrectAnswers = (lessonIndex: number, incorrectAnswers: stri
 };
 
 export const loadIncorrectAnswers = (lessonIndex: number): string[] => {
-  // Get stored data from localStorage
   const storedData = localStorage.getItem(keys.INCORRECT_ANSWERS);
   const parsedData = storedData ? JSON.parse(storedData) : {};
   const incorrectAnswers = parsedData ? parsedData[lessonIndex] : [];
-  return incorrectAnswers;
+  return incorrectAnswers || [];
 };
 
 export const countTotalIncorrectAnswers = (): number => {
