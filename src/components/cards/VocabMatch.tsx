@@ -2,9 +2,14 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 
 import { shuffleArray } from '../../lib/shuffle-array.ts'
-import { type VocabCard } from '../../Lessons.ts';
+import { type Card } from './Card.ts';
 import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
 import './VocabMatch.css';
+
+export type VocabCard = Card & {
+    class: 'vocab';
+    vocab: { [key: string]: string }[]; // Each entry is a key-value pair of word translation
+};
 
 interface VocabMatchProps {
     card: VocabCard;

@@ -65,7 +65,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+button:not([disabled]):hover {
     outline: 1px solid var(--oe-clr-fg);
 }
 

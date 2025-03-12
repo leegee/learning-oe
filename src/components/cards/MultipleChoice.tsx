@@ -3,9 +3,15 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 
 import { shuffleArray } from '../../lib/shuffle-array.ts'
-import { type MultipleChoiceCard } from '../../Lessons.ts';
+import { type Card } from './Card.ts';
 import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
 import './MultipleChoice.css';
+
+export type MultipleChoiceCard = Card & {
+    class: 'multiple-choice';
+    answers: string[]; // Array of possible answers
+    answer: string; // Correct answer
+};
 
 interface MultipleChoiceCardProps {
     card: MultipleChoiceCard;

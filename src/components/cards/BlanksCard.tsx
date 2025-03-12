@@ -3,9 +3,14 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 
 import { shuffleArray } from '../../lib/shuffle-array.ts';
-import { type BlanksCard } from '../../Lessons.ts';
+import { type Card } from './Card.ts';
 import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
 import './BlanksCard.css';
+
+export type BlanksCard = Card & {
+    class: 'blanks';
+    words: { word: string; correct: boolean }[]; // Array of words with a correct boolean flag
+};
 
 interface BlanksCardProps {
     card: BlanksCard;
