@@ -57,7 +57,10 @@ const MultipleChoice = ({ card, onIncorrect, onComplete, }: MultipleChoiceCardPr
     return (
         <>
             <section className='card multiple-choice'>
+
+                <h4 lang={langs.q}>{t('in_lang_how_do_you_say', { lang: t(langs.a) })}</h4>
                 <h3 lang={langs.q}>{card.question}</h3>
+
                 {shuffledOptions.map((option, index) => (
                     <button
                         lang={langs.a}

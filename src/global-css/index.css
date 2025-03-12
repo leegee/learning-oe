@@ -82,3 +82,11 @@ button[disabled]:hover {
 .try-again-button {
     width: 100%;
 }
+
+h4 {
+    font-size: 1em;
+    font-weight: 300;
+    font-style: italic;
+    margin: 0;
+    opacity: 60%;
+}
