@@ -54,4 +54,3 @@ export const countTotalIncorrectAnswers = (): number => {
   // Sum up the lengths of all incorrect answer arrays
   return Object.values(parsedData).reduce((total, answers) => total + answers.length, 0);
 };
-

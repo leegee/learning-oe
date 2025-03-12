@@ -20,6 +20,16 @@ export type Lesson = {
     cards: (VocabCard | BlanksCard | MultipleChoiceCard)[];
 };
 
+export type LessonSummary = {
+    title: string;
+    index: number;
+};
+
 export const lessons: Lesson[] = lessonsData as Lesson[];
 
-
+export const lessonTitles2Indicies = (): LessonSummary[] => {
+    return lessonsData.map((lesson, index) => ({
+        title: lesson.title,
+        index
+    }));
+};

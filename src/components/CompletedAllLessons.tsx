@@ -1,14 +1,20 @@
+import { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import LessonList from "./LessonList";
 import './CompletedAllLessons.css';
 
 interface CompletionSummaryProps {
     totalQuestions: number;
     totalLessons: number;
     totalIncorrectAnswers: number;
+    children: ReactNode;  // This allows passing child components
 }
 
-const CompletedAllLessons = ({ totalQuestions, totalLessons, totalIncorrectAnswers, }: CompletionSummaryProps) => {
+const CompletedAllLessons = ({
+    totalQuestions,
+    totalLessons,
+    totalIncorrectAnswers,
+    children,  // The child component is passed here
+}: CompletionSummaryProps) => {
     const { t } = useTranslation();
 
     return (
@@ -20,7 +26,7 @@ const CompletedAllLessons = ({ totalQuestions, totalLessons, totalIncorrectAnswe
                 <p>{t('total_incorrect_answers')}: <strong>{totalIncorrectAnswers}</strong></p>
             </section>
 
-            <LessonList />
+            {children}
         </>
     );
 };

@@ -1,1 +1,7 @@
 /* LessonList.css */
+
+.completed-or-not {
+    display: inline-block;
+    width: 2em;
+    text-align: center;
+}

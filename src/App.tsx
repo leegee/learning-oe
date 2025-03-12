@@ -1,15 +1,19 @@
 /*
-  This component manages all navigation without react-router or react-router-native or native-stack
+  For reasons of future compatability, better or worse, this component manages all navigation without react-router or react-router-native or native-stack.
+
+  For the same reason, access to state data is also managed here.
+  
 */
 
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { lessons } from "./Lessons";
+import { lessons, lessonTitles2Indicies } from "./Lessons";
 import LessonComponent from "./components/Lesson";
 import LessonIntro from "./components/LessonIntro";
 import CompletedAllLessons from "./components/CompletedAllLessons";
 import config from "./config";
+import LessonList from "./components/LessonList";
 import * as state from "./Lessons/state";
 
 import "./App.css";
@@ -81,24 +85,35 @@ const App: React.FC = () => {
       </aside>
 
       {allCompleted ? (
+
         <CompletedAllLessons
           totalQuestions={totalQuestionsAnswered}
           totalLessons={lessons.length}
           totalIncorrectAnswers={totalIncorrectAnswers}
-        />
+        >
+          <LessonList
+            currentLessonIndex={currentLessonIndex}
+            lessons={lessonTitles2Indicies()}
+          />
+        </CompletedAllLessons>
+
       ) : showIntro ? (
+
         <LessonIntro
           title={currentLesson.title}
           onContinue={() => setShowIntro(false)}
           onBack={goBackLesson}
         />
+
       ) : (
+
         <LessonComponent
           key={currentLessonIndex}
           lesson={currentLesson}
           onComplete={goToNextLesson}
           onIncorrectAnswer={onIncorrectAnswer}
         />
+
       )}
     </main>
   );
