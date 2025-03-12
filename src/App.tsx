@@ -12,13 +12,13 @@ const App: React.FC = () => {
   const initialLessonIndex = state.loadCurrentLesson();
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
   const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>(state.loadIncorrectAnswers(currentLessonIndex));
-  const [allCompleted, setAllCompleted] = useState<boolean>(false);
+  const [allCompleted, setAllCompleted] = useState<boolean>(initialLessonIndex >= lessons.length);
   const { t } = useTranslation();
 
   // When the current lesson changes:
   useEffect(() => {
     setIncorrectAnswers(state.loadIncorrectAnswers(currentLessonIndex));
-    console.log('allCompleted', allCompleted)
+    setAllCompleted(currentLessonIndex >= lessons.length);
   }, [currentLessonIndex]);
 
   const onIncorrectAnswer = (incorrectAnswer: string) => {
@@ -30,15 +30,13 @@ const App: React.FC = () => {
   };
 
   const goToNextLesson = () => {
-    const nextLessonIndex = currentLessonIndex + 1;
     if (currentLessonIndex < lessons.length - 1) {
+      const nextLessonIndex = currentLessonIndex + 1;
       setCurrentLessonIndex(nextLessonIndex);
       state.saveCurrentLesson(nextLessonIndex);
     } else {
       setAllCompleted(true);
     }
-    // Even if completed
-    state.saveCurrentLesson(nextLessonIndex);
   };
 
   const currentLesson = lessons[currentLessonIndex];
@@ -56,21 +54,17 @@ const App: React.FC = () => {
       <aside>
         <progress
           value={currentLessonIndex}
-          max={lessons.length - 1}
+          max={lessons.length}
           className="lesson-progress"
           aria-label={t('lesson_progress')}
-          title={t('lesson') + ' ' + ((currentLessonIndex + 1) / lessons.length)}
+          title={`${t('lesson')} ${currentLessonIndex + 1} / ${lessons.length}`}
         />
       </aside>
 
-      {
-        allCompleted && (
-          <p className="all-lessons-completed">{t('all_lessons_done')}</p>
-        )
-      }
-
-      {
-        !allCompleted && lessons.length > 0 && (
+      {allCompleted ? (
+        <p className="all-lessons-completed">{t('all_lessons_done')}</p>
+      ) : (
+        lessons.length > 0 && (
           <LessonComponent
             key={currentLessonIndex}
             lesson={currentLesson}
@@ -78,8 +72,8 @@ const App: React.FC = () => {
             onIncorrectAnswer={onIncorrectAnswer}
           />
         )
-      }
-    </main >
+      )}
+    </main>
   );
 };
 
