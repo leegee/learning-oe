@@ -15,17 +15,18 @@ const LessonIntro = ({ title, index, children, onContinue }: LessonIntroProps) =
     return (
         <>
             <article className="lesson-intro">
-                <h3>
-                    {t('lesson')} {index + 1}
-                </h3>
-                <h2>{title}</h2>
-                <div className="buttons">
-                    <button className='next-button' onClick={onContinue}>{t('begin')}</button>
-                </div>
+                <section className="card">
+                    <h2>
+                        {t('lesson')} {index + 1}
+                    </h2>
+                    <h3>{title}</h3>
+                    <div className="buttons">
+                        <button className='next-button' onClick={onContinue}>{t('begin')}</button>
+                    </div>
+                </section>
 
                 {children && (
                     <>
-                        <hr />
                         {children}
                     </>
                 )}

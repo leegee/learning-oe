@@ -37,13 +37,8 @@ export const saveIncorrectAnswers = (lessonIndex: number, incorrectAnswers: stri
 export const loadIncorrectAnswers = (lessonIndex: number): string[] => {
   // Get stored data from localStorage
   const storedData = localStorage.getItem(keys.INCORRECT_ANSWERS);
-
-  // Parse the data, initialize as an empty object if not found
   const parsedData = storedData ? JSON.parse(storedData) : {};
-
-  // Access incorrect answers for the specific lesson index
   const incorrectAnswers = parsedData ? parsedData[lessonIndex] : [];
-
   return incorrectAnswers;
 };
 

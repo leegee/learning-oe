@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { lessons, lessonTitles2Indicies } from "./Lessons";
 import LessonComponent from "./components/Lesson";
 import LessonIntro from "./components/LessonIntro";
+import LessonCompleted from "./components/LessonCompleted";
 import CompletedAllLessons from "./components/CompletedAllLessons";
 import config from "./config";
 import LessonList from "./components/LessonList";
@@ -22,8 +23,9 @@ const App: React.FC = () => {
   const initialLessonIndex = state.loadCurrentLesson();
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
   const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>(state.loadIncorrectAnswers(currentLessonIndex));
+  const [lessonCompleted, setLessonCompleted] = useState<boolean>(false); // New state to track lesson completion
   const [allCompleted, setAllCompleted] = useState<boolean>(initialLessonIndex >= lessons.length);
-  const [showIntro, setShowIntro] = useState<boolean>(true);
+  const [showLessonIntro, setShowIntro] = useState<boolean>(true);
   const { t } = useTranslation();
 
   const totalQuestionsAnswered = lessons.reduce((sum, lesson) => sum + lesson.cards.length, 0);
@@ -33,14 +35,18 @@ const App: React.FC = () => {
   // When the current lesson index changes, a new lesson begins
   useEffect(() => {
     setIncorrectAnswers(state.loadIncorrectAnswers(currentLessonIndex));
+    // state.saveIncorrectAnswers(currentLessonIndex, []);
     setAllCompleted(currentLessonIndex >= lessons.length);
     setShowIntro(true);
+    setLessonCompleted(false);
   }, [currentLessonIndex]);
 
   const onIncorrectAnswer = (incorrectAnswer: string) => {
+    console.log('Enter onIncorrectAnswer', incorrectAnswer)
     setIncorrectAnswers((prev = []) => {
       const updatedAnswers = [...prev, incorrectAnswer];
       state.saveIncorrectAnswers(currentLessonIndex, updatedAnswers);
+      console.log('Leave onIncorrectAnswer callback', updatedAnswers)
       return updatedAnswers;
     });
   };
@@ -61,6 +67,10 @@ const App: React.FC = () => {
     }
   };
 
+  const onLessonComplete = () => {
+    setLessonCompleted(true);
+  }
+
   return (
     <main>
       <header>
@@ -79,7 +89,7 @@ const App: React.FC = () => {
           max={lessons.length}
           className="lesson-progress"
           aria-label={t('lesson_progress')}
-          title={`${t('lesson')} ${currentLessonIndex + 1} / ${lessons.length}`}
+          title={`${t('all_lessons')} ${currentLessonIndex + 1} / ${lessons.length}`}
         />
       </aside>
 
@@ -97,7 +107,7 @@ const App: React.FC = () => {
           />
         </CompletedAllLessons>
 
-      ) : showIntro ? (
+      ) : showLessonIntro ? (
 
         <LessonIntro
           title={currentLesson.title}
@@ -111,12 +121,18 @@ const App: React.FC = () => {
           />
         </LessonIntro>
 
+      ) : lessonCompleted ? (
+        <LessonCompleted
+          onContinue={goToNextLesson}
+          questionCount={currentLesson.cards.length}
+          mistakeCount={state.loadIncorrectAnswers(currentLessonIndex).length}
+        />
       ) : (
 
         <LessonComponent
           key={currentLessonIndex}
           lesson={currentLesson}
-          onComplete={goToNextLesson}
+          onComplete={onLessonComplete}
           onIncorrectAnswer={onIncorrectAnswer}
         />
 

@@ -23,8 +23,7 @@ body {
 }
 
 section.card {
-    margin-top: 2em;
-    margin-bottom: 1em;
+    margin: 1em 0;
 }
 
 .card {
@@ -33,12 +32,6 @@ section.card {
     padding: 1em;
     border-radius: var(--oe-border-radius);
 }
-
-.card h3 {
-    font-size: 150%;
-    margin: 0.3em 0 0.6em 0;
-}
-
 
 .correct,
 .incorrect {
@@ -81,6 +74,19 @@ button[disabled]:hover {
 
 .try-again-button {
     width: 100%;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.lesson h2 {
+    margin-top: 0.6em;
+}
+
+h3 {
+    font-size: 150%;
+    margin: 0.3em 0 0.6em 0;
 }
 
 h4 {

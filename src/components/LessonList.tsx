@@ -14,8 +14,8 @@ const LessonList = ({ lessons, currentLessonIndex, onLessonSelected }: LessonLis
     const { t } = useTranslation();
 
     return (
-        <section className="lesson-list">
-            <h2>{t('lessons')}</h2>
+        <section className="card lesson-list">
+            <h2>{t('list_lessons_title')}</h2>
             <ol >
                 {lessons.map((lessonSummary, index) => (
                     <li key={index}>

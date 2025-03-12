@@ -44,6 +44,9 @@ const MultipleChoice = ({ card, onIncorrect, onComplete, }: MultipleChoiceCardPr
     const handleOptionClick = (option: string) => {
         setSelectedOption(option);
         setIsCorrect(option === card.answer);
+        if (option !== card.answer) {
+            onIncorrect();
+        }
     };
 
     const handleNextClick = () => {

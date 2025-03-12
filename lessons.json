@@ -1,5 +1,21 @@
 [
     {
+        "title": "Test",
+        "cards": [
+            {
+                "class": "multiple-choice",
+                "qlang": "default",
+                "question": "Hello!",
+                "answers": [
+                    "Hāl",
+                    "Hej",
+                    "Hwat ho"
+                ],
+                "answer": "Hāl"
+            }
+        ]
+    },
+    {
         "title": "Greetings",
         "cards": [
             {

@@ -34,3 +34,4 @@ export const lessonTitles2Indicies = (): LessonSummary[] => {
         index
     }));
 };
+
