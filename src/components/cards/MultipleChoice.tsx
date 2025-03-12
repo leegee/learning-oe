@@ -64,7 +64,7 @@ const MultipleChoice = ({ card, onIncorrect, onComplete, }: MultipleChoiceCardPr
                         key={index}
                         onClick={() => handleOptionClick(option)}
                         className={'multiple-choice-button ' + getButtonClassName(option, isCorrect, selectedOption)}
-                        disabled={selectedOption ? true : false}
+                        disabled={isCorrect && selectedOption ? true : false}
                     >
                         {option}
                     </button>
