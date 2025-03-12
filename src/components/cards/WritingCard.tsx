@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { type Card } from './Card.ts';
 import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
-import './MultipleChoice.css';
+import './WritingCard.css';
 
 export type WritingCard = Card & {
     class: 'writing';
