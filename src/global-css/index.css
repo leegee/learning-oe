@@ -10,6 +10,7 @@
 * {
     background-color: var(--oe-clr-bg);
     color: var(--oe-clr-fg);
+    box-sizing: border-box;
 }
 
 body {
