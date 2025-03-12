@@ -19,7 +19,9 @@ const LessonList = ({ lessons, currentLessonIndex, onLessonSelected }: LessonLis
             <ol >
                 {lessons.map((lessonSummary, index) => (
                     <li key={index}>
-                        <button onClick={() => { if (index < currentLessonIndex) { onLessonSelected(index) } }}
+                        <button
+                            {...(index > currentLessonIndex && { disabled: true })}
+                            onClick={() => { if (index < currentLessonIndex) { onLessonSelected(index) } }}
                             className={[
                                 index < currentLessonIndex && 'completed',
                                 index === currentLessonIndex && 'current',

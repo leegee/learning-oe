@@ -25,9 +25,15 @@ const LessonIntro = ({ title, index, children, onContinue, onBack, }: LessonIntr
                     <button className='next-button' onClick={onContinue}>{t('begin')}</button>
                 </div>
 
-                {children && children}
+                {children && (
+                    <>
+                        <hr />
+                        {children}
+                    </>
+                )}
 
-            </article>
+
+            </article >
 
         </>
     );

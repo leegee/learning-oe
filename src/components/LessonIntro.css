@@ -5,19 +5,20 @@
     margin-top: 2em;
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 0;
 }
 
 .lesson-intro .buttons {
-    margin-top: 2em;
-    display: flex;
-    gap: 2em;
+    margin: 2em 0;
 }
 
 .lesson-intro .next-button {
     width: unset;
 }
 
-.lesson-intro .lesson-list {
-    margin-top: 2em;
+.lesson-intro hr {
+    width: 100%;
+    height: 1pt;
+    opacity: 50%;
+    margin: 2em 0;
 }

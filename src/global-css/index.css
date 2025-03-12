@@ -70,6 +70,10 @@ button:not([disabled]):hover {
     outline: 1px solid var(--oe-clr-fg);
 }
 
+button[disabled]:hover {
+    cursor: not-allowed;
+}
+
 .next-button {
     background: blue;
     width: 100%;
