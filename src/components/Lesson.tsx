@@ -36,7 +36,7 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onComplete }: LessonProps)
     const progress = (currentCardIndex + 1) / lesson.cards.length;
 
     return (
-        <section className='lesson'>
+        <article className='lesson'>
             <h2>{t('lesson')}: <em>{lesson.title}</em></h2>
             <progress
                 value={progress}
@@ -66,7 +66,7 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onComplete }: LessonProps)
                     onComplete={goToNextCard}
                 />
             )}
-        </section>
+        </article>
     );
 };
 
