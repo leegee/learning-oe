@@ -9,7 +9,7 @@
                 "answers": [
                     "Hāl",
                     "Hej",
-                    "Hale"
+                    "Hwat ho"
                 ],
                 "answer": "Hāl"
             },
@@ -18,7 +18,7 @@
                 "qlang": "target",
                 "question": "Hāl",
                 "answers": [
-                    "Hello",
+                    "What",
                     "Hi",
                     "Hail"
                 ],
@@ -30,8 +30,8 @@
                 "question": "Hello, how are you?",
                 "answers": [
                     "Hāl, hu gǽþ hit þē?",
-                    "Hej, hu gos it?",
-                    "Gōdmorgen"
+                    "Hej, hu gos þē?",
+                    "Hal, hu er þē?"
                 ],
                 "answer": "Hāl, hu gǽþ hit þē?"
             },
@@ -71,7 +71,18 @@
             {
                 "class": "multiple-choice",
                 "qlang": "default",
-                "question": "I’m fine, thank you.",
+                "question": "Thank you",
+                "answers": [
+                    "þancie þē",
+                    "Fencs",
+                    "þancie yo"
+                ],
+                "answer": "þancie þē"
+            },
+            {
+                "class": "multiple-choice",
+                "qlang": "default",
+                "question": "I am fine, thank you.",
                 "answers": [
                     "Ic eom gesund, þancie þē",
                     "Ic eom god, þancie þē",
@@ -89,7 +100,7 @@
                         "correct": true
                     },
                     {
-                        "word": "Cyning",
+                        "word": "Gud",
                         "correct": false
                     },
                     {
@@ -157,16 +168,19 @@
                         "Hello": "Hāl"
                     },
                     {
-                        "Good morning": "Gōdmorgen"
+                        "Morning": "Morgen"
                     },
                     {
-                        "Good evening": "Gōd æfen"
+                        "Evening": "Æfen"
                     },
                     {
-                        "Good night": "Gōd niht"
+                        "Good": "Gōd"
                     },
                     {
-                        "How are you?": "Hwæt ēart þū?"
+                        "Night": "Niht"
+                    },
+                    {
+                        "You": "Þū?"
                     }
                 ]
             }
