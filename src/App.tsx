@@ -61,14 +61,6 @@ const App: React.FC = () => {
     }
   };
 
-  const goBackLesson = () => {
-    if (currentLessonIndex > 0) {
-      const prevLessonIndex = currentLessonIndex - 1;
-      setCurrentLessonIndex(prevLessonIndex);
-      state.saveCurrentLesson(prevLessonIndex);
-    }
-  };
-
   return (
     <main>
       <header>
@@ -111,7 +103,6 @@ const App: React.FC = () => {
           title={currentLesson.title}
           index={currentLessonIndex}
           onContinue={() => setShowIntro(false)}
-          onBack={goBackLesson}
         >
           <LessonList
             currentLessonIndex={currentLessonIndex}
