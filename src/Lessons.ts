@@ -12,7 +12,7 @@ const validate = ajv.compile(lessonsSchema);
 const valid = validate(lessonsData);
 
 if (!valid) {
-    console.log('Invalid data:', validate.errors);
+    console.log('Invalid lesson JSON:', validate.errors);
 }
 
 export type Lesson = {
@@ -21,3 +21,5 @@ export type Lesson = {
 };
 
 export const lessons: Lesson[] = lessonsData as Lesson[];
+
+

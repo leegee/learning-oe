@@ -15,21 +15,33 @@
         "availableLanguages": {
             "en": {
                 "lesson": "Lesson",
+                "lessons": "Lesson",
                 "incorrect_answer_count": "",
                 "incorrect_answer_count_alt": "Incorrect answers",
+                "back": "Back",
+                "continue": "Continue",
                 "next": "Next",
                 "try_again": "Try again",
                 "all_lessons_done": "All lessons completed!",
-                "lesson_progress": "Lessons"
+                "lesson_progress": "Lessons",
+                "total_lessons_completed": "Lessons completed",
+                "total_questions_answered": "Questions answered",
+                "total_incorrect_answers": "Mistakes"
             },
             "ang": {
-                "lesson": "Læran",
+                "lesson": "lār",
+                "lessons": "lāra",
                 "incorrect_answer_count": "",
                 "incorrect_answer_count_alt": "Unriht andwyrda",
+                "back": "Hweorfan",
+                "continue": "Forþian",
                 "next": "Yetan",
                 "try_again": "Prófan eft",
                 "all_lessons_done": "Eall lār geendod",
-                "lesson_progress": "Læran"
+                "lesson_progress": "lār",
+                "total_lessons_completed": "lāra completed",
+                "total_questions_answered": "Andswaru geendod",
+                "total_incorrect_answers": "Forscyran"
             }
         }
     }

@@ -46,3 +46,12 @@ export const loadIncorrectAnswers = (lessonIndex: number): string[] => {
 
   return incorrectAnswers;
 };
+
+export const countTotalIncorrectAnswers = (): number => {
+  const storedData = localStorage.getItem(keys.INCORRECT_ANSWERS);
+  const parsedData: Record<number, string[]> = storedData ? JSON.parse(storedData) : {};
+
+  // Sum up the lengths of all incorrect answer arrays
+  return Object.values(parsedData).reduce((total, answers) => total + answers.length, 0);
+};
+

@@ -1,24 +1,31 @@
-import React, { useState, useEffect } from 'react';
+/*
+  This component manages all navigation without react-router or react-router-native or native-stack
+*/
+
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { lessons } from './Lessons';
-import LessonComponent from './components/Lesson';
-import config from './config';
-import * as state from './state';
+import { lessons } from "./Lessons";
+import LessonComponent from "./components/Lesson";
+import LessonIntro from "./components/LessonIntro";
+import CompletedAllLessons from "./components/CompletedAllLessons";
+import config from "./config";
+import * as state from "./Lessons/state";
 
-import './App.css';
+import "./App.css";
 
 const App: React.FC = () => {
   const initialLessonIndex = state.loadCurrentLesson();
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
   const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>(state.loadIncorrectAnswers(currentLessonIndex));
   const [allCompleted, setAllCompleted] = useState<boolean>(initialLessonIndex >= lessons.length);
+  const [showIntro, setShowIntro] = useState<boolean>(true);
   const { t } = useTranslation();
 
-  // When the current lesson changes:
   useEffect(() => {
     setIncorrectAnswers(state.loadIncorrectAnswers(currentLessonIndex));
     setAllCompleted(currentLessonIndex >= lessons.length);
+    setShowIntro(true);
   }, [currentLessonIndex]);
 
   const onIncorrectAnswer = (incorrectAnswer: string) => {
@@ -39,15 +46,27 @@ const App: React.FC = () => {
     }
   };
 
+  const goBackLesson = () => {
+    if (currentLessonIndex > 0) {
+      const prevLessonIndex = currentLessonIndex - 1;
+      setCurrentLessonIndex(prevLessonIndex);
+      state.saveCurrentLesson(prevLessonIndex);
+    }
+  };
+
+  const totalQuestionsAnswered = lessons.reduce((sum, lesson) => sum + lesson.cards.length, 0);
   const currentLesson = lessons[currentLessonIndex];
+  const totalIncorrectAnswers = state.countTotalIncorrectAnswers();
 
   return (
     <main>
       <header>
         <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
-        <span className='incorrectAnswers' title={t('incorrect_answer_count_alt')}>
-          {t('incorrect_answer_count')} {incorrectAnswers && '-' + incorrectAnswers.length}
-        </span>
+        {incorrectAnswers &&
+          <span className="incorrectAnswers" title={t('incorrect_answer_count_alt')}>
+            {t('incorrect_answer_count')} {incorrectAnswers.length > 0 ? ` - ${incorrectAnswers.length}` : ''}
+          </span>
+        }
         <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
       </header>
 
@@ -62,16 +81,24 @@ const App: React.FC = () => {
       </aside>
 
       {allCompleted ? (
-        <p className="all-lessons-completed">{t('all_lessons_done')}</p>
+        <CompletedAllLessons
+          totalQuestions={totalQuestionsAnswered}
+          totalLessons={lessons.length}
+          totalIncorrectAnswers={totalIncorrectAnswers}
+        />
+      ) : showIntro ? (
+        <LessonIntro
+          title={currentLesson.title}
+          onContinue={() => setShowIntro(false)}
+          onBack={goBackLesson}
+        />
       ) : (
-        lessons.length > 0 && (
-          <LessonComponent
-            key={currentLessonIndex}
-            lesson={currentLesson}
-            onComplete={goToNextLesson}
-            onIncorrectAnswer={onIncorrectAnswer}
-          />
-        )
+        <LessonComponent
+          key={currentLessonIndex}
+          lesson={currentLesson}
+          onComplete={goToNextLesson}
+          onIncorrectAnswer={onIncorrectAnswer}
+        />
       )}
     </main>
   );
