@@ -88,27 +88,12 @@ const App: React.FC = () => {
           value={currentLessonIndex}
           max={lessons.length}
           className="lesson-progress"
-          aria-label={t('lesson_progress')}
+          aria-label={t('total_progress')}
           title={`${t('all_lessons')} ${currentLessonIndex + 1} / ${lessons.length}`}
         />
       </aside>
 
-      {allCompleted ? (
-
-        <CompletedAllLessons
-          totalQuestions={totalQuestionsAnswered}
-          totalLessons={lessons.length}
-          totalIncorrectAnswers={totalIncorrectAnswers}
-        >
-          <LessonList
-            currentLessonIndex={currentLessonIndex}
-            lessons={lessonTitles2Indicies()}
-            onLessonSelected={onLessonSelected}
-          />
-        </CompletedAllLessons>
-
-      ) : showLessonIntro ? (
-
+      {showLessonIntro ? (
         <LessonIntro
           title={currentLesson.title}
           index={currentLessonIndex}
@@ -127,6 +112,20 @@ const App: React.FC = () => {
           questionCount={currentLesson.cards.length}
           mistakeCount={state.loadIncorrectAnswers(currentLessonIndex).length}
         />
+      ) : allCompleted ? (
+
+        <CompletedAllLessons
+          totalQuestions={totalQuestionsAnswered}
+          totalLessons={lessons.length}
+          totalIncorrectAnswers={totalIncorrectAnswers}
+        >
+          <LessonList
+            currentLessonIndex={currentLessonIndex}
+            lessons={lessonTitles2Indicies()}
+            onLessonSelected={onLessonSelected}
+          />
+        </CompletedAllLessons>
+
       ) : (
 
         <LessonComponent
