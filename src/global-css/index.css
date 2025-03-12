@@ -71,7 +71,7 @@ button:not([disabled]):hover {
 }
 
 button[disabled]:hover {
-    cursor: not-allowed;
+    cursor: default;
 }
 
 .next-button {
