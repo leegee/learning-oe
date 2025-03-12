@@ -1,8 +1,7 @@
 /* LessonIntro.css */
 
 .lesson-intro {
-    width: auto;
-    margin: auto;
+    width: 100%;
     margin-top: 2em;
     display: flex;
     flex-direction: column;
@@ -13,4 +12,12 @@
     margin-top: 2em;
     display: flex;
     gap: 2em;
+}
+
+.lesson-intro .next-button {
+    width: unset;
+}
+
+.lesson-intro .lesson-list {
+    margin-top: 2em;
 }

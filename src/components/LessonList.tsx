@@ -18,8 +18,8 @@ const LessonList = ({ lessons, currentLessonIndex }: LessonListProps) => {
             <ol>
                 {lessons.map((lessonSummary, index) => (
                     <li key={index}>
-                        <span className='completed-or-not'>{index < currentLessonIndex ? '✔️' : ''}</span>
                         {lessonSummary.title}
+                        <span className='completed-or-not'>{index < currentLessonIndex ? '✔️' : ''}</span>
                     </li>
                 ))}
             </ol>

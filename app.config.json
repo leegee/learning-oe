@@ -15,7 +15,7 @@
         "availableLanguages": {
             "en": {
                 "lesson": "Lesson",
-                "lessons": "Lesson",
+                "lessons": "Lessons",
                 "incorrect_answer_count": "",
                 "incorrect_answer_count_alt": "Incorrect answers",
                 "back": "Back",
@@ -31,7 +31,7 @@
             },
             "ang": {
                 "lesson": "lār",
-                "lessons": "lāra",
+                "lessons": "lāran",
                 "incorrect_answer_count": "",
                 "incorrect_answer_count_alt": "Unriht andwyrda",
                 "back": "Hweorfan",
