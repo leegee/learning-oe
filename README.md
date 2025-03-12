@@ -13,6 +13,10 @@ Configurable quiz cards for language learning or other quizes
 * Easy to create localisation and configuration in [JSON](app.config.json)
 * Easy dev and builds with Vite and Typescript
 
+## Demo: Learn Old English
+
+[https://leegee.github.io/learning-oe/](https://leegee.github.io/learning-oe/)
+
 ## Future Work
 
 Create components that can use data from other components.
