@@ -7,10 +7,9 @@ interface LessonIntroProps {
     index: number;
     children?: ReactNode;
     onContinue: () => void;
-    onBack: () => void;
 }
 
-const LessonIntro = ({ title, index, children, onContinue, onBack, }: LessonIntroProps) => {
+const LessonIntro = ({ title, index, children, onContinue }: LessonIntroProps) => {
     const { t } = useTranslation();
 
     return (
@@ -21,7 +20,6 @@ const LessonIntro = ({ title, index, children, onContinue, onBack, }: LessonIntr
                 </h3>
                 <h2>{title}</h2>
                 <div className="buttons">
-                    {/* <button onClick={onBack}>{t('back')}</button> */}
                     <button className='next-button' onClick={onContinue}>{t('begin')}</button>
                 </div>
 
