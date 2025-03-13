@@ -90,6 +90,11 @@ const App: React.FC = () => {
     }
   }
 
+  window.addEventListener('beforeinstallprompt', (e) => {
+    alert('test')
+    console.log(e);
+  });
+
   const renderTop = () => {
     return (
       <>
