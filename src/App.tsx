@@ -35,7 +35,6 @@ const App: React.FC = () => {
   // When the current lesson index changes, a new lesson begins
   useEffect(() => {
     setIncorrectAnswers(state.loadIncorrectAnswers(currentLessonIndex));
-    // state.saveIncorrectAnswers(currentLessonIndex, []);
     setAllCompleted(currentLessonIndex >= lessons.length);
     setShowIntro(true);
     setLessonCompleted(false);
