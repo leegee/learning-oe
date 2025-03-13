@@ -14,23 +14,28 @@ const SplashScreen = ({ onContinue }: SplashScreenProps) => {
     const { t } = useTranslation();
 
     return (
-        <aside id='splash'>
-            <section className="titles">
-                <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
-                <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
-                <p>
-                    <small>{packageJson.version}</small>
-                </p>
+        <main id='splash'>
+            <section className='card'>
+                <div>
+                    <img src="icons/dog.webp" />
+                    <div className="titles">
+                        <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
+                        <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
+                        <p>
+                            <small>{packageJson.version}</small>
+                        </p>
+                    </div>
+                </div>
+
+                <AboutComponent />
+
+                <footer>
+                    <button className="next-button" onClick={onContinue} >
+                        {t('continue')}
+                    </button>
+                </footer>
             </section>
-
-            <AboutComponent />
-
-            <footer>
-                <button className="next-button" onClick={onContinue} >
-                    {t('continue')}
-                </button>
-            </footer>
-        </aside>
+        </main>
     );
 }
 

@@ -13,11 +13,18 @@
     align-items: center;
 }
 
+#splash img {
+    width: 30%;
+    float: left;
+}
+
 #splash .titles {
     text-align: center;
+    margin-bottom: 2em;
 }
 
 #splash h1 {
+    margin-top: 0;
     font-size: 250%;
     font-weight: 900;
 }
@@ -33,6 +40,7 @@
 
 #splash .card.about {
     border: none;
+    margin-top: 2em;
 }
 
 #splash .about {
@@ -43,4 +51,8 @@
     font-size: 1.6em;
     font-weight: 500;
     text-align: left;
+}
+
+#splash footer {
+    margin-top: 2em;
 }
