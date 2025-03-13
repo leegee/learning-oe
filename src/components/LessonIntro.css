@@ -20,6 +20,10 @@
     font-size: 2em;
 }
 
+.lesson-intro .description {
+    text-align: center;
+}
+
 .lesson-intro .buttons {
     margin-top: 2em;
     float: right;

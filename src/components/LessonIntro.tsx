@@ -4,12 +4,13 @@ import './LessonIntro.css';
 
 interface LessonIntroProps {
     title: string;
+    description?: string;
     index: number;
     children?: ReactNode;
     onContinue: () => void;
 }
 
-const LessonIntro = ({ title, index, children, onContinue }: LessonIntroProps) => {
+const LessonIntro = ({ title, description, index, children, onContinue }: LessonIntroProps) => {
     const { t } = useTranslation();
 
     return (
@@ -19,6 +20,7 @@ const LessonIntro = ({ title, index, children, onContinue }: LessonIntroProps) =
                     {t('lesson')} {index + 1}
                 </h2>
                 <h3>{title}</h3>
+                {description && (<p className="description">{description}</p>)}
                 <div className="buttons">
                     <button className='next-button' onClick={onContinue}>{t('begin')}</button>
                 </div>

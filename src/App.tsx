@@ -146,6 +146,7 @@ const App = () => {
       return (
         <LessonIntro
           title={currentLesson.title}
+          description={currentLesson.description}
           index={currentLessonIndex}
           onContinue={() => onLessonStart()}
         >

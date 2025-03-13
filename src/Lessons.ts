@@ -19,6 +19,7 @@ if (!valid) {
 
 export type Lesson = {
     title: string;
+    description?: string;
     cards: (WritingCard | VocabCard | BlanksCard | MultipleChoiceCard | DynamicVocabCard)[];
 };
 
@@ -30,9 +31,9 @@ export type LessonSummary = {
 export const lessons: Lesson[] = lessonsData as Lesson[];
 
 export const lessonTitles2Indicies = (): LessonSummary[] => {
-    return lessonsData.map((lesson, index) => ({
+    return lessonsData.map((lesson, lessonIndex) => ({
         title: lesson.title,
-        index
+        index: lessonIndex
     }));
 };
 

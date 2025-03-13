@@ -7,6 +7,9 @@
             "title": {
                 "type": "string"
             },
+            "description": {
+                "type": "string"
+            },
             "cards": {
                 "type": "array",
                 "items": {
