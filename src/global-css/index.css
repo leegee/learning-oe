@@ -2,23 +2,33 @@
 @import './animations.css';
 
 :root {
-    --oe-clr-fg: rgb(234, 234, 243);
+    --oe-clr-fg: #ddd;
     --oe-clr-bg: #001;
+    --oe-clr-card-bg: #004;
+    --oe-clr-border: #ddd5;
+    --oe-clr-primary-fg: #eee;
+    --oe-clr-primary-bg: blue;
+
     --oe-border-radius: 0.3em;
 
     --fade-duration: 0.5s;
     --fade-timing: ease-in-out;
     --fade-delay: 0s;
-}
 
-* {
-    background-color: var(--oe-clr-bg);
     color: var(--oe-clr-fg);
-    box-sizing: border-box;
+    background-color: var(--oe-clr-bg);
 }
 
-body {
+main * {
+    box-sizing: border-box;
+    color: var(--oe-clr-fg);
+    background-color: var(--oe-clr-bg);
+}
+
+main {
     font-family: 'Work Sans';
+    color: var(--oe-clr-fg);
+    background-color: var(--oe-clr-bg);
 }
 
 [lang="ang"] {
@@ -72,7 +82,8 @@ button[disabled]:hover {
 }
 
 .next-button {
-    background: blue;
+    background-color: var(--oe-clr-primary-bg);
+    color: var(--oe-clr-primary-fg);
     width: 100%;
 }
 

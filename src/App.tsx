@@ -54,9 +54,7 @@ const App: React.FC = () => {
   };
 
   const onLessonSelected = (lessonIndex: number) => {
-    if (confirm('Do you wish to learn lesson ' + (lessonIndex + 1))) {
-      setCurrentLessonIndex(lessonIndex);
-    }
+    setCurrentLessonIndex(lessonIndex);
   };
 
   const goToNextLesson = () => {
@@ -155,7 +153,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <main className={isLessonActive ? "lesson-active" : ""}>
+    <main id='main' className={isLessonActive ? "lesson-active" : ""}>
       {renderTop()}
       {renderConditional()}
     </main>
