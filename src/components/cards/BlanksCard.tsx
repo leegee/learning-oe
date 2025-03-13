@@ -59,7 +59,6 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
                 setCurrentSentence(updatedSentence);
             }
             else {
-                // alert('Please select the words in the correct order!');
                 onIncorrect();
             }
         } else if (!isCorrect) {

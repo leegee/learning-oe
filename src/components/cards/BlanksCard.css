@@ -8,3 +8,9 @@
 .blanks-card button.word-option {
     width: auto;
 }
+
+.blanks-card button.word-option.correct {
+    border-color: #888;
+    background-color: #333;
+    color: #888;
+}
