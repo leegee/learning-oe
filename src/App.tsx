@@ -45,7 +45,7 @@ const App: React.FC = () => {
     setIsLessonActive(!showLessonIntro && !lessonCompleted && !allCompleted);
   }, [currentLessonIndex, showLessonIntro, lessonCompleted, allCompleted]);
 
-  const onIncorrectAnswer = (incorrectAnswer: string | string) => {
+  const onIncorrectAnswer = (incorrectAnswer: string) => {
     setIncorrectAnswers((prev = []) => {
       const updatedAnswers = [...prev, incorrectAnswer];
       state.saveIncorrectAnswers(currentLessonIndex, updatedAnswers);
