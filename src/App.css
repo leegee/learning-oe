@@ -42,8 +42,12 @@ main header h2 {
     font-weight: 100;
 }
 
-main header .incorrectAnswers {
+main header .incorrect-answers {
     color: red;
+}
+
+main header .questions-answered {
+    color: green;
 }
 
 main header .header-progress,

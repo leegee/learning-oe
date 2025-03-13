@@ -24,6 +24,7 @@ const App: React.FC = () => {
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
   const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>(state.loadIncorrectAnswers(currentLessonIndex));
   const [isLessonActive, setIsLessonActive] = useState(false);
+  const [questionsAnswered, setQuestionsAnswered] = useState<number>(state.loadQuestionsAnswered);
   const [lessonCompleted, setLessonCompleted] = useState<boolean>(false);
   const [lessonStartTime, setLessonStartTime] = useState<number | null>(null);
   const [lessonDurationSeconds, setLessonDurationSeconds] = useState<number | null>(null);
@@ -76,6 +77,7 @@ const App: React.FC = () => {
 
   const onLessonComplete = () => {
     setLessonCompleted(true);
+    setQuestionsAnswered(state.addCompletedLessons(currentLesson.cards.length));
     if (lessonStartTime) {
       setLessonDurationSeconds(Math.floor((Date.now() - lessonStartTime) / 1000));
       setLessonStartTime(null);
@@ -98,11 +100,25 @@ const App: React.FC = () => {
 
           <div className='header-text'>
             <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
-            {incorrectAnswers &&
-              <span className="incorrectAnswers" title={t('incorrect_answer_count_alt')}>
-                {t('incorrect_answer_count')} {incorrectAnswers.length > 0 ? ` - ${incorrectAnswers.length}` : ''}
-              </span>
-            }
+
+            <span className="stats">
+
+              {
+                (incorrectAnswers && incorrectAnswers.length > 0) && (
+                  <span className="incorrect-answers" title={t('incorrect_answer_count_alt')}>
+                    {incorrectAnswers.length > 0 ? ` - ${incorrectAnswers.length}` : ''}
+                  </span>
+                )
+              }
+
+              {
+                (questionsAnswered || questionsAnswered > 0) && (
+                  <span className="questions-answered" title={t('questions_answered_alt')}> {questionsAnswered} </span>
+                )
+              }
+
+            </span>
+
             <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
           </div>
         </header>

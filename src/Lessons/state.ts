@@ -3,7 +3,8 @@ const prefix = 'oe_';
 
 const keys = {
   CURRENT_LESSON: prefix + 'current_lesson',
-  INCORRECT_ANSWERS: prefix + 'incorrectAnswers'
+  INCORRECT_ANSWERS: prefix + 'incorrect_answers',
+  QUESTIONS_ANSWERED: prefix + 'questions_answered',
 };
 
 // Save current lesson index (number)
@@ -49,3 +50,16 @@ export const countTotalIncorrectAnswers = (): number => {
   // Sum up the lengths of all incorrect answer arrays
   return Object.values(parsedData).reduce((total, answers) => total + answers.length, 0);
 };
+
+export const addCompletedLessons = (toAdd: number): number => {
+  const parsedData = loadQuestionsAnswered();
+  const newCount = parsedData + toAdd;
+  localStorage.setItem(keys.QUESTIONS_ANSWERED, String(newCount));
+  return newCount;
+};
+
+export const loadQuestionsAnswered = (): number => {
+  const storedData = localStorage.getItem(keys.QUESTIONS_ANSWERED);
+  const parsedData: number = storedData ? Number(storedData) : 0;
+  return parsedData;
+}
