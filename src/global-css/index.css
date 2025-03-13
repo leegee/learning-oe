@@ -17,6 +17,8 @@
 
     color: var(--oe-clr-fg);
     background-color: var(--oe-clr-bg);
+    padding: 0;
+    margin: 0;
 }
 
 main * {

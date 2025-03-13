@@ -28,6 +28,7 @@
                 "ang": "Old English",
                 "yes": "Yes",
                 "no": "No",
+                "in": "in",
                 "lesson_completed": "Lesson complete!",
                 "incorrect_answer_count": "",
                 "incorrect_answer_count_alt": "Incorrect answers",
@@ -41,7 +42,7 @@
                 "total_lessons_completed": "Lessons completed",
                 "total_questions_answered": "Questions answered",
                 "total_incorrect_answers": "Mistakes",
-                "lesson_completed_counts": "You answered {{questionCount}} questions and made {{mistakeCount}} mistakes."
+                "lesson_completed_counts": "You answered {{questionCount}} questions and made {{mistakeCount}} mistakes - in {{duration}}"
             },
             "ang": {
                 "lessons": "lāran",
@@ -58,6 +59,7 @@
                 "ang": "Eald Englisc",
                 "yes": "Gea",
                 "no": "Nay",
+                "in": "in",
                 "lesson_completed": "Lærd þæt fullice!",
                 "incorrect_answer_count": "",
                 "incorrect_answer_count_alt": "Unriht andwyrda",
@@ -70,7 +72,8 @@
                 "lesson_progress": "lār",
                 "total_lessons_completed": "lāra completed",
                 "total_questions_answered": "Andswaru geendod",
-                "total_incorrect_answers": "Forscyran"
+                "total_incorrect_answers": "Forscyran",
+                "lesson_completed_counts": "You answered {{questionCount}} questions and made {{mistakeCount}} mistakes - in {{duration}}"
             }
         }
     }

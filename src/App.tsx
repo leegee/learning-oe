@@ -24,7 +24,9 @@ const App: React.FC = () => {
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
   const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>(state.loadIncorrectAnswers(currentLessonIndex));
   const [isLessonActive, setIsLessonActive] = useState(false);
-  const [lessonCompleted, setLessonCompleted] = useState<boolean>(false); // New state to track lesson completion
+  const [lessonCompleted, setLessonCompleted] = useState<boolean>(false);
+  const [lessonStartTime, setLessonStartTime] = useState<number | null>(null);
+  const [lessonDurationSeconds, setLessonDurationSeconds] = useState<number | null>(null);
   const [allCompleted, setAllCompleted] = useState<boolean>(initialLessonIndex >= lessons.length);
   const [showLessonIntro, setShowLessonIntro] = useState<boolean>(true);
   const { t } = useTranslation();
@@ -57,6 +59,11 @@ const App: React.FC = () => {
     setCurrentLessonIndex(lessonIndex);
   };
 
+  const onLessonStart = () => {
+    setLessonStartTime(Date.now());
+    setShowLessonIntro(false);
+  }
+
   const goToNextLesson = () => {
     if (currentLessonIndex < lessons.length - 1) {
       const nextLessonIndex = currentLessonIndex + 1;
@@ -69,6 +76,10 @@ const App: React.FC = () => {
 
   const onLessonComplete = () => {
     setLessonCompleted(true);
+    if (lessonStartTime) {
+      setLessonDurationSeconds(Math.floor((Date.now() - lessonStartTime) / 1000));
+      setLessonStartTime(null);
+    }
   }
 
   const renderTop = () => {
@@ -105,7 +116,7 @@ const App: React.FC = () => {
         <LessonIntro
           title={currentLesson.title}
           index={currentLessonIndex}
-          onContinue={() => setShowLessonIntro(false)}
+          onContinue={() => onLessonStart()}
         >
           <LessonList
             currentLessonIndex={currentLessonIndex}
@@ -121,6 +132,7 @@ const App: React.FC = () => {
         <LessonCompleted
           onContinue={goToNextLesson}
           questionCount={currentLesson.cards.length}
+          durationInSeconds={lessonDurationSeconds !== null ? lessonDurationSeconds : -1}
           mistakeCount={state.loadIncorrectAnswers(currentLessonIndex).length}
         />
       )
