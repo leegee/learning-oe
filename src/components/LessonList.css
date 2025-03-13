@@ -22,7 +22,14 @@
 
 .lesson-list button.completed {
     background-color: #174f17;
+    color: #cae0ca;
 }
+
+.lesson-list button.current {
+    background-color: var(--oe-clr-primary-bg);
+    color: var(--oe-clr-primary-fg);
+}
+
 
 .lesson-list button.todo {
     color: grey;
