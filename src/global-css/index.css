@@ -4,7 +4,7 @@
 :root {
     --oe-clr-fg: #ddd;
     --oe-clr-bg: #001;
-    --oe-clr-card-bg: #002;
+    --oe-clr-card-bg: #000027;
     --oe-clr-border: #ddd5;
     --oe-clr-primary-fg: #eee;
     --oe-clr-primary-bg: blue;
@@ -49,9 +49,14 @@ section.card {
 }
 
 .card {
+    background-color: var(--oe-clr-card-bg);
     border: 1pt solid #fff6;
     margin: 1em 0;
     padding: 1em;
+}
+
+.card * {
+    background-color: var(--oe-clr-card-bg);
 }
 
 .correct,
