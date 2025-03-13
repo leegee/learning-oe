@@ -56,8 +56,45 @@ export default defineConfig({
       pwaAssets: {
         image: 'public/icons/icon-512x512.jpg'
       },
+
+
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.origin === location.origin && url.pathname.endsWith('.html'),
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'html-cache',
+              networkTimeoutSeconds: 10,
+              plugins: [],
+            },
+          },
+          {
+            urlPattern: ({ url }) => url.origin === location.origin && url.pathname.endsWith('.css'),
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'css-cache',
+              networkTimeoutSeconds: 10,
+            },
+          },
+          {
+            urlPattern: ({ url }) => url.origin === location.origin && url.pathname.endsWith('.js'),
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'js-cache',
+              networkTimeoutSeconds: 10,
+            },
+          },
+          {
+            urlPattern: ({ url }) => url.origin === location.origin && url.pathname.endsWith('.tff'),
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'tff-cache',
+              networkTimeoutSeconds: 10,
+            },
+          },
+        ],
+      },
     }),
   ],
-
-
 });
