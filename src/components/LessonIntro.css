@@ -33,14 +33,3 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
-
-.lesson-intro .about p {
-    font-weight: normal;
-    line-height: 160%;
-}
-
-.lesson-intro .about footer {
-    font-family: Junicode;
-    font-style: italic;
-    text-align: right;
-}

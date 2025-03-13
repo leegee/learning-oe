@@ -1,0 +1,10 @@
+ .about p {
+     font-weight: normal;
+     line-height: 160%;
+ }
+
+ .about footer {
+     font-family: Junicode;
+     font-style: italic;
+     text-align: right;
+ }
