@@ -22,8 +22,13 @@ const DynamicVocab = ({ card, lesson, onIncorrect, onComplete }: DynamicVocabCar
     let vocab: { [key: string]: string } = {};
 
     for (let thisCard of lesson.cards.filter(card => ['vocab', 'blanks'].includes(card.class))) {
-        if (thisCard.class === 'blanks') {
-            continue;
+        if (thisCard.class === 'blanks' && thisCard.qlang === card.qlang) {
+            if (thisCard.qlang === card.qlang) {
+                const blankWords = thisCard.words.filter(wordObj => wordObj.correct);
+                blankWords.forEach(blank => {
+                    vocab[blank.word] = blank.word;
+                });
+            }
         }
 
         else if (thisCard.class === 'vocab') {
