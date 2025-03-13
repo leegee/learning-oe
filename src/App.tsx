@@ -52,9 +52,6 @@ const App = () => {
     setIsLessonActive(!showLessonIntro && !lessonCompleted && !allCompleted);
   }, [currentLessonIndex, showLessonIntro, lessonCompleted, allCompleted]);
 
-  const hideSplashScreen = () => setShowSplash(false);
-  const showSplashScreen = () => setShowSplash(true);
-
   const onIncorrectAnswer = (incorrectAnswer: string) => {
     setIncorrectAnswers((prev = []) => {
       const updatedAnswers = [...prev, incorrectAnswer];
@@ -86,7 +83,7 @@ const App = () => {
     setLessonStartTime(null);
     setLessonCompleted(false);
     setShowLessonIntro(false);
-    showSplashScreen(true);
+    setShowSplash(true);
   }
 
   const onLessonComplete = () => {
@@ -200,7 +197,7 @@ const App = () => {
   };
 
   if (showSplash) {
-    return (<SplashScreen onContinue={() => hideSplashScreen()} />)
+    return (<SplashScreen onContinue={() => setShowSplash(false)} />)
   }
 
   return (

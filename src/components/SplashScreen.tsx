@@ -1,3 +1,4 @@
+import packageJson from '../../package.json';
 import config from "./../config";
 import { useTranslation } from "react-i18next";
 
@@ -14,9 +15,12 @@ const SplashScreen = ({ onContinue }: SplashScreenProps) => {
 
     return (
         <aside id='splash'>
-            <section className="">
+            <section className="titles">
                 <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
                 <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
+                <p>
+                    <small>{packageJson.version}</small>
+                </p>
             </section>
 
             <AboutComponent />
