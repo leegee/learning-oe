@@ -4,6 +4,7 @@ Configurable quiz cards for language learning or other quizes
 
 ## Features
 
+* A prototype without any third-party dependencies
 * Three types of quiz lessons:
     1. multiple choice
     1. fill in the blanks
@@ -17,10 +18,13 @@ Configurable quiz cards for language learning or other quizes
 
 [https://leegee.github.io/learning-oe/](https://leegee.github.io/learning-oe/)
 
-## To Do
+## Card types
 
-* Fit to screen
-* Create components that can use data from other components. Eg: a component to create a `VocabMatch` card from all the `answer` fields of a multiple-choice card.
+* *Multiple choice* 
+* *Vocab" presents two columns of shuffled words which need to be paired.
+* *Blanks* presents a sentence with blanks which need to be completed from a list
+* *Writing* rqeuires the user to translate a sentence
+* *Dynamic Vocab* selects creates a Vocab lesson by combining data from other cards in he lesson
 
 ## NB
 
