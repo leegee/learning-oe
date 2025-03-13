@@ -75,6 +75,12 @@ const App: React.FC = () => {
     }
   };
 
+  const onLessonCancelled = () => {
+    setLessonCompleted(false);
+    setShowLessonIntro(true);
+    setLessonStartTime(null);
+  }
+
   const onLessonComplete = () => {
     setLessonCompleted(true);
     setQuestionsAnswered(state.addCompletedLessons(currentLesson.cards.length));
@@ -174,8 +180,9 @@ const App: React.FC = () => {
       <LessonComponent
         key={currentLessonIndex}
         lesson={currentLesson}
-        onComplete={onLessonComplete}
+        onCancel={onLessonCancelled}
         onIncorrectAnswer={onIncorrectAnswer}
+        onComplete={onLessonComplete}
       />
     );
   };

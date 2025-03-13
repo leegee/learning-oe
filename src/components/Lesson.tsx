@@ -1,5 +1,5 @@
 // src/components/Lesson.tsx
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
 
 import MultipleChoice from './cards/MultipleChoice';
@@ -12,10 +12,11 @@ import './Lesson.css';
 interface LessonProps {
     lesson: Lesson;
     onIncorrectAnswer: (incorrectAnswer: string) => void;
+    onCancel: () => void;
     onComplete: () => void;
 };
 
-const LessonComponent = ({ lesson, onIncorrectAnswer, onComplete }: LessonProps) => {
+const LessonComponent = ({ lesson, onIncorrectAnswer, onCancel, onComplete }: LessonProps) => {
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
     const { t } = useTranslation();
 
@@ -36,9 +37,26 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onComplete }: LessonProps)
     const currentCard = lesson.cards[currentCardIndex];
     const progress = (currentCardIndex + 1) / lesson.cards.length;
 
+    useEffect(() => {
+        const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+            const confirmationMessage = "Are you sure you want to leave this app?";
+            event.preventDefault();
+            return confirmationMessage;
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
+
     return (
         <article className='lesson'>
-            <h2>{t('lesson')}: <em>{lesson.title}</em></h2>
+            <h2>
+                {t('lesson')}: <em>{lesson.title}</em>
+                <button className='close-button' onClick={onCancel} />
+            </h2>
             <progress
                 value={progress}
                 max={1}
