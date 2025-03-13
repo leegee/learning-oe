@@ -11,7 +11,7 @@ import './Lesson.css';
 
 interface LessonProps {
     lesson: Lesson;
-    onIncorrectAnswer: (incorrectAnswer: string) => void;
+    onIncorrectAnswer: (incorrectAnswer: string | number) => void;
     onComplete: () => void;
 };
 
@@ -29,8 +29,8 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onComplete }: LessonProps)
 
     const onIncorrect = () => {
         console.log('On Incorrect: ');
-        // TODO onIncorrect should receive something to store here
-        onIncorrectAnswer("incorrectAnswer");
+        // TODO onIncorrect might receive something to store here
+        onIncorrectAnswer(currentCardIndex);
     }
 
     const currentCard = lesson.cards[currentCardIndex];
