@@ -2,7 +2,8 @@
 
 .lesson-list ol {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 1em;
     list-style-type: none;
     padding: 0;

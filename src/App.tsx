@@ -60,10 +60,6 @@ const App = () => {
     });
   };
 
-  const onLessonSelected = (lessonIndex: number) => {
-    setCurrentLessonIndex(lessonIndex);
-  };
-
   const onLessonStart = () => {
     setLessonStartTime(Date.now());
     setShowLessonIntro(false);
@@ -79,10 +75,16 @@ const App = () => {
     }
   };
 
+  const onLessonSelected = (lessonIndex: number) => {
+    setShowSplash(false);
+    setCurrentLessonIndex(lessonIndex);
+  }
+
   const onLessonCancelled = () => {
     setLessonStartTime(null);
     setLessonCompleted(false);
     setShowLessonIntro(false);
+    setCurrentLessonIndex(0);
     setShowSplash(true);
   }
 
@@ -198,7 +200,15 @@ const App = () => {
   };
 
   if (showSplash) {
-    return (<SplashScreen onContinue={() => setShowSplash(false)} />)
+    return (
+      <SplashScreen>
+        <LessonList
+          currentLessonIndex={currentLessonIndex}
+          lessons={lessonTitles2Indicies()}
+          onLessonSelected={onLessonSelected}
+        />
+      </SplashScreen>
+    )
   }
 
   return (

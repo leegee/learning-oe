@@ -1,18 +1,16 @@
-import packageJson from '../../package.json';
-import config from "./../config";
-import { useTranslation } from "react-i18next";
+import { ReactNode } from "react";
 
+import config from "./../config";
+import packageJson from '../../package.json';
 import AboutComponent from "./About";
 
 import './SplashScreen.css';
 
 interface SplashScreenProps {
-    onContinue: () => void;
+    children: ReactNode;
 }
 
-const SplashScreen = ({ onContinue }: SplashScreenProps) => {
-    const { t } = useTranslation();
-
+const SplashScreen = ({ children }: SplashScreenProps) => {
     return (
         <main id='splash'>
             <section className='card'>
@@ -29,11 +27,8 @@ const SplashScreen = ({ onContinue }: SplashScreenProps) => {
 
                 <AboutComponent />
 
-                <footer>
-                    <button className="next-button" onClick={onContinue} >
-                        {t('continue')}
-                    </button>
-                </footer>
+                {children}
+
             </section>
         </main>
     );

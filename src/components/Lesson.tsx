@@ -21,6 +21,17 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onCancel, onComplete }: Le
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
     const { t } = useTranslation();
 
+    useEffect(() => {
+        const handleKeys = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                onCancel();
+            }
+        };
+
+        window.addEventListener('keyup', handleKeys);
+        return () => window.removeEventListener('keyup', handleKeys);
+    })
+
     const goToNextCard = () => {
         if (currentCardIndex < lesson.cards.length - 1) {
             setCurrentCardIndex((prevIndex) => prevIndex + 1);

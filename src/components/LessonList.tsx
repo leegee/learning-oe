@@ -43,7 +43,7 @@ const LessonList = ({ lessons, currentLessonIndex, onLessonSelected }: LessonLis
                         <li key={index}>
                             <button
                                 {...(index > currentLessonIndex && { disabled: true })}
-                                onClick={() => { if (index < currentLessonIndex) { onLessonSelectedLocal(index) } }}
+                                onClick={() => { if (index <= currentLessonIndex) { onLessonSelectedLocal(index) } }}
                                 className={[
                                     index < currentLessonIndex && 'completed',
                                     index === currentLessonIndex && 'current',

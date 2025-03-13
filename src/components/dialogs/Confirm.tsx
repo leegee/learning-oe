@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import './Confirm.css';
+import { useEffect } from "react";
 
 interface ConfirmDialogProps {
     isOpen: boolean;
@@ -12,6 +13,20 @@ const ConfirmDialog = ({ isOpen, message, onConfirm, onCancel }: ConfirmDialogPr
     if (!isOpen) return null;
 
     const { t } = useTranslation();
+
+    useEffect(() => {
+        const handleKeys = (e: KeyboardEvent) => {
+            if (e.key === ' ' || e.key === 'Enter') {
+                onConfirm();
+            }
+            else if (e.key === 'Escape') {
+                onCancel();
+            }
+        };
+
+        window.addEventListener('keyup', handleKeys);
+        return () => window.removeEventListener('keyup', handleKeys);
+    })
 
     return (
         <div className="confirm-dialog-overlay">
