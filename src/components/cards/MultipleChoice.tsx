@@ -78,7 +78,7 @@ const MultipleChoice = ({ card, onIncorrect, onComplete, }: MultipleChoiceCardPr
 
             {selectedOption && (
                 <button
-                    className='next-button'
+                    className={isCorrect ? t('next-button') : 'try-again-button'}
                     onClick={handleNextClick}
                 >
                     {isCorrect ? t('next') : t('try_again')}
