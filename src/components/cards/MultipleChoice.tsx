@@ -9,8 +9,8 @@ import './MultipleChoice.css';
 
 export type MultipleChoiceCard = Card & {
     class: 'multiple-choice';
-    answers: string[]; // Array of possible answers
-    answer: string; // Correct answer
+    answers: string[];
+    answer: string;
 };
 
 interface MultipleChoiceCardProps {
