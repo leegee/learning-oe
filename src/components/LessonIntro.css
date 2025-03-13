@@ -8,6 +8,8 @@
     gap: 0;
 }
 
+.lesson-intro .about h2,
+.lesson-intro .lesson-list h2,
 .lesson-intro h2 {
     font-weight: 200;
     font-size: 1.3em;
@@ -27,9 +29,18 @@
     width: unset;
 }
 
-.lesson-intro hr {
-    width: 100%;
-    height: 1pt;
-    opacity: 50%;
-    margin: 2em 0;
+.lesson-intro .lesson-list ol {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.lesson-intro .about p {
+    font-weight: normal;
+    line-height: 160%;
+}
+
+.lesson-intro .about footer {
+    font-family: Junicode;
+    font-style: italic;
+    text-align: right;
 }
