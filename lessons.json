@@ -3,10 +3,6 @@
         "title": "Test",
         "cards": [
             {
-                "class": "dynamic-vocab",
-                "qlang": "default"
-            },
-            {
                 "class": "vocab",
                 "qlang": "default",
                 "vocab": {
@@ -44,6 +40,10 @@
                         "correct": false
                     }
                 ]
+            },
+            {
+                "class": "dynamic-vocab",
+                "qlang": "default"
             }
         ]
     },
@@ -195,6 +195,10 @@
                     "Night": "Niht",
                     "You": "Þū"
                 }
+            },
+            {
+                "class": "dynamic-vocab",
+                "qlang": "default"
             }
         ]
     },
@@ -332,6 +336,10 @@
                     "Ic bēo in Lundon"
                 ],
                 "answer": "Ic lyfe in Lundon"
+            },
+            {
+                "class": "dynamic-vocab",
+                "qlang": "default"
             }
         ]
     },
@@ -447,6 +455,10 @@
                     "Ic geseo þē eft"
                 ],
                 "answer": "Ic geseo þē eft"
+            },
+            {
+                "class": "dynamic-vocab",
+                "qlang": "default"
             }
         ]
     },
@@ -589,6 +601,10 @@
                         "correct": false
                     }
                 ]
+            },
+            {
+                "class": "dynamic-vocab",
+                "qlang": "default"
             }
         ]
     }
