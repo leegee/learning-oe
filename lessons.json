@@ -3,27 +3,10 @@
         "title": "Test",
         "cards": [
             {
-                "class": "blanks",
+                "class": "writing",
                 "qlang": "default",
-                "question": "___ morgen þē",
-                "words": [
-                    {
-                        "word": "Gōd",
-                        "correct": true
-                    },
-                    {
-                        "word": "Gud",
-                        "correct": false
-                    },
-                    {
-                        "word": "Good",
-                        "correct": false
-                    },
-                    {
-                        "word": "God",
-                        "correct": false
-                    }
-                ]
+                "question": "Hello",
+                "answer": "Hāl"
             }
         ]
     },

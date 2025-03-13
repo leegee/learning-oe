@@ -85,7 +85,10 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
     return (
         <>
             <section className="card blanks-card">
+
+                <h4 lang={langs.q}>{t('fill_in_the_blanks')}</h4>
                 <h3 lang={langs.q}>{currentSentence}</h3>
+
                 <div className="word-options">
                     {shuffledWords.map((word, index) => {
                         const isSelected = selectedWords.includes(word);

@@ -1,8 +1,16 @@
+.blanks-card h3 {
+    margin: 1em 0;
+}
+
+.blanks-card h4 {
+    margin-bottom: 1em;
+}
+
 .blanks-card .word-options {
     display: flex;
     justify-content: space-evenly;
     gap: 1em;
-    margin: 2em 0;
+    margin-top: 2em;
 }
 
 .blanks-card button.word-option {

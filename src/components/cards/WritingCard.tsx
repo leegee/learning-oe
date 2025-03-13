@@ -74,7 +74,10 @@ const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
     return (
         <>
             <section className='card writing-card'>
+
+                <h4>{t('translate_to_lang', { lang: t(langs.a) })}</h4>
                 <h3 lang={langs.q}>{card.question}</h3>
+
                 <textarea
                     className='answer'
                     placeholder={t('type_in') + ' ' + t(langs.a) + '...'}
@@ -98,12 +101,14 @@ const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
                 </div>}
             </section>
 
-            <button
-                className={isCorrect ? 'next-button' : 'try-again-button'}
-                onClick={handleNextClick}
-            >
-                {isCorrect === false ? t('try_again') : t('next')}
-            </button>
+            {userInput.length > 0 &&
+                <button
+                    className={isCorrect ? 'next-button' : 'try-again-button'}
+                    onClick={handleNextClick}
+                >
+                    {isCorrect === false ? t('try_again') : t('next')}
+                </button>
+            }
         </>
     );
 };

@@ -9,9 +9,14 @@
 
 .writing-card .letter-buttons {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
     gap: 0.2em;
     margin-top: 0.6em;
+}
+
+.writing-card .letter-buttons button {
+    font-size: 1em;
 }
 
 .writing-card textarea::placeholder {
