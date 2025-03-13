@@ -42,8 +42,8 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onComplete }: LessonProps)
             <progress
                 value={progress}
                 max={1}
-                aria-label={t('total_progress')}
-                title={`${t('lesson')} ${currentCardIndex + 1} / ${lesson.cards.length}`}
+                aria-label={t('lesson_progress')}
+                title={`${currentCardIndex + 1} / ${lesson.cards.length}`}
             ></progress>
 
             {currentCard.class === 'writing' && (

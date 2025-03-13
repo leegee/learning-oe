@@ -5,6 +5,10 @@
     --oe-clr-fg: rgb(234, 234, 243);
     --oe-clr-bg: #001;
     --oe-border-radius: 0.3em;
+
+    --fade-duration: 0.5s;
+    --fade-timing: ease-in-out;
+    --fade-delay: 0s;
 }
 
 * {
@@ -78,10 +82,6 @@ button[disabled]:hover {
 
 h2 {
     margin-top: 0;
-}
-
-.lesson h2 {
-    margin-top: 0.6em;
 }
 
 h3 {

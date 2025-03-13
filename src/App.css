@@ -20,6 +20,11 @@ main .all-lessons-completed {
 }
 
 main header {
+    margin-top: 0.6em;
+    transition: all var(--oe-fade-duration) var(--oe-fade-timing) var(--oe-fade-delay);
+}
+
+main header .header-text {
     display: flex;
     justify-content: space-between;
 }
@@ -28,16 +33,9 @@ main header h1,
 header h2 {
     margin: 0;
     font-weight: normal;
-    font-size: 1em;
-}
-
-.lesson-progress {
-    width: 100%;
-    height: 2pt;
-}
-
-main header h1 {
     font-style: italic;
+    font-size: 1.2em;
+
 }
 
 main header h2 {
@@ -46,4 +44,30 @@ main header h2 {
 
 main header .incorrectAnswers {
     color: red;
+}
+
+main header .header-progress,
+main header .course-progress {
+    width: 100%;
+    height: 2pt;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+main header .header-progress {
+    margin-bottom: 0.2em;
+}
+
+main.lesson-active header {
+    font-size: 0;
+    margin-top: 0;
+    opacity: 0;
+    transition: all var(--oe-fade-duration) var(--oe-fade-timing) var(--oe-fade-delay);
+}
+
+main.lesson-active progress {
+    font-size: 2pt;
+    line-height: 2pt;
 }
