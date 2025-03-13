@@ -53,6 +53,7 @@ const App = () => {
   }, [currentLessonIndex, showLessonIntro, lessonCompleted, allCompleted]);
 
   const hideSplashScreen = () => setShowSplash(false);
+  const showSplashScreen = () => setShowSplash(true);
 
   const onIncorrectAnswer = (incorrectAnswer: string) => {
     setIncorrectAnswers((prev = []) => {
@@ -82,9 +83,10 @@ const App = () => {
   };
 
   const onLessonCancelled = () => {
-    setLessonCompleted(false);
-    setShowLessonIntro(true);
     setLessonStartTime(null);
+    setLessonCompleted(false);
+    setShowLessonIntro(false);
+    showSplashScreen(true);
   }
 
   const onLessonComplete = () => {
