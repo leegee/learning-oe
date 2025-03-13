@@ -22,14 +22,14 @@ const LessonList = ({ lessons, currentLessonIndex, onLessonSelected }: LessonLis
         setIsDialogOpen(true);
     };
 
-    const handleConfirm = () => {
+    const handleConfirmChangeLesson = () => {
         setIsDialogOpen(false);
         if (lessonIndexToChange !== null) {
             onLessonSelected(lessonIndexToChange);
         }
     };
 
-    const handleCancel = () => {
+    const handleCancelChangeLesson = () => {
         setLessonIndexToChange(null);
         setIsDialogOpen(false);
     };
@@ -61,8 +61,8 @@ const LessonList = ({ lessons, currentLessonIndex, onLessonSelected }: LessonLis
             <ConfirmDialog
                 isOpen={isDialogOpen}
                 message={t('will_you_learn_lesson_n', { n: lessonIndexToChange !== null ? lessonIndexToChange + 1 : 1 })}
-                onConfirm={handleConfirm}
-                onCancel={handleCancel}
+                onConfirm={handleConfirmChangeLesson}
+                onCancel={handleCancelChangeLesson}
             />
         </>
     );
