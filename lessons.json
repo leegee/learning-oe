@@ -3,15 +3,27 @@
         "title": "Test",
         "cards": [
             {
-                "class": "multiple-choice",
+                "class": "blanks",
                 "qlang": "default",
-                "question": "Hello!",
-                "answers": [
-                    "Hāl",
-                    "Hej",
-                    "Hwat ho"
-                ],
-                "answer": "Hāl"
+                "question": "___ morgen þē",
+                "words": [
+                    {
+                        "word": "Gōd",
+                        "correct": true
+                    },
+                    {
+                        "word": "Gud",
+                        "correct": false
+                    },
+                    {
+                        "word": "Good",
+                        "correct": false
+                    },
+                    {
+                        "word": "God",
+                        "correct": false
+                    }
+                ]
             }
         ]
     },
@@ -105,29 +117,6 @@
                     "Ic eom hæl, þancie þē"
                 ],
                 "answer": "Ic eom god, þancie þē"
-            },
-            {
-                "class": "blanks",
-                "qlang": "default",
-                "question": "___ morgen þē",
-                "words": [
-                    {
-                        "word": "Gōd",
-                        "correct": true
-                    },
-                    {
-                        "word": "Gud",
-                        "correct": false
-                    },
-                    {
-                        "word": "Good",
-                        "correct": false
-                    },
-                    {
-                        "word": "God",
-                        "correct": false
-                    }
-                ]
             },
             {
                 "class": "writing",
