@@ -27,26 +27,39 @@
                                         "target"
                                     ]
                                 },
-                                "question": {
-                                    "type": "string"
-                                },
                                 "vocab": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "minProperties": 1,
-                                        "maxProperties": 1,
-                                        "additionalProperties": {
-                                            "type": "string"
-                                        }
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
                                     }
                                 }
                             },
                             "required": [
                                 "class",
                                 "qlang",
-                                "question",
                                 "vocab"
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "class": {
+                                    "type": "string",
+                                    "enum": [
+                                        "dynamic-vocab"
+                                    ]
+                                },
+                                "qlang": {
+                                    "type": "string",
+                                    "enum": [
+                                        "default",
+                                        "target"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "class",
+                                "qlang"
                             ]
                         },
                         {

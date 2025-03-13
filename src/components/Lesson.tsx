@@ -8,6 +8,7 @@ import BlanksCard from './cards/BlanksCard';
 import WritingCard from './cards/WritingCard';
 import { type Lesson } from '../Lessons';
 import './Lesson.css';
+import DynamicVocab from './cards/DynamicVocabCard';
 
 interface LessonProps {
     lesson: Lesson;
@@ -63,6 +64,15 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onCancel, onComplete }: Le
                 aria-label={t('lesson_progress')}
                 title={`${currentCardIndex + 1} / ${lesson.cards.length}`}
             ></progress>
+
+            {currentCard.class === 'dynamic-vocab' && (
+                <DynamicVocab
+                    card={currentCard}
+                    lesson={lesson}
+                    onComplete={goToNextCard}
+                    onIncorrect={onIncorrect}
+                />
+            )}
 
             {currentCard.class === 'writing' && (
                 <WritingCard

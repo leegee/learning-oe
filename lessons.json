@@ -3,6 +3,22 @@
         "title": "Test",
         "cards": [
             {
+                "class": "dynamic-vocab",
+                "qlang": "default"
+            },
+            {
+                "class": "vocab",
+                "qlang": "default",
+                "vocab": {
+                    "Hello": "Hāl",
+                    "Morning": "Morgen",
+                    "Evening": "Æfen",
+                    "Good": "Gōd",
+                    "Night": "Niht",
+                    "You": "Þū"
+                }
+            },
+            {
                 "class": "blanks",
                 "qlang": "default",
                 "question": "___, hu gǽþ hit __?",
@@ -171,27 +187,14 @@
             {
                 "class": "vocab",
                 "qlang": "default",
-                "question": "Match the words",
-                "vocab": [
-                    {
-                        "Hello": "Hāl"
-                    },
-                    {
-                        "Morning": "Morgen"
-                    },
-                    {
-                        "Evening": "Æfen"
-                    },
-                    {
-                        "Good": "Gōd"
-                    },
-                    {
-                        "Night": "Niht"
-                    },
-                    {
-                        "You": "Þū"
-                    }
-                ]
+                "vocab": {
+                    "Hello": "Hāl",
+                    "Morning": "Morgen",
+                    "Evening": "Æfen",
+                    "Good": "Gōd",
+                    "Night": "Niht",
+                    "You": "Þū"
+                }
             }
         ]
     },

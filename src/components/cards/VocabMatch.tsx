@@ -6,9 +6,9 @@ import { type Card } from './Card.ts';
 import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
 import './VocabMatch.css';
 
-export type VocabCard = Card & {
+export type VocabCard = Omit<Card, 'question'> & {
     class: 'vocab';
-    vocab: { [key: string]: string }[]; // Each entry is a key-value pair of word translation
+    vocab: { [key: string]: string };  // Changed from array to object
 };
 
 interface VocabMatchProps {
@@ -28,15 +28,13 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
     const { t } = useTranslation();
 
     useEffect(() => {
-        const rightColumn = card.vocab.map((pair) => Object.values(pair)[0]);
+        const rightColumn = Object.values(card.vocab);  // Extract right words from vocab object
         setShuffledRightColumn(shuffleArray(rightColumn));
         setLangs(setQandALangs(card.qlang));
     }, [card.vocab]);
 
     const processMatch = (leftWord: string, rightWord: string) => {
-        const correctMatch = card.vocab.find((pair) => pair[leftWord] === rightWord);
-
-        if (correctMatch) {
+        if (card.vocab[leftWord] === rightWord) {
             setCorrectMatches((prev) => ({ ...prev, [leftWord]: rightWord }));
         } else {
             setShakeRightWord(rightWord);
@@ -74,10 +72,10 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
     };
 
     useEffect(() => {
-        if (Object.keys(correctMatches).length === card.vocab.length) {
+        if (Object.keys(correctMatches).length === Object.keys(card.vocab).length) {
             setIsComplete(true);
         }
-    }, [correctMatches, card.vocab.length]);
+    }, [correctMatches, card.vocab]);
 
     const handleNextClick = () => {
         if (isComplete) {
@@ -85,15 +83,15 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
         }
     };
 
+    console.log('VocabMatch: card.vocab', card.vocab);
+
     return (
         <>
             <section className="card vocab-match">
-                <h3 lang={langs.q}>{card.question}</h3>
+                <h3 lang={langs.q}>{t('match_the_words')}</h3>
                 <table>
                     <tbody>
-                        {card.vocab.map((pair, index) => {
-                            const leftWord = Object.keys(pair)[0];
-                            const correctRightWord = Object.values(pair)[0];
+                        {Object.entries(card.vocab).map(([leftWord, correctRightWord], index) => {
                             const shuffledRightWord = shuffledRightColumn[index];
 
                             const isMatched = correctMatches[leftWord] === correctRightWord;
@@ -117,7 +115,7 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
                                             lang={langs.a}
                                             className={`vocab-match right-word 
                                             ${isRightMatched ? 'matched' : ''} 
-                                            ${selectedRightWord === shuffledRightWord ? 'selected' : ''}
+                                            ${selectedRightWord === shuffledRightWord ? 'selected' : ''} 
                                             ${shakeRightWord === shuffledRightWord ? 'shake' : ''}`}
                                             onClick={() => handleAnswerClick(shuffledRightWord)}
                                         >
