@@ -26,16 +26,31 @@ main header {
 
 main header .header-text {
     display: flex;
+    align-items: baseline;
     justify-content: space-between;
 }
 
 main header h1,
-header h2 {
+main header h2 {
     margin: 0;
     font-weight: normal;
     font-style: italic;
-    font-size: 1.2em;
+    font-size: 2em;
+}
 
+main header h2 {
+    text-align: right;
+}
+
+@media (max-width: 1024px) {
+    main header h2 {
+        display: none;
+    }
+
+    main header .stats {
+        margin-right: 1em;
+        font-size: 1.2em;
+    }
 }
 
 main header h2 {
