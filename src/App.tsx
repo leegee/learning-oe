@@ -68,29 +68,35 @@ const App: React.FC = () => {
     setLessonCompleted(true);
   }
 
-  return (
-    <main>
-      <header>
-        <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
-        {incorrectAnswers &&
-          <span className="incorrectAnswers" title={t('incorrect_answer_count_alt')}>
-            {t('incorrect_answer_count')} {incorrectAnswers.length > 0 ? ` - ${incorrectAnswers.length}` : ''}
-          </span>
-        }
-        <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
-      </header>
+  const renderTop = () => {
+    return (
+      <>
+        <header>
+          <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
+          {incorrectAnswers &&
+            <span className="incorrectAnswers" title={t('incorrect_answer_count_alt')}>
+              {t('incorrect_answer_count')} {incorrectAnswers.length > 0 ? ` - ${incorrectAnswers.length}` : ''}
+            </span>
+          }
+          <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
+        </header>
 
-      <aside>
-        <progress
-          value={currentLessonIndex}
-          max={lessons.length}
-          className="lesson-progress"
-          aria-label={t('total_progress')}
-          title={`${t('all_lessons')} ${currentLessonIndex + 1} / ${lessons.length}`}
-        />
-      </aside>
+        <aside>
+          <progress
+            value={currentLessonIndex}
+            max={lessons.length}
+            className="lesson-progress"
+            aria-label={t('total_progress')}
+            title={`${t('all_lessons')} ${currentLessonIndex + 1} / ${lessons.length}`}
+          />
+        </aside>
+      </>
+    );
+  }
 
-      {showLessonIntro ? (
+  const renderConditional = () => {
+    if (showLessonIntro) {
+      return (
         <LessonIntro
           title={currentLesson.title}
           index={currentLessonIndex}
@@ -102,15 +108,21 @@ const App: React.FC = () => {
             onLessonSelected={onLessonSelected}
           />
         </LessonIntro>
+      )
+    }
 
-      ) : lessonCompleted ? (
+    else if (lessonCompleted) {
+      return (
         <LessonCompleted
           onContinue={goToNextLesson}
           questionCount={currentLesson.cards.length}
           mistakeCount={state.loadIncorrectAnswers(currentLessonIndex).length}
         />
-      ) : allCompleted ? (
+      )
+    }
 
+    else if (allCompleted) {
+      return (
         <CompletedAllLessons
           totalQuestions={totalQuestionsAnswered}
           totalLessons={lessons.length}
@@ -122,17 +134,24 @@ const App: React.FC = () => {
             onLessonSelected={onLessonSelected}
           />
         </CompletedAllLessons>
+      )
+    };
 
-      ) : (
+    return (
+      <LessonComponent
+        key={currentLessonIndex}
+        lesson={currentLesson}
+        onComplete={onLessonComplete}
+        onIncorrectAnswer={onIncorrectAnswer}
+      />
 
-        <LessonComponent
-          key={currentLessonIndex}
-          lesson={currentLesson}
-          onComplete={onLessonComplete}
-          onIncorrectAnswer={onIncorrectAnswer}
-        />
+    );
+  };
 
-      )}
+  return (
+    <main>
+      {renderTop()}
+      {renderConditional()}
     </main>
   );
 };
