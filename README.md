@@ -17,11 +17,13 @@ Configurable quiz cards for language learning or other quizes
 
 [https://leegee.github.io/learning-oe/](https://leegee.github.io/learning-oe/)
 
-## Future Work
+## To Do
 
-Create components that can use data from other components.
-
-Eg: a component to create a `VocabMatch` card from all the `answer` fields of a multiple-choice card.
+* Fit to screen
+* Shrink headers during lessons
+* Fit OE buttons on narrow screen
+* Hide 'next' until option selected in one of the screens 
+* Create components that can use data from other components. Eg: a component to create a `VocabMatch` card from all the `answer` fields of a multiple-choice card.
 
 ## NB
 
