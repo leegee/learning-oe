@@ -41,11 +41,9 @@ const App: React.FC = () => {
   }, [currentLessonIndex]);
 
   const onIncorrectAnswer = (incorrectAnswer: string) => {
-    console.log('Enter onIncorrectAnswer', incorrectAnswer)
     setIncorrectAnswers((prev = []) => {
       const updatedAnswers = [...prev, incorrectAnswer];
       state.saveIncorrectAnswers(currentLessonIndex, updatedAnswers);
-      console.log('Leave onIncorrectAnswer callback', updatedAnswers)
       return updatedAnswers;
     });
   };
