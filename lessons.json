@@ -1,16 +1,5 @@
 [
     {
-        "title": "Test",
-        "cards": [
-            {
-                "class": "writing",
-                "qlang": "default",
-                "question": "Hello",
-                "answer": "Hāl"
-            }
-        ]
-    },
-    {
         "title": "Greetings",
         "cards": [
             {

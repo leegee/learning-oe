@@ -33,35 +33,32 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
         setLangs(setQandALangs(card.qlang));
     }, [card.words]);
 
-    // Handle word selection and updating sentence
     const handleWordClick = (word: string) => {
-        // Find the index of the first blank (__) that needs to be filled
         const firstBlankIndex = currentSentence.indexOf('__');
 
-        // If there's no blank, don't proceed
         if (firstBlankIndex === -1) {
             return;
         }
 
-        // Check if the word is correct and if it follows the selected order
         const isCorrect = card.words.find((item) => item.word === word && item.correct);
 
-        if (isCorrect && selectedWords.length < card.words.filter(word => word.correct).length) {
-            // Ensure the selected word matches the next blank's expected word in the correct order
+        if (isCorrect) {
             const expectedWord = card.words.filter(word => word.correct)[selectedWords.length].word;
 
             if (word === expectedWord) {
                 setSelectedWords((prev) => [...prev, word]);
 
-                // Replace the first occurrence of underscores (__) with the selected word
                 let updatedSentence = currentSentence;
                 updatedSentence = updatedSentence.replace(/__+/, word);
                 setCurrentSentence(updatedSentence);
-            }
-            else {
+            } else {
+                // Word is correct but out of order
+                setShake(word);
+                setTimeout(() => setShake(null), 1000);
                 onIncorrect();
             }
-        } else if (!isCorrect) {
+        } else {
+            // Word is incorrect
             setShake(word);
             setTimeout(() => setShake(null), 1000);
             onIncorrect();
@@ -94,7 +91,6 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
                         const isSelected = selectedWords.includes(word);
                         const isCorrect = card.words.find((item) => item.word === word && item.correct);
 
-                        // Apply the coloring logic only after the word is selected
                         return (
                             <button
                                 key={index}
