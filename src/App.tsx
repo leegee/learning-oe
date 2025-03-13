@@ -70,16 +70,14 @@ const App: React.FC = () => {
 
   const renderTop = () => {
     return (
-      <>
-        <header>
-          <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
-          {incorrectAnswers &&
-            <span className="incorrectAnswers" title={t('incorrect_answer_count_alt')}>
-              {t('incorrect_answer_count')} {incorrectAnswers.length > 0 ? ` - ${incorrectAnswers.length}` : ''}
-            </span>
-          }
-          <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
-        </header>
+      <header>
+        <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
+        {incorrectAnswers &&
+          <span className="incorrectAnswers" title={t('incorrect_answer_count_alt')}>
+            {t('incorrect_answer_count')} {incorrectAnswers.length > 0 ? ` - ${incorrectAnswers.length}` : ''}
+          </span>
+        }
+        <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
 
         <aside>
           <progress
@@ -90,7 +88,7 @@ const App: React.FC = () => {
             title={`${t('all_lessons')} ${currentLessonIndex + 1} / ${lessons.length}`}
           />
         </aside>
-      </>
+      </header>
     );
   }
 
@@ -144,7 +142,6 @@ const App: React.FC = () => {
         onComplete={onLessonComplete}
         onIncorrectAnswer={onIncorrectAnswer}
       />
-
     );
   };
 
