@@ -26,18 +26,18 @@ const App: React.FC = () => {
   const [isLessonActive, setIsLessonActive] = useState(false);
   const [lessonCompleted, setLessonCompleted] = useState<boolean>(false); // New state to track lesson completion
   const [allCompleted, setAllCompleted] = useState<boolean>(initialLessonIndex >= lessons.length);
-  const [showLessonIntro, setShowIntro] = useState<boolean>(true);
+  const [showLessonIntro, setShowLessonIntro] = useState<boolean>(true);
   const { t } = useTranslation();
 
   const totalQuestionsAnswered = lessons.reduce((sum, lesson) => sum + lesson.cards.length, 0);
   const currentLesson = lessons[currentLessonIndex];
   const totalIncorrectAnswers = state.countTotalIncorrectAnswers();
 
-  // When the current lesson index changes, a new lesson begins
+  // When the current lesson index changes, a new lesson is introduced
   useEffect(() => {
     setIncorrectAnswers(state.loadIncorrectAnswers(currentLessonIndex));
     setAllCompleted(currentLessonIndex >= lessons.length);
-    setShowIntro(true);
+    setShowLessonIntro(true);
     setLessonCompleted(false);
   }, [currentLessonIndex]);
 
@@ -105,7 +105,7 @@ const App: React.FC = () => {
         <LessonIntro
           title={currentLesson.title}
           index={currentLessonIndex}
-          onContinue={() => setShowIntro(false)}
+          onContinue={() => setShowLessonIntro(false)}
         >
           <LessonList
             currentLessonIndex={currentLessonIndex}
