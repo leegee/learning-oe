@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import './LessonIntro.css';
-import AboutComponent from "./About";
 
 interface LessonIntroProps {
     title: string;
@@ -30,9 +29,6 @@ const LessonIntro = ({ title, index, children, onContinue }: LessonIntroProps) =
                     {children}
                 </>
             )}
-
-            <AboutComponent />
-
         </article >
     );
 };

@@ -1,26 +1,30 @@
 /*
-  For reasons of future compatability, better or worse, this component manages all navigation without react-router or react-router-native or native-stack.
+  For reasons of future compatability, better or worse, this, 
+  the  prototype's main component,  manages all navigation without 
+  react-router or react-router-native or native-stack.
 
   For the same reason, access to state data is also managed here.
   
 */
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { lessons, lessonTitles2Indicies } from "./Lessons";
-import LessonComponent from "./components/Lesson";
-import LessonIntro from "./components/LessonIntro";
-import LessonCompleted from "./components/LessonCompleted";
-import CompletedAllLessons from "./components/CompletedAllLessons";
 import config from "./config";
 import LessonList from "./components/LessonList";
 import * as state from "./Lessons/state";
+import { lessons, lessonTitles2Indicies } from "./Lessons";
+import SplashScreen from "./components/SplashScreen";
+import LessonIntro from "./components/LessonIntro";
+import LessonComponent from "./components/Lesson";
+import LessonCompleted from "./components/LessonCompleted";
+import CompletedAllLessons from "./components/CompletedAllLessons";
 
 import "./App.css";
 
-const App: React.FC = () => {
+const App = () => {
   const initialLessonIndex = state.loadCurrentLesson();
+  const [showSplash, setShowSplash] = useState(true);
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
   const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>(state.loadIncorrectAnswers(currentLessonIndex));
   const [isLessonActive, setIsLessonActive] = useState(false);
@@ -47,6 +51,8 @@ const App: React.FC = () => {
   useEffect(() => {
     setIsLessonActive(!showLessonIntro && !lessonCompleted && !allCompleted);
   }, [currentLessonIndex, showLessonIntro, lessonCompleted, allCompleted]);
+
+  const hideSplashScreen = () => setShowSplash(false);
 
   const onIncorrectAnswer = (incorrectAnswer: string) => {
     setIncorrectAnswers((prev = []) => {
@@ -127,7 +133,6 @@ const App: React.FC = () => {
                   <span className="questions-answered" title={t('questions_answered_alt')}> {questionsAnswered} </span>
                 )
               }
-
             </span>
 
             <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
@@ -191,6 +196,10 @@ const App: React.FC = () => {
       />
     );
   };
+
+  if (showSplash) {
+    return (<SplashScreen onContinue={() => hideSplashScreen()} />)
+  }
 
   return (
     <main id='main' className={isLessonActive ? "lesson-active" : ""}>

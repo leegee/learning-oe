@@ -34,9 +34,14 @@ main {
     background-color: var(--oe-clr-bg);
 }
 
+
 [lang="ang"] {
     font-family: 'Junicode', serif;
     font-style: italic;
+}
+
+[lang="en"] {
+    font-family: 'Work Sans', sans;
 }
 
 section.card {

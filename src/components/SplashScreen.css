@@ -1,0 +1,44 @@
+/* SplashScreen.css */
+
+#splash {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#splash h1 {
+    font-size: 250%;
+    font-weight: 900;
+    text-align: center;
+}
+
+#splash h2 {
+    font-size: 200%;
+    font-weight: 200;
+    text-align: center;
+}
+
+#splash a {
+    color: var(--oe-clr-fg);
+}
+
+#splash .card.about {
+    border: none;
+}
+
+#splash .about {
+    font-family: "Junicode";
+}
+
+#splash .about h2 {
+    font-size: 1.6em;
+    font-weight: 500;
+    text-align: left;
+}
