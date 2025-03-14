@@ -6,10 +6,10 @@ const InstallPWA = () => {
 
     useEffect(() => {
         const handleBeforeInstallPrompt = (event: Event) => {
-            event.preventDefault();
-            deferredPrompt = event;
-            setInstallPromptAvailable(true);
-            console.log("Install prompt available", event);
+            event.preventDefault();  // Prevent automatic banner
+            deferredPrompt = event;  // Store the event
+            setInstallPromptAvailable(true);  // Show the install button
+            console.log("Install prompt available", event);  // Log the event for debugging
         };
 
         window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -23,8 +23,10 @@ const InstallPWA = () => {
     const handleInstallClick = () => {
         console.log('Install button clicked');
         if (deferredPrompt) {
-            console.log('Showing install prompt');
-            deferredPrompt.prompt();  // Trigger the prompt
+            console.log('Prompting the user to install');
+            deferredPrompt.prompt();  // Show the install prompt
+
+            // Handle the user's choice
             deferredPrompt.userChoice.then((choice: any) => {
                 console.log("User choice:", choice.outcome);
                 if (choice.outcome === 'accepted') {
@@ -32,12 +34,14 @@ const InstallPWA = () => {
                 } else {
                     console.log('User dismissed the install prompt');
                 }
-                // Reset the deferredPrompt to null after usage
+                // Reset deferredPrompt after use
                 deferredPrompt = null;
-                setInstallPromptAvailable(false);  // Hide install button after usage
+                setInstallPromptAvailable(false);  // Optionally hide the button after install
             }).catch((error: any) => {
-                console.error("Error during prompt:", error);
+                console.error("Error during the prompt:", error);
             });
+        } else {
+            console.warn('No deferredPrompt available!');
         }
     };
 
