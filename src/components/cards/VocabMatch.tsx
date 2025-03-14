@@ -115,10 +115,12 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
                                     <td>
                                         <button
                                             lang={langs.a}
-                                            className={`vocab-match right-word 
-                                            ${isRightMatched ? 'matched' : ''} 
-                                            ${selectedRightWord === shuffledRightWord ? 'selected' : ''} 
-                                            ${shakeRightWord === shuffledRightWord ? 'shake' : ''}`}
+                                            className={`
+                                                vocab-match right-word 
+                                                ${isRightMatched ? 'matched' : ''} 
+                                                ${selectedRightWord === shuffledRightWord ? 'selected' : ''} 
+                                                ${shakeRightWord === shuffledRightWord ? 'shake' : ''}
+                                            `}
                                             onClick={() => handleAnswerClick(shuffledRightWord)}
                                         >
                                             {shuffledRightWord}
