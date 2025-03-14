@@ -6,9 +6,9 @@ const InstallPWA = () => {
 
     useEffect(() => {
         const handleBeforeInstallPrompt = (event: Event) => {
-            event.preventDefault();
+            // event.preventDefault();
             deferredPrompt = event;
-            setInstallPromptAvailable(true);
+            // setInstallPromptAvailable(true);
             console.log("Install prompt available", event);
         };
 
