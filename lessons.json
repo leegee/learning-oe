@@ -4,20 +4,9 @@
         "description": "Testing new components",
         "cards": [
             {
-                "class": "vocab",
-                "qlang": "default",
-                "vocab": {
-                    "Hello": "Hāl",
-                    "Morning": "Morgen",
-                    "Evening": "Æfen",
-                    "Good": "Gōd",
-                    "Night": "Niht",
-                    "You": "Þū"
-                }
-            },
-            {
                 "class": "blanks",
                 "qlang": "target",
+                "alang": "target",
                 "question": "___, hu gǽþ hit __?",
                 "words": [
                     {
@@ -41,6 +30,18 @@
                         "correct": false
                     }
                 ]
+            },
+            {
+                "class": "vocab",
+                "qlang": "default",
+                "vocab": {
+                    "Hello": "Hāl",
+                    "Morning": "Morgen",
+                    "Evening": "Æfen",
+                    "Good": "Gōd",
+                    "Night": "Niht",
+                    "You": "Þū"
+                }
             },
             {
                 "class": "dynamic-vocab",

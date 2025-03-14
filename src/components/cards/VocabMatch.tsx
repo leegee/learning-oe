@@ -6,8 +6,9 @@ import { type Card } from './Card.ts';
 import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
 import './VocabMatch.css';
 
-export type VocabCard = Omit<Card, 'question'> & {
+export type VocabCard = Card & {
     class: 'vocab';
+    question?: string;
     vocab: { [key: string]: string };  // Changed from array to object
 };
 
@@ -18,7 +19,7 @@ interface VocabMatchProps {
 }
 
 const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
-    const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card.qlang));
+    const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [shuffledRightColumn, setShuffledRightColumn] = useState<string[]>([]);
     const [selectedLeftWord, setSelectedLeftWord] = useState<string | null>(null);
     const [selectedRightWord, setSelectedRightWord] = useState<string | null>(null);
@@ -30,7 +31,7 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
     useEffect(() => {
         const rightColumn = Object.values(card.vocab);
         setShuffledRightColumn(shuffleArray(rightColumn));
-        setLangs(setQandALangs(card.qlang));
+        setLangs(setQandALangs(card));
     }, [card]);
 
     const processMatch = (leftWord: string, rightWord: string) => {
@@ -88,7 +89,7 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
     return (
         <>
             <section className="card vocab-match">
-                <h3 lang={langs.q}>{t('match_the_words')}</h3>
+                <h3 lang={langs.q}>{card.question || t('match_the_words')}</h3>
                 <table>
                     <tbody>
                         {Object.entries(card.vocab).map(([leftWord, correctRightWord], index) => {

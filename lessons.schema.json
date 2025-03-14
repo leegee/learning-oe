@@ -147,6 +147,13 @@
                                         "target"
                                     ]
                                 },
+                                "alang": {
+                                    "type": "string",
+                                    "enum": [
+                                        "default",
+                                        "target"
+                                    ]
+                                },
                                 "question": {
                                     "type": "string"
                                 },

@@ -19,7 +19,7 @@ interface BlanksCardProps {
 }
 
 const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
-    const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card.qlang));
+    const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [shuffledWords, setShuffledWords] = useState<string[]>([]);
     const [selectedWords, setSelectedWords] = useState<string[]>([]);
     const [isComplete, setIsComplete] = useState(false);
@@ -30,7 +30,7 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
 
     useEffect(() => {
         setShuffledWords(shuffleArray(card.words.map(word => word.word)));
-        setLangs(setQandALangs(card.qlang));
+        setLangs(setQandALangs(card));
     }, [card.words]);
 
     const handleWordClick = (word: string) => {
@@ -83,7 +83,7 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
         <>
             <section className="card blanks-card">
 
-                <h4 lang={langs.q}>{t('fill_in_the_blanks')}</h4>
+                <h4>{t('fill_in_the_blanks')}</h4>
                 <h3 lang={langs.q}>{currentSentence}</h3>
 
                 <div className="word-options">
