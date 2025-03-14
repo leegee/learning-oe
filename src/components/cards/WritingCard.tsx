@@ -40,7 +40,6 @@ const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
     const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [userInput, setUserInput] = useState<string>('');
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-    const [buttonText, setButtonText] = useState<string>('');  // Separate state for button text
     const { t } = useTranslation();
 
     const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -69,21 +68,12 @@ const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
         const normalizedUserInput = normalizeText(userInput);
         if (normalizedUserInput === normalizedAnswer) {
             setIsCorrect(true);
-            setButtonText(t('next'));
             onComplete();
         } else {
             setIsCorrect(false);
-            setButtonText(t('try_again'));
             onIncorrect();
         }
     };
-
-    useEffect(() => {
-        // Ensure the button text is set to 'Next' when user input exists but hasn't been evaluated yet
-        if (userInput.length > 0 && isCorrect === null) {
-            setButtonText(t('next'));
-        }
-    }, [userInput, isCorrect, t]);
 
     return (
         <>
@@ -121,9 +111,9 @@ const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
                 <button
                     className={isCorrect === false ? 'try-again-button' : 'next-button'}
                     onClick={handleNextClick}
-                    aria-label={isCorrect === false ? t('try_again') : t('next')}
+                    aria-label={userInput.length > 0 && isCorrect === null ? t('try_again') : t('next')}
                 >
-                    {buttonText || t('submit')}
+                    {userInput.length > 0 && isCorrect === false ? t('try_again') : t('next')}
                 </button>
             )}
         </>
