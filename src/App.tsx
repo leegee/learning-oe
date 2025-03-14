@@ -19,6 +19,7 @@ import LessonIntro from "./components/LessonIntro";
 import LessonComponent from "./components/Lesson";
 import LessonCompleted from "./components/LessonCompleted";
 import CompletedAllLessons from "./components/CompletedAllLessons";
+import Stats from "./components/Stats";
 
 import "./App.css";
 
@@ -119,22 +120,7 @@ const App = () => {
           <div className='header-text'>
             <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
 
-            <span className="stats">
-
-              {
-                (incorrectAnswers && incorrectAnswers.length > 0) && (
-                  <span className="incorrect-answers" title={t('incorrect_answer_count_alt')}>
-                    {incorrectAnswers.length > 0 ? ` - ${incorrectAnswers.length}` : ''}
-                  </span>
-                )
-              }
-
-              {
-                (questionsAnswered || questionsAnswered > 0) && (
-                  <span className="questions-answered" title={t('questions_answered_alt')}> {questionsAnswered} </span>
-                )
-              }
-            </span>
+            <Stats incorrectAnswers={incorrectAnswers.length} questionsAnswered={questionsAnswered} />
 
             <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
           </div>
