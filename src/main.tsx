@@ -4,8 +4,6 @@ import App from './App';
 import './i18n';
 import './global-css/index.css';
 
-document.body.classList.add('dark');
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
