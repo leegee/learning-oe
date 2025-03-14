@@ -30,6 +30,10 @@ Configurable quiz cards for language learning or other quizes
 
 Any resemblance to other language learning apps  is purely coincidence. 
 
+## TODO
+
+* For 'correct answers,' should count the qs in the cards, not the cards
+
 ## Thanks:
 
 * The [Junicode](https://github.com/psb1558/Junicode-font/releases/tag/v2.211) font.

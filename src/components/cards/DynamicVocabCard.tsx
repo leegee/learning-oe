@@ -1,4 +1,5 @@
 // DynamicVocabCard
+import { useMemo } from "react";
 
 import { Card } from "./Card";
 import { Lesson } from "../../Lessons";
@@ -19,46 +20,42 @@ interface DynamicVocabCardProps {
 const DynamicVocab = ({ card, lesson, onIncorrect, onComplete }: DynamicVocabCardProps) => {
     console.log(lesson.cards);
 
-    let vocab: { [key: string]: string } = {};
+    const vocab = useMemo(() => {
+        let newVocab: { [key: string]: string } = {};
 
-    for (let thisCard of lesson.cards.filter(card => ['vocab', 'blanks'].includes(card.class))) {
-        if (thisCard.class === 'blanks' && thisCard.qlang === card.qlang) {
-            if (thisCard.qlang === card.qlang) {
+        for (let thisCard of lesson.cards.filter(card => ['vocab', 'blanks'].includes(card.class))) {
+            if (thisCard.class === 'blanks' && thisCard.qlang === card.qlang) {
                 const blankWords = thisCard.words.filter(wordObj => wordObj.correct);
                 blankWords.forEach(blank => {
-                    vocab[blank.word] = blank.word;
+                    newVocab[blank.word] = blank.word;
                 });
+            } else if (thisCard.class === 'vocab') {
+                if (thisCard.qlang === card.qlang) {
+                    Object.assign(newVocab, thisCard.vocab);
+                } else {
+                    const swappedVocab = Object.fromEntries(
+                        Object.entries(thisCard.vocab).map(([key, value]) => [value, key])
+                    );
+                    Object.assign(newVocab, swappedVocab);
+                }
             }
         }
 
-        else if (thisCard.class === 'vocab') {
-            if (thisCard.qlang === card.qlang) {
-                // Merging vocab in the same order for the same language
-                Object.assign(vocab, thisCard.vocab);
-            } else {
-                // Swapping keys and values when languages are different
-                const swappedVocab = Object.fromEntries(
-                    Object.entries(thisCard.vocab).map(([key, value]) => [value, key])
-                );
-                Object.assign(vocab, swappedVocab);
-            }
-        }
-    }
+        return newVocab;
+    }, [lesson.cards, card.qlang]);
 
-    const newCard: VocabCard = {
+    const newCard: VocabCard = useMemo(() => ({
         class: 'vocab',
         qlang: card.qlang,
         vocab: vocab
-    };
+    }), [vocab, card.qlang]);
 
     return (
-        <>
-            <VocabMatch
-                card={newCard}
-                onIncorrect={onIncorrect}
-                onComplete={onComplete}
-            />
-        </>
+        <VocabMatch
+            card={newCard}
+            onIncorrect={onIncorrect}
+            onComplete={onComplete}
+        />
     );
 };
 

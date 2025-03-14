@@ -28,10 +28,10 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
     const { t } = useTranslation();
 
     useEffect(() => {
-        const rightColumn = Object.values(card.vocab);  // Extract right words from vocab object
+        const rightColumn = Object.values(card.vocab);
         setShuffledRightColumn(shuffleArray(rightColumn));
         setLangs(setQandALangs(card.qlang));
-    }, [card.vocab]);
+    }, [card]);
 
     const processMatch = (leftWord: string, rightWord: string) => {
         if (card.vocab[leftWord] === rightWord) {

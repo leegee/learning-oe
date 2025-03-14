@@ -90,7 +90,10 @@ const App = () => {
 
   const onLessonComplete = () => {
     setLessonCompleted(true);
+
+    // Should count the qs in the cards
     setQuestionsAnswered(state.addCompletedLessons(currentLesson.cards.length));
+
     if (lessonStartTime) {
       setLessonDurationSeconds(Math.floor((Date.now() - lessonStartTime) / 1000));
       setLessonStartTime(null);
@@ -103,6 +106,9 @@ const App = () => {
   // });
 
   const renderHeader = () => {
+    if (isLessonActive) {
+      return '';
+    }
     return (
       <header>
         <div className="header-progress">
