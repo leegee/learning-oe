@@ -6,9 +6,9 @@ const InstallPWA = () => {
 
     useEffect(() => {
         const handleBeforeInstallPrompt = (event: Event) => {
-            // event.preventDefault();
+            event.preventDefault();
             deferredPrompt = event;
-            // setInstallPromptAvailable(true);
+            setInstallPromptAvailable(true);
             console.log("Install prompt available", event);
         };
 
@@ -20,7 +20,9 @@ const InstallPWA = () => {
     }, []);
 
     const handleInstallClick = () => {
+        console.log('clicked')
         if (deferredPrompt) {
+            console.log('showing prompt')
             deferredPrompt.prompt();
             deferredPrompt.userChoice.then((choice: any) => {
                 console.log(choice.outcome);
