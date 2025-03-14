@@ -33,7 +33,7 @@ const InstallPWA = () => {
     return (
         <div>
             {isInstallPromptAvailable && (
-                <a id="install-btn" onClick={handleInstallClick}>
+                <a href='#' id="install-btn" onClick={handleInstallClick}>
                     Install
                 </a>
             )}
