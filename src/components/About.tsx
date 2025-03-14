@@ -3,6 +3,7 @@ import './About.css';
 const AboutComponent = () => {
     return (
         <section className="card about">
+            <img src="icons/dog.webp" />
             <h2>About This App</h2>
             <p>
                 This little app was written in under a week to help me

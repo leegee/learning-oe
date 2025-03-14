@@ -14,7 +14,7 @@ import config from "./config";
 import LessonList from "./components/LessonList";
 import * as state from "./Lessons/state";
 import { lessons, lessonTitles2Indicies } from "./Lessons";
-import SplashScreen from "./components/SplashScreen";
+import HomeScreen from "./components/Home";
 import LessonIntro from "./components/LessonIntro";
 import LessonComponent from "./components/Lesson";
 import LessonCompleted from "./components/LessonCompleted";
@@ -25,7 +25,7 @@ import "./App.css";
 
 const App = () => {
   const initialLessonIndex = state.loadCurrentLesson();
-  const [showSplash, setShowSplash] = useState(true);
+  const [showHome, setShowHome] = useState(true);
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
   const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>(state.loadIncorrectAnswers(currentLessonIndex));
   const [isLessonActive, setIsLessonActive] = useState(false);
@@ -77,16 +77,15 @@ const App = () => {
   };
 
   const onLessonSelected = (lessonIndex: number) => {
-    setShowSplash(false);
+    setShowHome(false);
     setCurrentLessonIndex(lessonIndex);
   }
 
   const onLessonCancelled = () => {
+    setIsLessonActive(false);
     setLessonStartTime(null);
     setLessonCompleted(false);
-    setShowLessonIntro(false);
-    setCurrentLessonIndex(0);
-    setShowSplash(true);
+    setShowHome(true);
   }
 
   const onLessonComplete = () => {
@@ -103,33 +102,43 @@ const App = () => {
   //   console.log(e);
   // });
 
-  const renderTop = () => {
+  const renderHeader = () => {
     return (
-      <>
-        <header>
-          <div className="header-progress">
-            <progress
-              className="course-progress"
-              value={currentLessonIndex}
-              max={lessons.length}
-              aria-label={t('course_progress')}
-              title={`${t('all_lessons')} ${currentLessonIndex + 1} / ${lessons.length}`}
-            />
-          </div>
+      <header>
+        <div className="header-progress">
+          <progress
+            className="course-progress"
+            value={currentLessonIndex}
+            max={lessons.length}
+            aria-label={t('course_progress')}
+            title={`${t('all_lessons')} ${currentLessonIndex + 1} / ${lessons.length}`}
+          />
+        </div>
 
-          <div className='header-text'>
-            <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
+        <div className='header-text'>
+          <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
 
-            <Stats incorrectAnswers={incorrectAnswers.length} questionsAnswered={questionsAnswered} />
+          <Stats incorrectAnswers={incorrectAnswers.length} questionsAnswered={questionsAnswered} />
 
-            <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
-          </div>
-        </header>
-      </>
+          <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
+        </div>
+      </header>
     );
   }
 
   const renderConditional = () => {
+    if (showHome) {
+      return (
+        <HomeScreen>
+          <LessonList
+            currentLessonIndex={currentLessonIndex}
+            lessons={lessonTitles2Indicies()}
+            onLessonSelected={onLessonSelected}
+          />
+        </HomeScreen>
+      )
+    }
+
     if (showLessonIntro) {
       return (
         <LessonIntro
@@ -137,13 +146,7 @@ const App = () => {
           description={currentLesson.description}
           index={currentLessonIndex}
           onContinue={() => onLessonStart()}
-        >
-          <LessonList
-            currentLessonIndex={currentLessonIndex}
-            lessons={lessonTitles2Indicies()}
-            onLessonSelected={onLessonSelected}
-          />
-        </LessonIntro>
+        />
       )
     }
 
@@ -185,21 +188,15 @@ const App = () => {
     );
   };
 
-  if (showSplash) {
-    return (
-      <SplashScreen>
-        <LessonList
-          currentLessonIndex={currentLessonIndex}
-          lessons={lessonTitles2Indicies()}
-          onLessonSelected={onLessonSelected}
-        />
-      </SplashScreen>
-    )
-  }
-
   return (
-    <main id='main' className={isLessonActive ? "lesson-active" : ""}>
-      {renderTop()}
+    <main id='main'
+      className={[
+        isLessonActive ? "lesson-active" : "",
+        showHome ? "home-active" : "",
+      ].filter(Boolean).join(' ')}
+
+    >
+      {renderHeader()}
       {renderConditional()}
     </main>
   );

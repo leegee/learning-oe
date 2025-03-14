@@ -42,13 +42,17 @@ main header h2 {
     text-align: right;
 }
 
+.incorrect-answer-alt,
+.questions-answered-alt {
+    display: none;
+}
+
 @media (max-width: 1024px) {
     main header h2 {
         display: none;
     }
 
     main header .stats {
-        margin-right: 1em;
         font-size: 1.2em;
     }
 }
@@ -57,11 +61,11 @@ main header h2 {
     font-weight: 100;
 }
 
-main header .incorrect-answers {
+main header .incorrect-answers-value {
     color: red;
 }
 
-main header .questions-answered {
+main header .questions-answered-value {
     color: green;
 }
 
