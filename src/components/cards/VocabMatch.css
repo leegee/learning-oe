@@ -1,3 +1,7 @@
+.vocab-match h3 {
+    margin-top: 0;
+}
+
 .vocab-match table {
     width: 100%;
     border-collapse: collapse;
