@@ -14,20 +14,29 @@ const InstallPWA = () => {
 
         window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
+        // Cleanup event listener on unmount
         return () => {
             window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
         };
     }, []);
 
     const handleInstallClick = () => {
-        console.log('clicked')
+        console.log('Install button clicked');
         if (deferredPrompt) {
-            console.log('showing prompt')
-            deferredPrompt.prompt();
+            console.log('Showing install prompt');
+            deferredPrompt.prompt();  // Trigger the prompt
             deferredPrompt.userChoice.then((choice: any) => {
-                console.log(choice.outcome);
+                console.log("User choice:", choice.outcome);
+                if (choice.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                // Reset the deferredPrompt to null after usage
                 deferredPrompt = null;
-                setInstallPromptAvailable(false);
+                setInstallPromptAvailable(false);  // Hide install button after usage
+            }).catch((error: any) => {
+                console.error("Error during prompt:", error);
             });
         }
     };
@@ -39,6 +48,6 @@ const InstallPWA = () => {
             </button>
         )
     );
-}
+};
 
 export default InstallPWA;
