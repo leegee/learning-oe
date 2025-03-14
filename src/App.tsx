@@ -100,11 +100,6 @@ const App = () => {
     }
   }
 
-  // window.addEventListener('beforeinstallprompt', (e) => {
-  //   alert('test')
-  //   console.log(e);
-  // });
-
   const renderHeader = () => {
     if (isLessonActive) {
       return '';
