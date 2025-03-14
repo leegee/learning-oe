@@ -102,9 +102,11 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
                                     <td>
                                         <button
                                             lang={langs.q}
-                                            className={`vocab-match left-word 
-                                            ${isMatched ? 'matched' : ''} 
-                                            ${selectedLeftWord === leftWord ? 'selected' : ''}`}
+                                            className={
+                                                `vocab-match left-word 
+                                                ${isMatched ? 'matched' : ''} 
+                                                ${selectedLeftWord === leftWord ? 'selected' : ''}`
+                                            }
                                             onClick={() => handleQuestionClick(leftWord)}
                                         >
                                             {leftWord}
