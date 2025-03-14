@@ -1,7 +1,9 @@
 import { useRef, useMemo, useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
+
 import { type Card } from './Card.ts';
 import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
+import LetterButtons from '../LetterButtons';
 import './WritingCard.css';
 
 export type WritingCard = Card & {
@@ -14,23 +16,6 @@ interface WritingCardProps {
     onIncorrect: () => void;
     onComplete: () => void;
 }
-
-const OldEnglishLetters = [
-    { symbol: 'æ', name: 'ash' },
-    { symbol: 'ø', name: 'o-slash' },
-    { symbol: 'þ', name: 'thorn' },
-    { symbol: 'ð', name: 'eth' },
-    { symbol: 'ȝ', name: 'yogh' },
-    { symbol: 'œ', name: 'o-e' },
-    { symbol: 'ſ', name: 'long-s' },
-    { symbol: 'ƿ', name: 'wynn' },
-    { symbol: 'ā', name: 'long-a' },
-    { symbol: 'ē', name: 'long-e' },
-    { symbol: 'ī', name: 'long-i' },
-    { symbol: 'ō', name: 'long-o' },
-    { symbol: 'ū', name: 'long-u' },
-    { symbol: 'ȳ', name: 'long-y' }
-];
 
 const normalizeText = (text: string): string => {
     return text.trim().toLowerCase().replace(/\W+/g, '').replace(/\s+/g, ' ');
@@ -93,18 +78,12 @@ const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
                 />
 
                 {langs.a === 'ang' && (
-                    <div className="letter-buttons">
-                        {OldEnglishLetters.map((letter, index) => (
-                            <button
-                                key={index}
-                                onClick={() => handleLetterButtonClick(letter.symbol)}
-                                aria-label={t(`insert_${letter.name}`)}
-                            >
-                                {letter.symbol}
-                            </button>
-                        ))}
-                    </div>
+                    <LetterButtons
+                        lang={langs.a}
+                        onSelect={handleLetterButtonClick}
+                    />
                 )}
+
             </section>
 
             {userInput.length > 0 && (

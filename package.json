@@ -2,7 +2,7 @@
   "name": "learning-oe",
   "description": "Configurable quiz cards for language learning or other quizes",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "homepage": "https://leegee.github.io/learning-oe",
   "scripts": {
