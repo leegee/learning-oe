@@ -3,7 +3,6 @@
 import { useTranslation } from "react-i18next";
 import { LessonSummary } from "../Lessons";
 import './LessonList.css';
-import { useState } from "react";
 
 interface LessonListProps {
     lessons: LessonSummary[];

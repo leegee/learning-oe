@@ -30,7 +30,7 @@ const getButtonClassName = (option: string, isCorrect: boolean | null, selectedO
 };
 
 const MultipleChoice = ({ card, onIncorrect, onComplete, }: MultipleChoiceCardProps) => {
-    const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card.qlang));
+    const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
@@ -38,7 +38,7 @@ const MultipleChoice = ({ card, onIncorrect, onComplete, }: MultipleChoiceCardPr
 
     useEffect(() => {
         setShuffledOptions(shuffleArray(card.answers));
-        setLangs(setQandALangs(card.qlang));
+        setLangs(setQandALangs(card));
     }, [card]);
 
     const handleOptionClick = (option: string) => {
