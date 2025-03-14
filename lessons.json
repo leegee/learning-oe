@@ -17,7 +17,7 @@
             },
             {
                 "class": "blanks",
-                "qlang": "default",
+                "qlang": "target",
                 "question": "___, hu gǽþ hit __?",
                 "words": [
                     {
