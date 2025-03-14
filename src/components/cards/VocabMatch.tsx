@@ -13,11 +13,12 @@ export type VocabCard = Card & {
 
 interface VocabMatchProps {
     card: VocabCard;
+    onCorrect: (numberOfCorrectAnswers?: number) => void;
     onIncorrect: () => void;
     onComplete: () => void;
 }
 
-const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
+const VocabMatch = ({ card, onCorrect, onIncorrect, onComplete }: VocabMatchProps) => {
     const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [shuffledRightColumn, setShuffledRightColumn] = useState<string[]>([]);
     const [selectedLeftWord, setSelectedLeftWord] = useState<string | null>(null);
@@ -36,6 +37,7 @@ const VocabMatch = ({ card, onIncorrect, onComplete }: VocabMatchProps) => {
     const processMatch = (leftWord: string, rightWord: string) => {
         if (card.vocab[leftWord] === rightWord) {
             setCorrectMatches((prev) => ({ ...prev, [leftWord]: rightWord }));
+            onCorrect();
         } else {
             setShakeRightWord(rightWord);
             setTimeout(() => setShakeRightWord(null), 1000);

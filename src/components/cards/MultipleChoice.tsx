@@ -15,6 +15,7 @@ export type MultipleChoiceCard = Card & {
 
 interface MultipleChoiceCardProps {
     card: MultipleChoiceCard;
+    onCorrect: (numberOfCorrectAnswers?: number) => void;
     onIncorrect: () => void;
     onComplete: () => void;
 }
@@ -29,7 +30,7 @@ const getButtonClassName = (option: string, isCorrect: boolean | null, selectedO
     return '';
 };
 
-const MultipleChoice = ({ card, onIncorrect, onComplete, }: MultipleChoiceCardProps) => {
+const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete, }: MultipleChoiceCardProps) => {
     const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -52,6 +53,7 @@ const MultipleChoice = ({ card, onIncorrect, onComplete, }: MultipleChoiceCardPr
     const handleNextClick = () => {
         setSelectedOption(null);
         if (isCorrect) {
+            onCorrect();
             onComplete();
         }
     };

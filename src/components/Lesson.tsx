@@ -12,12 +12,14 @@ import DynamicVocab from './cards/DynamicVocabCard';
 
 interface LessonProps {
     lesson: Lesson;
+    onCorrectAnswer: (numberOfCorrectAnswers?: number) => void;
     onIncorrectAnswer: (incorrectAnswer: string) => void;
     onCancel: () => void;
-    onComplete: () => void;
+    onQuestionAnswered: () => void;
+    onLessonComplete: () => void;
 };
 
-const LessonComponent = ({ lesson, onIncorrectAnswer, onCancel, onComplete }: LessonProps) => {
+const LessonComponent = ({ lesson, onQuestionAnswered, onCorrectAnswer, onIncorrectAnswer, onCancel, onLessonComplete }: LessonProps) => {
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
     const { t } = useTranslation();
 
@@ -33,10 +35,11 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onCancel, onComplete }: Le
     })
 
     const goToNextCard = () => {
+        onQuestionAnswered();
         if (currentCardIndex < lesson.cards.length - 1) {
             setCurrentCardIndex((prevIndex) => prevIndex + 1);
         } else {
-            onComplete();
+            onLessonComplete();
         }
     };
 
@@ -81,6 +84,7 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onCancel, onComplete }: Le
                     card={currentCard}
                     lesson={lesson}
                     onComplete={goToNextCard}
+                    onCorrect={onCorrectAnswer}
                     onIncorrect={onIncorrect}
                 />
             )}
@@ -88,6 +92,7 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onCancel, onComplete }: Le
             {currentCard.class === 'writing' && (
                 <WritingCard
                     card={currentCard}
+                    onCorrect={onCorrectAnswer}
                     onComplete={goToNextCard}
                     onIncorrect={onIncorrect}
                 />
@@ -96,6 +101,7 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onCancel, onComplete }: Le
             {currentCard.class === 'multiple-choice' && (
                 <MultipleChoice
                     card={currentCard}
+                    onCorrect={onCorrectAnswer}
                     onComplete={goToNextCard}
                     onIncorrect={onIncorrect}
                 />
@@ -104,6 +110,7 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onCancel, onComplete }: Le
             {currentCard.class === 'vocab' && (
                 <VocabMatch
                     card={currentCard}
+                    onCorrect={onCorrectAnswer}
                     onIncorrect={onIncorrect}
                     onComplete={goToNextCard}
                 />
@@ -112,6 +119,7 @@ const LessonComponent = ({ lesson, onIncorrectAnswer, onCancel, onComplete }: Le
             {currentCard.class === 'blanks' && (
                 <BlanksCard
                     card={currentCard}
+                    onCorrect={onCorrectAnswer}
                     onIncorrect={onIncorrect}
                     onComplete={goToNextCard}
                 />

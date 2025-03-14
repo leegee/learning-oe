@@ -13,6 +13,7 @@ export type WritingCard = Card & {
 
 interface WritingCardProps {
     card: WritingCard;
+    onCorrect: (numberOfCorrectAnswers?: number) => void;
     onIncorrect: () => void;
     onComplete: () => void;
 }
@@ -21,7 +22,7 @@ const normalizeText = (text: string): string => {
     return text.trim().toLowerCase().replace(/\W+/g, '').replace(/\s+/g, ' ');
 };
 
-const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
+const WritingCard = ({ card, onCorrect, onIncorrect, onComplete }: WritingCardProps) => {
     const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [userInput, setUserInput] = useState<string>('');
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -53,6 +54,7 @@ const WritingCard = ({ card, onIncorrect, onComplete }: WritingCardProps) => {
         const normalizedUserInput = normalizeText(userInput);
         if (normalizedUserInput === normalizedAnswer) {
             setIsCorrect(true);
+            onCorrect();
             onComplete();
         } else {
             setIsCorrect(false);

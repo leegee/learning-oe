@@ -4,6 +4,7 @@ const prefix = 'oe_';
 const keys = {
   CURRENT_LESSON: prefix + 'current_lesson',
   INCORRECT_ANSWERS: prefix + 'incorrect_answers',
+  CORRECT_ANSWERS: prefix + 'correct_answers',
   QUESTIONS_ANSWERED: prefix + 'questions_answered',
 };
 
@@ -51,15 +52,27 @@ export const countTotalIncorrectAnswers = (): number => {
   return Object.values(parsedData).reduce((total, answers) => total + answers.length, 0);
 };
 
-export const addCompletedLessons = (toAdd: number): number => {
-  const parsedData = loadQuestionsAnswered();
-  const newCount = parsedData + toAdd;
+export const loadQuestionsAnswered = (): number => {
+  const storedData = localStorage.getItem(keys.QUESTIONS_ANSWERED);
+  return storedData ? Number(storedData) : 0;
+}
+
+export const addQuestionCompleted = (): number => {
+  const newCount = loadQuestionsAnswered() + 1;
   localStorage.setItem(keys.QUESTIONS_ANSWERED, String(newCount));
   return newCount;
 };
 
-export const loadQuestionsAnswered = (): number => {
-  const storedData = localStorage.getItem(keys.QUESTIONS_ANSWERED);
-  const parsedData: number = storedData ? Number(storedData) : 0;
-  return parsedData;
+export const loadCorrectAnswers = (): number => {
+  const storedData = localStorage.getItem(keys.CORRECT_ANSWERS);
+  return storedData ? Number(storedData) : 0;
 }
+
+export const addCorrectAnswers = (numberOfCorrectAnswersToAdd = 1): number => {
+  const parsedData = loadCorrectAnswers();
+  const newCount = parsedData + numberOfCorrectAnswersToAdd;
+  localStorage.setItem(keys.CORRECT_ANSWERS, String(newCount));
+  console.log('added', numberOfCorrectAnswersToAdd, 'to reach', newCount, 'correct answers')
+  return newCount;
+};
+

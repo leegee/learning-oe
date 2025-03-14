@@ -29,7 +29,7 @@ const App = () => {
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
   const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>(state.loadIncorrectAnswers(currentLessonIndex));
   const [isLessonActive, setIsLessonActive] = useState(false);
-  const [questionsAnswered, setQuestionsAnswered] = useState<number>(state.loadQuestionsAnswered);
+  const [correctAnswers, setCorrectAnswers] = useState<number>(state.loadCorrectAnswers);
   const [lessonCompleted, setLessonCompleted] = useState<boolean>(false);
   const [lessonStartTime, setLessonStartTime] = useState<number | null>(null);
   const [lessonDurationSeconds, setLessonDurationSeconds] = useState<number | null>(null);
@@ -37,9 +37,9 @@ const App = () => {
   const [showLessonIntro, setShowLessonIntro] = useState<boolean>(true);
   const { t } = useTranslation();
 
-  const totalQuestionsAnswered = lessons.reduce((sum, lesson) => sum + lesson.cards.length, 0);
+  // const totalQuestions = lessons.reduce((sum, lesson) => sum + lesson.cards.length, 0);
+  const totalQuestionsAnswered = state.loadQuestionsAnswered();
   const currentLesson = lessons[currentLessonIndex];
-  const totalIncorrectAnswers = state.countTotalIncorrectAnswers();
 
   // When the current lesson index changes, a new lesson is introduced
   useEffect(() => {
@@ -52,6 +52,15 @@ const App = () => {
   useEffect(() => {
     setIsLessonActive(!showLessonIntro && !lessonCompleted && !allCompleted);
   }, [currentLessonIndex, showLessonIntro, lessonCompleted, allCompleted]);
+
+  const onQuestionAnswered = () => {
+    state.addQuestionCompleted();
+  }
+
+  const onCorrectAnswer = (numberOfCorrectAnswers = 1) => {
+    const totalCorect = state.addCorrectAnswers(numberOfCorrectAnswers);
+    setCorrectAnswers(totalCorect);
+  }
 
   const onIncorrectAnswer = (incorrectAnswer: string) => {
     setIncorrectAnswers((prev = []) => {
@@ -90,10 +99,6 @@ const App = () => {
 
   const onLessonComplete = () => {
     setLessonCompleted(true);
-
-    // Should count the qs in the cards
-    setQuestionsAnswered(state.addCompletedLessons(currentLesson.cards.length));
-
     if (lessonStartTime) {
       setLessonDurationSeconds(Math.floor((Date.now() - lessonStartTime) / 1000));
       setLessonStartTime(null);
@@ -119,7 +124,11 @@ const App = () => {
         <div className='header-text'>
           <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
 
-          <Stats incorrectAnswers={incorrectAnswers.length} questionsAnswered={questionsAnswered} />
+          <Stats
+            incorrectAnswers={incorrectAnswers.length}
+            questionsAnswered={totalQuestionsAnswered}
+            correctAnswers={correctAnswers}
+          />
 
           <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
         </div>
@@ -165,10 +174,12 @@ const App = () => {
     else if (allCompleted) {
       return (
         <CompletedAllLessons
-          totalQuestions={totalQuestionsAnswered}
           totalLessons={lessons.length}
-          totalIncorrectAnswers={totalIncorrectAnswers}
         >
+          <Stats incorrectAnswers={incorrectAnswers.length}
+            questionsAnswered={totalQuestionsAnswered}
+            correctAnswers={correctAnswers}
+          />
           <LessonList
             currentLessonIndex={currentLessonIndex}
             lessons={lessonTitles2Indicies()}
@@ -183,8 +194,10 @@ const App = () => {
         key={currentLessonIndex}
         lesson={currentLesson}
         onCancel={onLessonCancelled}
+        onQuestionAnswered={onQuestionAnswered}
+        onCorrectAnswer={onCorrectAnswer}
         onIncorrectAnswer={onIncorrectAnswer}
-        onComplete={onLessonComplete}
+        onLessonComplete={onLessonComplete}
       />
     );
   };

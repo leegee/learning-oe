@@ -42,15 +42,27 @@
     font-size: 1.6em;
 }
 
-.home-active .stats .incorrect-answers {
-    font-size: 1em;
-}
-
+.home-active .stats .correct-answers,
+.home-active .stats .incorrect-answers,
 .home-active .stats .questions-answered {
     font-size: 1em;
 }
 
-.home-active .stats .incorrect-answer-alt,
+.correct-answers-value {
+    color: green;
+}
+
+.incorrect-answers-value {
+    color: red;
+}
+
+.questions-answered-value {
+    color: cyan;
+}
+
+
+.home-active .stats .correct-answers-alt,
+.home-active .stats .incorrect-answers-alt,
 .home-active .stats .questions-answered-alt {
     margin-right: 1em;
     display: inline-block;

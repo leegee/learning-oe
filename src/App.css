@@ -42,7 +42,8 @@ main header h2 {
     text-align: right;
 }
 
-.incorrect-answer-alt,
+.correct-answer-alt,
+.incorrect-answers-alt,
 .questions-answered-alt {
     display: none;
 }
@@ -59,14 +60,6 @@ main header h2 {
 
 main header h2 {
     font-weight: 100;
-}
-
-main header .incorrect-answers-value {
-    color: red;
-}
-
-main header .questions-answered-value {
-    color: green;
 }
 
 main header .header-progress,

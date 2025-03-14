@@ -15,11 +15,12 @@ export type BlanksCard = Card & {
 
 interface BlanksCardProps {
     card: BlanksCard;
+    onCorrect: (numberOfCorrectAnswers?: number) => void;
     onIncorrect: () => void;
     onComplete: () => void;
 }
 
-const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
+const BlanksCard = ({ card, onCorrect, onIncorrect, onComplete }: BlanksCardProps) => {
     const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [shuffledWords, setShuffledWords] = useState<string[]>([]);
     const [selectedWords, setSelectedWords] = useState<string[]>([]);
@@ -47,8 +48,8 @@ const BlanksCard = ({ card, onIncorrect, onComplete }: BlanksCardProps) => {
             const expectedWord = card.words.filter(word => word.correct)[selectedWords.length].word;
 
             if (word === expectedWord) {
+                onCorrect();
                 setSelectedWords((prev) => [...prev, word]);
-
                 let updatedSentence = currentSentence;
                 updatedSentence = updatedSentence.replace(/__+/, word);
                 setCurrentSentence(updatedSentence);

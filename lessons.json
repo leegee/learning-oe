@@ -6,8 +6,8 @@
             {
                 "class": "writing",
                 "qlang": "default",
-                "question": "Hello",
-                "answer": "Hāl"
+                "question": "Hāl",
+                "answer": "hello"
             },
             {
                 "class": "blanks",

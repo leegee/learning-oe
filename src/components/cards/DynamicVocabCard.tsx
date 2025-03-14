@@ -13,11 +13,12 @@ export type DynamicVocabCard = Card & {
 interface DynamicVocabCardProps {
     card: DynamicVocabCard;
     lesson: Lesson;
+    onCorrect: (numberOfCorrectAnswers?: number) => void;
     onIncorrect: () => void;
     onComplete: () => void;
 }
 
-const DynamicVocab = ({ card, lesson, onIncorrect, onComplete }: DynamicVocabCardProps) => {
+const DynamicVocab = ({ card, lesson, onCorrect, onIncorrect, onComplete }: DynamicVocabCardProps) => {
     console.log(lesson.cards);
 
     const vocab = useMemo(() => {
@@ -53,6 +54,7 @@ const DynamicVocab = ({ card, lesson, onIncorrect, onComplete }: DynamicVocabCar
     return (
         <VocabMatch
             card={newCard}
+            onCorrect={onCorrect}
             onIncorrect={onIncorrect}
             onComplete={onComplete}
         />
