@@ -1,6 +1,6 @@
 export type Card = {
     qlang: 'default' | 'target';
     alang?: 'default' | 'target';
-    question: string;
+    question?: string;
     class: string;
 }

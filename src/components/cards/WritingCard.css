@@ -19,6 +19,11 @@
     font-size: 1em;
 }
 
+.writing-card textarea {
+    border: 1pt solid var(--oe-clr-border);
+    width: 100%;
+}
+
 .writing-card textarea::placeholder {
     font-size: 0.8em;
     padding-top: 0.2em;

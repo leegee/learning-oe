@@ -8,7 +8,6 @@ import './VocabMatch.css';
 
 export type VocabCard = Card & {
     class: 'vocab';
-    question?: string;
     vocab: { [key: string]: string };  // Changed from array to object
 };
 

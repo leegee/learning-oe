@@ -4,6 +4,12 @@
         "description": "Testing new components",
         "cards": [
             {
+                "class": "writing",
+                "qlang": "default",
+                "question": "Hello",
+                "answer": "Hāl"
+            },
+            {
                 "class": "blanks",
                 "qlang": "target",
                 "alang": "target",

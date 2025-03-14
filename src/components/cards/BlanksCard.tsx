@@ -9,6 +9,7 @@ import './BlanksCard.css';
 
 export type BlanksCard = Card & {
     class: 'blanks';
+    question: string;
     words: { word: string; correct: boolean }[]; // Array of words with a correct boolean flag
 };
 
