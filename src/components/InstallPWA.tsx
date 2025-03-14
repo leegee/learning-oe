@@ -9,7 +9,7 @@ const InstallPWA = () => {
             event.preventDefault();
             deferredPrompt = event;
             setInstallPromptAvailable(true);
-            console.log("Install prompt available");
+            console.log("Install prompt available", event);
         };
 
         window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
