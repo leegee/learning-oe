@@ -31,14 +31,12 @@ const InstallPWA = () => {
     };
 
     return (
-        <div>
-            {isInstallPromptAvailable && (
-                <a href='#' id="install-btn" onClick={handleInstallClick}>
-                    Install
-                </a>
-            )}
-        </div>
+        isInstallPromptAvailable && (
+            <button id="install-btn" onClick={handleInstallClick}>
+                Install
+            </button>
+        )
     );
-};
+}
 
 export default InstallPWA;
