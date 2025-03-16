@@ -4,54 +4,15 @@
         "description": "Testing new components",
         "cards": [
             {
-                "class": "vocab",
+                "class": "multiple-choice",
                 "qlang": "default",
-                "vocab": {
-                    "Hello": "Hāl",
-                    "Morning": "Morgen",
-                    "Evening": "Æfen",
-                    "Good": "Gōd",
-                    "Night": "Niht",
-                    "You": "Þū"
-                }
-            },
-            {
-                "class": "writing",
-                "qlang": "default",
-                "question": "Hāl",
-                "answer": "hello"
-            },
-            {
-                "class": "blanks",
-                "qlang": "target",
-                "alang": "target",
-                "question": "___, hu gǽþ hit __?",
-                "words": [
-                    {
-                        "word": "Gōd",
-                        "correct": false
-                    },
-                    {
-                        "word": "Hāl",
-                        "correct": true
-                    },
-                    {
-                        "word": "Hal",
-                        "correct": false
-                    },
-                    {
-                        "word": "þē",
-                        "correct": true
-                    },
-                    {
-                        "word": "Hell",
-                        "correct": false
-                    }
-                ]
-            },
-            {
-                "class": "dynamic-vocab",
-                "qlang": "default"
+                "question": "Hello!",
+                "answers": [
+                    "Hāl",
+                    "Hej",
+                    "Hwat ho"
+                ],
+                "answer": "Hāl"
             }
         ]
     },
