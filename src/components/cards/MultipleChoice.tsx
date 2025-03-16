@@ -44,17 +44,16 @@ const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete, }: MultipleC
 
     const handleOptionClick = (option: string) => {
         setSelectedOption(option);
-        setIsCorrect(option === card.answer);
-        if (option !== card.answer) {
-            onIncorrect();
-        }
     };
 
     const handleNextClick = () => {
+        const correct = selectedOption === card.answer;
         setSelectedOption(null);
-        if (isCorrect) {
+        if (correct) {
             onCorrect();
             onComplete();
+        } else {
+            onIncorrect();
         }
     };
 
@@ -80,10 +79,10 @@ const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete, }: MultipleC
 
             {selectedOption && (
                 <button
-                    className={isCorrect ? t('next-button') : 'try-again-button'}
+                    className={selectedOption !== null ? t('next-button') : 'try-again-button'}
                     onClick={handleNextClick}
                 >
-                    {isCorrect ? t('next') : t('try_again')}
+                    {selectedOption !== null ? t('next') : t('try_again')}
                 </button>
             )}
         </>
