@@ -136,13 +136,6 @@ const App = () => {
           <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
           <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
         </div>
-
-        <Stats
-          incorrectAnswers={totalIncorrectAnswers}
-          questionsAnswered={totalQuestionsAnswered}
-          correctAnswers={correctAnswers}
-        />
-
       </header>
     );
   }
@@ -151,6 +144,11 @@ const App = () => {
     if (showHome) {
       return (
         <HomeScreen>
+          <Stats
+            incorrectAnswers={totalIncorrectAnswers}
+            questionsAnswered={totalQuestionsAnswered}
+            correctAnswers={correctAnswers}
+          />
           <LessonList
             currentLessonIndex={currentLessonIndex}
             lessons={lessonTitles2Indicies()}
