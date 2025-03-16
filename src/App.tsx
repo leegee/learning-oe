@@ -20,6 +20,7 @@ import LessonComponent from "./components/Lesson";
 import LessonCompleted from "./components/LessonCompleted";
 import CompletedAllLessons from "./components/CompletedAllLessons";
 import Stats from "./components/Stats";
+import AboutComponent from "./components/About";
 
 import "./App.css";
 
@@ -75,11 +76,22 @@ const App = () => {
     setShowLessonIntro(false);
   }
 
-  const goToNextLesson = () => {
+  // const goToNextLesson = () => {
+  //   if (currentLessonIndex < lessons.length - 1) {
+  //     const nextLessonIndex = currentLessonIndex + 1;
+  //     setCurrentLessonIndex(nextLessonIndex);
+  //     state.saveCurrentLesson(nextLessonIndex);
+  //   } else {
+  //     setAllCompleted(true);
+  //   }
+  // };
+
+  const onContinue = () => {
     if (currentLessonIndex < lessons.length - 1) {
       const nextLessonIndex = currentLessonIndex + 1;
       setCurrentLessonIndex(nextLessonIndex);
       state.saveCurrentLesson(nextLessonIndex);
+      setShowHome(true);
     } else {
       setAllCompleted(true);
     }
@@ -145,6 +157,7 @@ const App = () => {
             lessons={lessonTitles2Indicies()}
             onLessonSelected={onLessonSelected}
           />
+          <AboutComponent />
         </HomeScreen>
       )
     }
@@ -163,7 +176,7 @@ const App = () => {
     else if (lessonCompleted) {
       return (
         <LessonCompleted
-          onContinue={goToNextLesson}
+          onContinue={onContinue}
           questionCount={currentLesson.cards.length}
           durationInSeconds={lessonDurationSeconds !== null ? lessonDurationSeconds : -1}
           mistakeCount={state.loadIncorrectAnswers(currentLessonIndex).length}

@@ -30,7 +30,8 @@ const LessonCompletedComponent = ({ durationInSeconds, questionCount, mistakeCou
                     }
                 </p>
                 <footer>
-                    <button className='next-button' onClick={onContinue}>{t('next_lesson')}</button>
+                    {/* <button className='next-button' onClick={onContinue}>{t('next_lesson')}</button> */}
+                    <button className='next-button' onClick={onContinue}>{t('continue')}</button>
                 </footer>
             </section>
         </>

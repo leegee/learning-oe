@@ -34,7 +34,7 @@ export const saveIncorrectAnswers = (lessonIndex: number, incorrectAnswers: stri
 
   // Save back to localStorage
   localStorage.setItem(keys.INCORRECT_ANSWERS, JSON.stringify(savedAnswers));
-  console.log('state saved incorrect answers');
+  console.log('state saved incorrect answers', JSON.stringify(savedAnswers));
 };
 
 export const loadIncorrectAnswers = (lessonIndex: number): string[] => {
