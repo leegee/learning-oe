@@ -17,7 +17,7 @@ const LessonCompletedComponent = ({ durationInSeconds, questionCount, mistakeCou
         <>
             <section className='card lesson-completed'>
                 <h2>{t('lesson_completed')}</h2>
-                <p>
+                {/* <p>
                     {
                         t(
                             'lesson_completed_counts',
@@ -28,7 +28,7 @@ const LessonCompletedComponent = ({ durationInSeconds, questionCount, mistakeCou
                             }
                         )
                     }
-                </p>
+                </p> */}
                 <footer>
                     {/* <button className='next-button' onClick={onContinue}>{t('next_lesson')}</button> */}
                     <button className='next-button' onClick={onContinue}>{t('continue')}</button>

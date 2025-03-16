@@ -32,7 +32,7 @@ Any resemblance to other language learning apps  is purely coincidence.
 
 ## TODO
 
-* For 'correct answers,' should count the qs in the cards, not the cards
+* Counts.
 
 ## Thanks:
 
