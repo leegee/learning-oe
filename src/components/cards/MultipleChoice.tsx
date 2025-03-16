@@ -20,20 +20,9 @@ interface MultipleChoiceCardProps {
     onComplete: () => void;
 }
 
-const getButtonClassName = (option: string, isCorrect: boolean | null, selectedOption: string | null) => {
-    if (isCorrect === null) {
-        return '';
-    }
-    if (selectedOption && option === selectedOption) {
-        return isCorrect ? 'correct' : 'incorrect';
-    }
-    return '';
-};
-
 const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete, }: MultipleChoiceCardProps) => {
     const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
-    const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
     const { t } = useTranslation();
 
@@ -69,8 +58,7 @@ const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete, }: MultipleC
                         lang={langs.a}
                         key={index}
                         onClick={() => handleOptionClick(option)}
-                        className={'multiple-choice-button ' + getButtonClassName(option, isCorrect, selectedOption)}
-                        disabled={isCorrect && selectedOption ? true : false}
+                        className={'multiple-choice-button'}
                     >
                         {option}
                     </button>
