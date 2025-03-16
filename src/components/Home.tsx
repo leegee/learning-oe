@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 
 import packageJson from '../../package.json';
-import AboutComponent from "./About";
 // import InstallPWA from "./InstallPWA";
 
 import './Home.css';
@@ -15,8 +14,6 @@ const HomeScreen = ({ children }: HomeScreenProps) => {
         <article id='home'>
 
             {children}
-
-            <AboutComponent />
 
             <footer className="version">
                 {/* <InstallPWA /> */}
