@@ -28,7 +28,7 @@ const App = () => {
   const initialLessonIndex = state.loadCurrentLesson();
   const [showHome, setShowHome] = useState(true);
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
-  const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>(state.loadIncorrectAnswers(currentLessonIndex));
+  const [totalIncorrectAnswers, setTotalIncorrectAnswers] = useState<number>(state.countTotalIncorrectAnswers());
   const [isLessonActive, setIsLessonActive] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState<number>(state.loadCorrectAnswers);
   const [lessonCompleted, setLessonCompleted] = useState<boolean>(false);
@@ -44,7 +44,7 @@ const App = () => {
 
   // When the current lesson index changes, a new lesson is introduced
   useEffect(() => {
-    setIncorrectAnswers(state.loadIncorrectAnswers(currentLessonIndex));
+    setTotalIncorrectAnswers(state.countTotalIncorrectAnswers());
     setAllCompleted(currentLessonIndex >= lessons.length);
     setShowLessonIntro(true);
     setLessonCompleted(false);
@@ -64,11 +64,10 @@ const App = () => {
   }
 
   const onIncorrectAnswer = (incorrectAnswer: string) => {
-    setIncorrectAnswers((prev = []) => {
-      const updatedAnswers = [...prev, incorrectAnswer];
-      state.saveIncorrectAnswers(currentLessonIndex, updatedAnswers);
-      return updatedAnswers;
-    });
+    const existingAnswers = state.loadIncorrectAnswers(currentLessonIndex) ?? [];
+    const updatedAnswers = [...existingAnswers, incorrectAnswer];
+    state.saveIncorrectAnswers(currentLessonIndex, updatedAnswers);
+    setTotalIncorrectAnswers((prev) => prev + 1);
   };
 
   const onLessonStart = () => {
@@ -135,15 +134,15 @@ const App = () => {
 
         <div className='header-text'>
           <h1 lang={config.targetLanguage}>{config.target.apptitle}</h1>
-
-          <Stats
-            incorrectAnswers={incorrectAnswers.length}
-            questionsAnswered={totalQuestionsAnswered}
-            correctAnswers={correctAnswers}
-          />
-
           <h2 lang={config.defaultLanguage}>{config.default.apptitle}</h2>
         </div>
+
+        <Stats
+          incorrectAnswers={totalIncorrectAnswers}
+          questionsAnswered={totalQuestionsAnswered}
+          correctAnswers={correctAnswers}
+        />
+
       </header>
     );
   }
@@ -189,7 +188,7 @@ const App = () => {
         <CompletedAllLessons
           totalLessons={lessons.length}
         >
-          <Stats incorrectAnswers={incorrectAnswers.length}
+          <Stats incorrectAnswers={totalIncorrectAnswers}
             questionsAnswered={totalQuestionsAnswered}
             correctAnswers={correctAnswers}
           />
