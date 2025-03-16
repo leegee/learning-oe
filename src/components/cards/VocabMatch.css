@@ -18,6 +18,7 @@
 
 .vocab-match .selected {
     border-color: var(--oe-clr-fg);
+    background-color: #6666;
 }
 
 .vocab-match .next-button {
