@@ -1,8 +1,7 @@
-// MultipleChoice.tsx
 import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 
-import { shuffleArray } from '../../lib/shuffle-array.ts'
+import { shuffleArray } from '../../lib/shuffle-array.ts';
 import { type Card } from './Card.ts';
 import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
 import './MultipleChoice.css';
@@ -20,29 +19,33 @@ interface MultipleChoiceCardProps {
     onComplete: () => void;
 }
 
-const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete, }: MultipleChoiceCardProps) => {
+const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete }: MultipleChoiceCardProps) => {
     const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const [isIncorrect, setIsIncorrect] = useState<boolean>(false);
     const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
     const { t } = useTranslation();
 
     useEffect(() => {
         setShuffledOptions(shuffleArray(card.answers));
         setLangs(setQandALangs(card));
+        setSelectedOption(null);
+        setIsIncorrect(false);
     }, [card]);
 
     const handleOptionClick = (option: string) => {
         setSelectedOption(option);
+        setIsIncorrect(option !== card.answer);
     };
 
     const handleNextClick = () => {
-        const correct = selectedOption === card.answer;
-        setSelectedOption(null);
-        if (correct) {
+        if (selectedOption === card.answer) {
             onCorrect();
             onComplete();
         } else {
             onIncorrect();
+            setSelectedOption(null);
+            setIsIncorrect(false);
         }
     };
 
@@ -58,7 +61,7 @@ const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete, }: MultipleC
                         lang={langs.a}
                         key={index}
                         onClick={() => handleOptionClick(option)}
-                        className={'multiple-choice-button'}
+                        className={`multiple-choice-button ${isIncorrect && selectedOption === option ? 'incorrect' : ''}`}
                     >
                         {option}
                     </button>
@@ -67,10 +70,10 @@ const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete, }: MultipleC
 
             {selectedOption && (
                 <button
-                    className={selectedOption !== null ? t('next-button') : 'try-again-button'}
+                    className={isIncorrect ? 'try-again-button' : 'next-button'}
                     onClick={handleNextClick}
                 >
-                    {selectedOption !== null ? t('next') : t('try_again')}
+                    {isIncorrect ? t('try_again') : t('next')}
                 </button>
             )}
         </>
