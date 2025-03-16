@@ -4,6 +4,18 @@
         "description": "Testing new components",
         "cards": [
             {
+                "class": "vocab",
+                "qlang": "default",
+                "vocab": {
+                    "Hello": "Hāl",
+                    "Morning": "Morgen",
+                    "Evening": "Æfen",
+                    "Good": "Gōd",
+                    "Night": "Niht",
+                    "You": "Þū"
+                }
+            },
+            {
                 "class": "writing",
                 "qlang": "default",
                 "question": "Hāl",
@@ -36,18 +48,6 @@
                         "correct": false
                     }
                 ]
-            },
-            {
-                "class": "vocab",
-                "qlang": "default",
-                "vocab": {
-                    "Hello": "Hāl",
-                    "Morning": "Morgen",
-                    "Evening": "Æfen",
-                    "Good": "Gōd",
-                    "Night": "Niht",
-                    "You": "Þū"
-                }
             },
             {
                 "class": "dynamic-vocab",

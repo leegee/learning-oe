@@ -85,8 +85,6 @@ const VocabMatch = ({ card, onCorrect, onIncorrect, onComplete }: VocabMatchProp
         }
     };
 
-    console.log('VocabMatch: card.vocab', card.vocab);
-
     return (
         <>
             <section className="card vocab-match">
