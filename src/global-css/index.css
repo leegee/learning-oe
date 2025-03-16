@@ -45,6 +45,11 @@ main {
     font-family: 'Work Sans', sans;
 }
 
+[hidden] {
+    display: none;
+    ;
+}
+
 section.card {
     margin: 1em 0;
 }
