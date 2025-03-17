@@ -23,36 +23,53 @@ interface MultipleChoiceCardProps {
 const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete }: MultipleChoiceCardProps) => {
     const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
-    const [isIncorrect, setIsIncorrect] = useState<boolean>(false);
+    const [hasChecked, setHasChecked] = useState<boolean>(false); // Track if answer has been checked
+    const [isCorrect, setIsCorrect] = useState<boolean | null>(null); // Track if the answer is correct or incorrect
     const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
+    const [isButtonsDisabled, setIsButtonsDisabled] = useState<boolean>(false); // Disable buttons when checking
     const { t } = useTranslation();
 
     useEffect(() => {
         setShuffledOptions(shuffleArray(card.answers));
         setLangs(setQandALangs(card));
         setSelectedOption(null);
-        setIsIncorrect(false);
+        setIsCorrect(null); // Reset the correctness status
+        setHasChecked(false); // Reset checked state on card change
+        setIsButtonsDisabled(false); // Enable buttons when card changes
     }, [card]);
 
     const handleOptionClick = (option: string) => {
-        setSelectedOption(option);
-        setIsIncorrect(option !== card.answer);
+        if (!isButtonsDisabled) { // Prevent option click if buttons are disabled
+            setSelectedOption(option); // Set the selected option
+        }
     };
 
     const handleCheckAnswer = () => {
-        if (selectedOption === card.answer) {
-            onCorrect();
-        } else {
-            onIncorrect();
+        if (hasChecked) {
+            // Move to the next round by resetting states
             setSelectedOption(null);
-            setIsIncorrect(false);
+            setIsCorrect(null);
+            setHasChecked(false);
+            setIsButtonsDisabled(false); // Re-enable the buttons
+        } else {
+            // Check the answer
+            setIsButtonsDisabled(true); // Disable buttons after selecting an answer
+
+            if (selectedOption === card.answer) {
+                setIsCorrect(true); // Mark as correct
+                onCorrect(); // Trigger onCorrect callback
+            } else {
+                setIsCorrect(false); // Mark as incorrect
+                onIncorrect(); // Trigger onIncorrect callback
+            }
+
+            setHasChecked(true); // Mark as checked
         }
     };
 
     return (
         <>
             <section className='card multiple-choice'>
-
                 <h4 lang={langs.q}>{t('in_lang_how_do_you_say', { lang: t(langs.a) })}</h4>
                 <h3 className="question" lang={langs.q}>{card.question}</h3>
 
@@ -61,29 +78,25 @@ const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete }: MultipleCh
                         lang={langs.a}
                         key={index}
                         onClick={() => handleOptionClick(option)}
-                        className={`multiple-choice-button ${isIncorrect && selectedOption === option ? 'incorrect' : ''}`}
+                        className={`multiple-choice-button 
+                            ${hasChecked && selectedOption === option ?
+                                (isCorrect && selectedOption === option ? 'correct' : 'incorrect')
+                                : ''}`}
+                        disabled={isButtonsDisabled}
                     >
                         {option}
                     </button>
                 ))}
             </section>
 
-            {/* {selectedOption && (
-                <button
-                    className={isIncorrect ? 'try-again-button' : 'next-button'}
-                    onClick={handleCheckAnswer}
-                >
-                    {isIncorrect ? t('try_again') : t('next')}
-                </button>
-            )} */}
-
-            <ActionButton
-                isCorrect={!isIncorrect}
-                isInputPresent={selectedOption !== null}
-                onCheckAnswer={handleCheckAnswer}
-                onComplete={onComplete}
-            />
-
+            {selectedOption && (
+                <ActionButton
+                    isCorrect={isCorrect}
+                    isInputPresent={selectedOption !== null}
+                    onCheckAnswer={handleCheckAnswer}
+                    onComplete={onComplete}
+                />
+            )}
         </>
     );
 };
