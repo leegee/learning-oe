@@ -4,6 +4,17 @@
         "description": "Testing new components",
         "cards": [
             {
+                "class": "multiple-choice",
+                "qlang": "default",
+                "question": "Hello!",
+                "answers": [
+                    "Hāl",
+                    "Hej",
+                    "Hwat ho"
+                ],
+                "answer": "Hāl"
+            },
+            {
                 "class": "writing",
                 "qlang": "default",
                 "question": "Hello",
@@ -19,17 +30,6 @@
                     "det",
                     "foo"
                 ]
-            },
-            {
-                "class": "multiple-choice",
-                "qlang": "default",
-                "question": "Hello!",
-                "answers": [
-                    "Hāl",
-                    "Hej",
-                    "Hwat ho"
-                ],
-                "answer": "Hāl"
             }
         ]
     },

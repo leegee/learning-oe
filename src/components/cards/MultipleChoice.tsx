@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { shuffleArray } from '../../lib/shuffle-array.ts';
 import { type Card } from './Card.ts';
 import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
+import ActionButton from '../ActionButton.tsx';
 import './MultipleChoice.css';
 
 export type MultipleChoiceCard = Card & {
@@ -38,10 +39,9 @@ const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete }: MultipleCh
         setIsIncorrect(option !== card.answer);
     };
 
-    const handleNextClick = () => {
+    const handleCheckAnswer = () => {
         if (selectedOption === card.answer) {
             onCorrect();
-            onComplete();
         } else {
             onIncorrect();
             setSelectedOption(null);
@@ -68,14 +68,22 @@ const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete }: MultipleCh
                 ))}
             </section>
 
-            {selectedOption && (
+            {/* {selectedOption && (
                 <button
                     className={isIncorrect ? 'try-again-button' : 'next-button'}
-                    onClick={handleNextClick}
+                    onClick={handleCheckAnswer}
                 >
                     {isIncorrect ? t('try_again') : t('next')}
                 </button>
-            )}
+            )} */}
+
+            <ActionButton
+                isCorrect={!isIncorrect}
+                isInputPresent={selectedOption !== null}
+                onCheckAnswer={handleCheckAnswer}
+                onComplete={onComplete}
+            />
+
         </>
     );
 };
