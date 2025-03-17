@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useTranslation } from "react-i18next";
+
 import { type Card } from './Card.ts';
 import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
+import ActionButton from '../ActionButton.tsx';
 import './WritingBlocksCard.css';
 
 export type WritingBlocksCard = Card & {
@@ -25,19 +26,20 @@ const WritingBlocksCard = ({ card, onCorrect, onIncorrect, onComplete }: Writing
     const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [selectedWords, setSelectedWords] = useState<string[]>([]);
-    const { t } = useTranslation();
 
     useEffect(() => {
         setLangs(setQandALangs(card));
-        setSelectedWords([]); // Reset selected words on new card
-        setIsCorrect(null); // Reset correctness
+        setSelectedWords([]);
+        setIsCorrect(null);
     }, [card]);
 
     const handleWordClick = (word: string) => {
+        setIsCorrect(null);
         setSelectedWords((prev) => [...prev, word]);
     };
 
     const handleRemoveWord = (index: number) => {
+        setIsCorrect(null);
         setSelectedWords((prev) => prev.filter((_, i) => i !== index));
     };
 
@@ -73,7 +75,7 @@ const WritingBlocksCard = ({ card, onCorrect, onIncorrect, onComplete }: Writing
                             key={index}
                             className='option-button'
                             onClick={() => handleWordClick(word)}
-                            disabled={selectedWords.includes(word)} // Disable if already selected
+                            disabled={selectedWords.includes(word)}
                         >
                             {word}
                         </button>
@@ -81,17 +83,12 @@ const WritingBlocksCard = ({ card, onCorrect, onIncorrect, onComplete }: Writing
                 </div>
             </section>
 
-            {selectedWords.length > 0 && !isCorrect && (
-                <button className='next-button' onClick={handleCheckAnswer}>
-                    {isCorrect === null ? t('next') : t('try_again')}
-                </button>
-            )}
-
-            {isCorrect === true && (
-                <button className='next-button' onClick={onComplete}>
-                    {t('continue')}
-                </button>
-            )}
+            <ActionButton
+                isCorrect={isCorrect}
+                isInputPresent={selectedWords.length > 0}
+                onCheckAnswer={handleCheckAnswer}
+                onComplete={onComplete}
+            />
         </>
     );
 };

@@ -103,15 +103,20 @@ button[disabled]:hover {
     cursor: default;
 }
 
+.yes-next-button,
 .next-button {
     background-color: var(--oe-clr-primary-bg);
     color: var(--oe-clr-primary-fg);
     width: 100%;
 }
 
+.yes-next-button {
+    background-color: green;
+}
+
 .try-again-button {
     width: 100%;
-    background-color: #333;
+    background-color: maroon;
 }
 
 h2 {

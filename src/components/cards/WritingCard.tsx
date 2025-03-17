@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { type Card } from './Card.ts';
 import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
+import ActionButton from '../ActionButton';
 import LetterButtons from '../LetterButtons';
 import './WritingCard.css';
 
@@ -50,12 +51,11 @@ const WritingCard = ({ card, onCorrect, onIncorrect, onComplete }: WritingCardPr
         }
     };
 
-    const handleNextClick = () => {
+    const handleCheckAnswer = () => {
         const normalizedUserInput = normalizeText(userInput);
         if (normalizedUserInput === normalizedAnswer) {
             setIsCorrect(true);
             onCorrect();
-            onComplete();
         } else {
             setIsCorrect(false);
             onIncorrect();
@@ -88,15 +88,12 @@ const WritingCard = ({ card, onCorrect, onIncorrect, onComplete }: WritingCardPr
 
             </section>
 
-            {userInput.length > 0 && (
-                <button
-                    className={isCorrect === false ? 'try-again-button' : 'next-button'}
-                    onClick={handleNextClick}
-                    aria-label={userInput.length > 0 && isCorrect === null ? t('try_again') : t('next')}
-                >
-                    {userInput.length > 0 && isCorrect === false ? t('try_again') : t('next')}
-                </button>
-            )}
+            <ActionButton
+                isCorrect={isCorrect}
+                isInputPresent={userInput.length > 0}
+                onCheckAnswer={handleCheckAnswer}
+                onComplete={onComplete}
+            />
         </>
     );
 };
