@@ -76,16 +76,6 @@ const App = () => {
     setShowLessonIntro(false);
   }
 
-  // const goToNextLesson = () => {
-  //   if (currentLessonIndex < lessons.length - 1) {
-  //     const nextLessonIndex = currentLessonIndex + 1;
-  //     setCurrentLessonIndex(nextLessonIndex);
-  //     state.saveCurrentLesson(nextLessonIndex);
-  //   } else {
-  //     setAllCompleted(true);
-  //   }
-  // };
-
   const onContinue = () => {
     if (currentLessonIndex < lessons.length - 1) {
       const nextLessonIndex = currentLessonIndex + 1;
