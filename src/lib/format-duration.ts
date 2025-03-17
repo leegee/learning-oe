@@ -13,11 +13,11 @@ export const formatDuration = (t: Function, durationInSeconds: number,): string 
 
     if (minutes > 0 || hours > 0) {
         if (formattedTime) formattedTime += ' ';
-        formattedTime += `${String(minutes).padStart(2, '0')} ${t('minutes')}`;
+        formattedTime += `${minutes} ${t('minutes')}`;
     }
 
     if (formattedTime) formattedTime += ', ';
-    formattedTime += `${String(seconds).padStart(2, '0')} ${t('seconds')}`;
+    formattedTime += `${seconds} ${t('seconds')}`;
 
     return formattedTime;
 };
