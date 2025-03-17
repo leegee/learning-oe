@@ -6,9 +6,10 @@ import MultipleChoice from './cards/MultipleChoice';
 import VocabMatch from './cards/VocabMatch';
 import BlanksCard from './cards/BlanksCard';
 import WritingCard from './cards/WritingCard';
+import WritingBlocksCard from './cards/WritingBlocksCard';
+import DynamicVocab from './cards/DynamicVocabCard';
 import { type Lesson } from '../Lessons';
 import './Lesson.css';
-import DynamicVocab from './cards/DynamicVocabCard';
 
 interface LessonProps {
     lesson: Lesson;
@@ -91,6 +92,15 @@ const LessonComponent = ({ lesson, onQuestionAnswered, onCorrectAnswer, onIncorr
 
             {currentCard.class === 'writing' && (
                 <WritingCard
+                    card={currentCard}
+                    onCorrect={onCorrectAnswer}
+                    onComplete={goToNextCard}
+                    onIncorrect={onIncorrect}
+                />
+            )}
+
+            {currentCard.class === 'writing-blocks' && (
+                <WritingBlocksCard
                     card={currentCard}
                     onCorrect={onCorrectAnswer}
                     onComplete={goToNextCard}
