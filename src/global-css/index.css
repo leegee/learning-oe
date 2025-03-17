@@ -112,6 +112,13 @@ button[disabled]:hover {
     cursor: default;
 }
 
+.skip-button {
+    background-color: maroon;
+    color: white;
+    margin: 1em 0;
+    float: right;
+}
+
 .yes-next-button,
 .next-button {
     background-color: var(--oe-clr-primary-bg);
