@@ -88,16 +88,25 @@ button {
     border: 1pt solid grey;
     padding: 0.3em;
     cursor: pointer;
+    transition: background-color var(--fade-duration) var(--fade-timing), filter var(--fade-duration) var(--fade-timing);
+
 }
 
 button:not([disabled]):hover {
     outline: 1px solid var(--oe-clr-fg);
 }
 
-button[disabled] {
+button:disabled:not(.correct):not(.incorrect) {
     background-color: #333;
     color: #666;
 }
+
+button.correct[disabled],
+button.incorrect[disabled] {
+    opacity: 0.9;
+    filter: brightness(0.9);
+}
+
 
 button[disabled]:hover {
     cursor: default;
