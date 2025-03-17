@@ -86,7 +86,7 @@ const BlanksCard = ({ card, onCorrect, onIncorrect, onComplete }: BlanksCardProp
             <section className="card blanks-card">
 
                 <h4>{t('fill_in_the_blanks')}</h4>
-                <h3 lang={langs.q}>{currentSentence}</h3>
+                <h3 className="question" lang={langs.q}>{currentSentence}</h3>
 
                 <div className="word-options">
                     {shuffledWords.map((word, index) => {

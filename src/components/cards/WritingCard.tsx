@@ -66,7 +66,7 @@ const WritingCard = ({ card, onCorrect, onIncorrect, onComplete }: WritingCardPr
         <>
             <section className='card writing-card'>
                 {/*<h4>{t('translate_to_lang', { lang: t(langs.a) })}</h4> */}
-                <h3 lang={langs.q}>{card.question}</h3>
+                <h3 className="question" lang={langs.q}>{card.question}</h3>
 
                 <textarea
                     className='answer'

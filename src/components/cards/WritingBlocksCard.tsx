@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 import { type Card } from './Card.ts';
 import { setQandALangs, setQandALangsReturnType } from '../../lib/set-q-and-a-langs.ts';
-import './WritingCard.css';
+import './WritingBlocksCard.css';
 
 export type WritingBlocksCard = Card & {
     class: 'writing-blocks';
@@ -23,37 +23,41 @@ const normalizeText = (text: string): string => {
 
 const WritingBlocksCard = ({ card, onCorrect, onIncorrect, onComplete }: WritingBlocksCardProps) => {
     const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
+    const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [selectedWords, setSelectedWords] = useState<string[]>([]);
     const { t } = useTranslation();
 
     useEffect(() => {
         setLangs(setQandALangs(card));
-        setSelectedWords([]); // Reset on new card
+        setSelectedWords([]); // Reset selected words on new card
+        setIsCorrect(null); // Reset correctness
     }, [card]);
 
     const handleWordClick = (word: string) => {
-        setSelectedWords([...selectedWords, word]);
+        setSelectedWords((prev) => [...prev, word]);
     };
 
     const handleRemoveWord = (index: number) => {
-        setSelectedWords(selectedWords.filter((_, i) => i !== index));
+        setSelectedWords((prev) => prev.filter((_, i) => i !== index));
     };
 
     const handleCheckAnswer = () => {
         const normalizedUserInput = normalizeText(selectedWords.join(' '));
         const normalizedAnswer = normalizeText(card.answer);
+
         if (normalizedUserInput === normalizedAnswer) {
+            setIsCorrect(true);
             onCorrect();
-            onComplete();
         } else {
+            setIsCorrect(false);
             onIncorrect();
         }
     };
 
     return (
         <>
-            <section className='card writing-card'>
-                <h3 lang={langs.q}>{card.question}</h3>
+            <section className='writing-blocks-card'>
+                <h3 className="question" lang={langs.q}>{card.question}</h3>
 
                 <div className='selected-words'>
                     {selectedWords.map((word, index) => (
@@ -65,16 +69,27 @@ const WritingBlocksCard = ({ card, onCorrect, onIncorrect, onComplete }: Writing
 
                 <div className='options'>
                     {card.options.map((word, index) => (
-                        <button key={index} className='option-button' onClick={() => handleWordClick(word)}>
+                        <button
+                            key={index}
+                            className='option-button'
+                            onClick={() => handleWordClick(word)}
+                            disabled={selectedWords.includes(word)} // Disable if already selected
+                        >
                             {word}
                         </button>
                     ))}
                 </div>
             </section>
 
-            {selectedWords.length > 0 && (
+            {selectedWords.length > 0 && !isCorrect && (
                 <button className='next-button' onClick={handleCheckAnswer}>
-                    {t('check_answer')}
+                    {isCorrect === null ? t('next') : t('try_again')}
+                </button>
+            )}
+
+            {isCorrect === true && (
+                <button className='next-button' onClick={onComplete}>
+                    {t('continue')}
                 </button>
             )}
         </>
