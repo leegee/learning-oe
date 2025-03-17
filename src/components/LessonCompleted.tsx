@@ -17,7 +17,7 @@ const LessonCompletedComponent = ({ durationInSeconds, questionCount, mistakeCou
         <>
             <section className='card lesson-completed'>
                 <h2>{t('lesson_completed')}</h2>
-                <p hidden>
+                <p>
                     {
                         t(
                             'lesson_completed_counts',
