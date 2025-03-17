@@ -7,9 +7,7 @@
                 "class": "writing-blocks",
                 "qlang": "default",
                 "question": "Hello there",
-                "answer": [
-                    "Hāl det"
-                ],
+                "answer": "Hāl det",
                 "options": [
                     "Hāl",
                     "det",
