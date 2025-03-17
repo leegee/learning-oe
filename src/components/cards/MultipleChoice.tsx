@@ -1,3 +1,4 @@
+// MultipleChoice.tsx
 import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 
@@ -23,24 +24,24 @@ interface MultipleChoiceCardProps {
 const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete }: MultipleChoiceCardProps) => {
     const [langs, setLangs] = useState<setQandALangsReturnType>(setQandALangs(card));
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
-    const [hasChecked, setHasChecked] = useState<boolean>(false); // Track if answer has been checked
-    const [isCorrect, setIsCorrect] = useState<boolean | null>(null); // Track if the answer is correct or incorrect
+    const [hasChecked, setHasChecked] = useState<boolean>(false);
+    const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
-    const [isButtonsDisabled, setIsButtonsDisabled] = useState<boolean>(false); // Disable buttons when checking
+    const [isButtonsDisabled, setIsButtonsDisabled] = useState<boolean>(false);
     const { t } = useTranslation();
 
     useEffect(() => {
         setShuffledOptions(shuffleArray(card.answers));
         setLangs(setQandALangs(card));
         setSelectedOption(null);
-        setIsCorrect(null); // Reset the correctness status
-        setHasChecked(false); // Reset checked state on card change
-        setIsButtonsDisabled(false); // Enable buttons when card changes
+        setIsCorrect(null);
+        setHasChecked(false);
+        setIsButtonsDisabled(false);
     }, [card]);
 
     const handleOptionClick = (option: string) => {
-        if (!isButtonsDisabled) { // Prevent option click if buttons are disabled
-            setSelectedOption(option); // Set the selected option
+        if (!isButtonsDisabled) {
+            setSelectedOption(option);
         }
     };
 
@@ -50,20 +51,20 @@ const MultipleChoice = ({ card, onCorrect, onIncorrect, onComplete }: MultipleCh
             setSelectedOption(null);
             setIsCorrect(null);
             setHasChecked(false);
-            setIsButtonsDisabled(false); // Re-enable the buttons
+            setIsButtonsDisabled(false);
         } else {
             // Check the answer
-            setIsButtonsDisabled(true); // Disable buttons after selecting an answer
+            setIsButtonsDisabled(true);
 
             if (selectedOption === card.answer) {
-                setIsCorrect(true); // Mark as correct
-                onCorrect(); // Trigger onCorrect callback
+                setIsCorrect(true);
+                onCorrect();
             } else {
-                setIsCorrect(false); // Mark as incorrect
-                onIncorrect(); // Trigger onIncorrect callback
+                setIsCorrect(false);
+                onIncorrect();
             }
 
-            setHasChecked(true); // Mark as checked
+            setHasChecked(true);
         }
     };
 
