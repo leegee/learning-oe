@@ -26,17 +26,18 @@ import "./App.css";
 
 const App = () => {
   const initialLessonIndex = state.loadCurrentLesson();
-  const [showHome, setShowHome] = useState(true);
-  const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
-  const [totalIncorrectAnswers, setTotalIncorrectAnswers] = useState<number>(state.countTotalIncorrectAnswers());
-  const [isLessonActive, setIsLessonActive] = useState(false);
-  const [correctAnswers, setCorrectAnswers] = useState<number>(state.loadCorrectAnswers);
-  const [lessonCompleted, setLessonCompleted] = useState<boolean>(false);
-  const [lessonStartTime, setLessonStartTime] = useState<number | null>(null);
-  const [lessonDurationSeconds, setLessonDurationSeconds] = useState<number | null>(null);
-  const [allCompleted, setAllCompleted] = useState<boolean>(initialLessonIndex >= lessons.length);
-  const [showLessonIntro, setShowLessonIntro] = useState<boolean>(true);
   const { t } = useTranslation();
+
+  const [correctAnswers, setCorrectAnswers] = useState<number>(state.loadCorrectAnswers);
+  const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(initialLessonIndex);
+  const [isCourseFinished, setIsCourseCompleted] = useState<boolean>(initialLessonIndex >= lessons.length);
+  const [isLessonActive, setIsLessonActive] = useState(false);
+  const [islessonCompleted, setIsLessonCompleted] = useState<boolean>(false);
+  const [isLessonIntro, isShowLessonIntro] = useState<boolean>(true);
+  const [isShowHome, setIsShowHome] = useState(true);
+  const [lessonDurationSeconds, setLessonDurationSeconds] = useState<number | null>(null);
+  const [lessonStartTime, setLessonStartTime] = useState<number | null>(null);
+  const [totalIncorrectAnswers, setTotalIncorrectAnswers] = useState<number>(state.countTotalIncorrectAnswers());
 
   // const totalQuestions = lessons.reduce((sum, lesson) => sum + lesson.cards.length, 0);
   const totalQuestionsAnswered = state.loadQuestionsAnswered();
@@ -45,14 +46,14 @@ const App = () => {
   // When the current lesson index changes, a new lesson is introduced
   useEffect(() => {
     setTotalIncorrectAnswers(state.countTotalIncorrectAnswers());
-    setAllCompleted(currentLessonIndex >= lessons.length);
-    setShowLessonIntro(true);
-    setLessonCompleted(false);
+    setIsCourseCompleted(currentLessonIndex >= lessons.length);
+    isShowLessonIntro(true);
+    setIsLessonCompleted(false);
   }, [currentLessonIndex]);
 
   useEffect(() => {
-    setIsLessonActive(!showLessonIntro && !lessonCompleted && !allCompleted);
-  }, [currentLessonIndex, showLessonIntro, lessonCompleted, allCompleted]);
+    setIsLessonActive(!isLessonIntro && !islessonCompleted && !isCourseFinished);
+  }, [currentLessonIndex, isLessonIntro, islessonCompleted, isCourseFinished]);
 
   const onQuestionAnswered = () => {
     state.addQuestionCompleted();
@@ -73,7 +74,7 @@ const App = () => {
   const onLessonStart = () => {
     state.resetLesson(currentLessonIndex)
     setLessonStartTime(Date.now());
-    setShowLessonIntro(false);
+    isShowLessonIntro(false);
   }
 
   const onContinue = () => {
@@ -81,26 +82,26 @@ const App = () => {
       const nextLessonIndex = currentLessonIndex + 1;
       setCurrentLessonIndex(nextLessonIndex);
       state.saveCurrentLesson(nextLessonIndex);
-      setShowHome(true);
+      setIsShowHome(true);
     } else {
-      setAllCompleted(true);
+      setIsCourseCompleted(true);
     }
   };
 
   const onLessonSelected = (lessonIndex: number) => {
-    setShowHome(false);
+    setIsShowHome(false);
     setCurrentLessonIndex(lessonIndex);
   }
 
   const onLessonCancelled = () => {
     setIsLessonActive(false);
     setLessonStartTime(null);
-    setLessonCompleted(false);
-    setShowHome(true);
+    setIsLessonCompleted(false);
+    setIsShowHome(true);
   }
 
   const onLessonComplete = () => {
-    setLessonCompleted(true);
+    setIsLessonCompleted(true);
     if (lessonStartTime) {
       setLessonDurationSeconds(Math.floor((Date.now() - lessonStartTime) / 1000));
       setLessonStartTime(null);
@@ -132,7 +133,7 @@ const App = () => {
   }
 
   const renderConditional = () => {
-    if (showHome) {
+    if (isShowHome) {
       return (
         <HomeScreen>
           <Stats
@@ -150,7 +151,7 @@ const App = () => {
       )
     }
 
-    if (showLessonIntro) {
+    if (isLessonIntro) {
       return (
         <LessonIntro
           title={currentLesson.title}
@@ -161,7 +162,7 @@ const App = () => {
       )
     }
 
-    else if (lessonCompleted) {
+    else if (islessonCompleted) {
       return (
         <LessonCompleted
           onContinue={onContinue}
@@ -172,7 +173,7 @@ const App = () => {
       )
     }
 
-    else if (allCompleted) {
+    else if (isCourseFinished) {
       return (
         <CompletedAllLessons
           totalLessons={lessons.length}
@@ -207,7 +208,7 @@ const App = () => {
     <main id='main'
       className={[
         isLessonActive ? "lesson-active" : "",
-        showHome ? "home-active" : "",
+        isShowHome ? "home-active" : "",
       ].filter(Boolean).join(' ')}
 
     >
