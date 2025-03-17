@@ -21,21 +21,19 @@ export const loadCurrentLesson = (): number => {
 
 // Load incorrect answers for a specific lesson (returns string[] for that lesson)
 export const saveIncorrectAnswers = (lessonIndex: number, incorrectAnswers: string[]): void => {
-  // Get existing answers or initialize an empty object
   let savedAnswers = JSON.parse(localStorage.getItem(keys.INCORRECT_ANSWERS) || '{"0":{}}');
-
-  // Ensure `incorrectAnswers` exists
   if (!savedAnswers) {
     savedAnswers = {};
   }
-
-  // Save the incorrect answers for the specific lesson index
   savedAnswers[lessonIndex] = incorrectAnswers;
 
-  // Save back to localStorage
   localStorage.setItem(keys.INCORRECT_ANSWERS, JSON.stringify(savedAnswers));
   console.log('state saved incorrect answers', JSON.stringify(savedAnswers));
   return savedAnswers;
+};
+
+export const resetLesson = (lessonIndex: number): void => {
+  saveIncorrectAnswers(lessonIndex, []);
 };
 
 export const loadIncorrectAnswers = (lessonIndex: number): string[] => {

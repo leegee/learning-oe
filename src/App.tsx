@@ -71,6 +71,7 @@ const App = () => {
   };
 
   const onLessonStart = () => {
+    state.resetLesson(currentLessonIndex)
     setLessonStartTime(Date.now());
     setShowLessonIntro(false);
   }
