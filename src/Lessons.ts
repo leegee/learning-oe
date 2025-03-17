@@ -4,6 +4,7 @@ import { type MultipleChoiceCard } from './components/cards/MultipleChoice';
 import { type VocabCard } from './components/cards/VocabMatch';
 import { type BlanksCard } from './components/cards/BlanksCard';
 import { type WritingCard } from './components/cards/WritingCard';
+import { type WritingBlocksCard } from './components/cards/WritingBlocksCard';
 import { type DynamicVocabCard } from './components/cards/DynamicVocabCard';
 
 import lessonsSchema from '../lessons.schema.json';
@@ -20,7 +21,7 @@ if (!valid) {
 export type Lesson = {
     title: string;
     description?: string;
-    cards: (WritingCard | VocabCard | BlanksCard | MultipleChoiceCard | DynamicVocabCard)[];
+    cards: (WritingCard | WritingBlocksCard | VocabCard | BlanksCard | MultipleChoiceCard | DynamicVocabCard)[];
 };
 
 export type LessonSummary = {
