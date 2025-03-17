@@ -4,6 +4,19 @@
         "description": "Testing new components",
         "cards": [
             {
+                "class": "writing-blocks",
+                "qlang": "default",
+                "question": "Hello there",
+                "answer": [
+                    "Hāl det"
+                ],
+                "options": [
+                    "Hāl",
+                    "det",
+                    "foo"
+                ]
+            },
+            {
                 "class": "multiple-choice",
                 "qlang": "default",
                 "question": "Hello!",

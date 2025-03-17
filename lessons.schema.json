@@ -137,6 +137,41 @@
                                 "class": {
                                     "type": "string",
                                     "enum": [
+                                        "writing-blocks"
+                                    ]
+                                },
+                                "qlang": {
+                                    "type": "string",
+                                    "enum": [
+                                        "default",
+                                        "target"
+                                    ]
+                                },
+                                "question": {
+                                    "type": "string"
+                                },
+                                "answer": {
+                                    "type": "string"
+                                },
+                                "options": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "required": [
+                                "class",
+                                "qlang",
+                                "question"
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "class": {
+                                    "type": "string",
+                                    "enum": [
                                         "blanks"
                                     ]
                                 },
