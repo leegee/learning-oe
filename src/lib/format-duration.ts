@@ -1,7 +1,7 @@
 // lib/formatDuration.ts
-import { useTranslation } from "react-i18next";
+import { type TFunction } from "i18next";
 
-export const formatDuration = (t: typeof useTranslation, durationInSeconds: number,): string => {
+export const formatDuration = (t: TFunction, durationInSeconds: number,): string => {
     const hours = Math.floor(durationInSeconds / 3600);
     const minutes = Math.floor((durationInSeconds % 3600) / 60);
     const seconds = durationInSeconds % 60;
