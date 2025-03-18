@@ -2,8 +2,10 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import appConfig from "../app.config.json";
 
+type TranslationData = Record<string, string>;
+
 const loadLocales = () => {
-    const resources: Record<string, { translation: any }> = {};
+    const resources: Record<string, { translation: TranslationData }> = {};
 
     const defaultLang = appConfig.defaultLanguage as keyof typeof appConfig.i18n.availableLanguages;
     const targetLang = appConfig.targetLanguage as keyof typeof appConfig.i18n.availableLanguages;

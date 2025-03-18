@@ -33,7 +33,7 @@ const BlanksCard = ({ card, onCorrect, onIncorrect, onComplete }: BlanksCardProp
     useEffect(() => {
         setShuffledWords(shuffleArray(card.words.map(word => word.word)));
         setLangs(setQandALangs(card));
-    }, [card.words]);
+    }, [card]);
 
     const handleWordClick = (word: string) => {
         const firstBlankIndex = currentSentence.indexOf('__');

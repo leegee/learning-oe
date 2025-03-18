@@ -10,9 +10,7 @@ interface ConfirmDialogProps {
 }
 
 const ConfirmDialog = ({ isOpen, message, onConfirm, onCancel }: ConfirmDialogProps) => {
-    if (!isOpen) return null;
-
-    const { t } = useTranslation();
+    const { t } = useTranslation(); // ✅ Hook is always called
 
     useEffect(() => {
         const handleKeys = (e: KeyboardEvent) => {
@@ -26,7 +24,11 @@ const ConfirmDialog = ({ isOpen, message, onConfirm, onCancel }: ConfirmDialogPr
 
         window.addEventListener('keyup', handleKeys);
         return () => window.removeEventListener('keyup', handleKeys);
-    })
+    }, [onConfirm, onCancel]); // ✅ Hook is always called, added dependency array
+
+    if (!isOpen) {
+        return null; // Now safe because hooks have already been called
+    }
 
     return (
         <div className="confirm-dialog-overlay">

@@ -1,47 +1,51 @@
-import { useEffect, useState } from 'react';
+// Define BeforeInstallPromptEvent interface
+interface BeforeInstallPromptEvent extends Event {
+    readonly platforms: string[];
+    readonly userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+    prompt(): Promise<void>;
+}
+
+// Extend WindowEventMap to include the event
+declare global {
+    interface WindowEventMap {
+        beforeinstallprompt: BeforeInstallPromptEvent;
+    }
+}
+
+import { useEffect, useRef, useState } from 'react';
 
 const InstallPWA = () => {
     const [isInstallPromptAvailable, setInstallPromptAvailable] = useState(false);
-    let deferredPrompt: any;
+    const deferredPrompt = useRef<BeforeInstallPromptEvent | null>(null); // Use ref instead of let
 
     useEffect(() => {
-        const handleBeforeInstallPrompt = (event: Event) => {
-            event.preventDefault();  // Prevent automatic banner
-            deferredPrompt = event;  // Store the event
-            setInstallPromptAvailable(true);  // Show the install button
-            console.log("Install prompt available", event);  // Log the event for debugging
+        const handleBeforeInstallPrompt = (event: BeforeInstallPromptEvent) => {
+            event.preventDefault();
+            deferredPrompt.current = event; // Store event in useRef
+            setInstallPromptAvailable(true);
         };
 
         window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
-        // Cleanup event listener on unmount
         return () => {
             window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
         };
     }, []);
 
-    const handleInstallClick = () => {
-        console.log('Install button clicked');
-        if (deferredPrompt) {
-            console.log('Prompting the user to install');
-            deferredPrompt.prompt();  // Show the install prompt
+    const handleInstallClick = async () => {
+        if (deferredPrompt.current) {
+            await deferredPrompt.current.prompt();
+            const choice = await deferredPrompt.current.userChoice;
+            console.log("User choice:", choice.outcome);
 
-            // Handle the user's choice
-            deferredPrompt.userChoice.then((choice: any) => {
-                console.log("User choice:", choice.outcome);
-                if (choice.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                } else {
-                    console.log('User dismissed the install prompt');
-                }
-                // Reset deferredPrompt after use
-                deferredPrompt = null;
-                setInstallPromptAvailable(false);  // Optionally hide the button after install
-            }).catch((error: any) => {
-                console.error("Error during the prompt:", error);
-            });
-        } else {
-            console.warn('No deferredPrompt available!');
+            if (choice.outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+            } else {
+                console.log('User dismissed the install prompt');
+            }
+
+            deferredPrompt.current = null;
+            setInstallPromptAvailable(false);
         }
     };
 

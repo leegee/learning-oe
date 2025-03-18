@@ -1,17 +1,22 @@
 import defaultConfig from './default.config.json';
 import appConfigRaw from '../app.config.json';
 
-const deepMerge = (target: any, source: any): any => {
-    if (typeof target !== 'object' || typeof source !== 'object') return source;
+const deepMerge = (target: Record<string, unknown>, source: Record<string, unknown>): Record<string, unknown> => {
+    if (typeof target !== 'object' || typeof source !== 'object' || target === null || source === null) {
+        return source;
+    }
 
     for (const key in source) {
-        if (source[key] && typeof source[key] === 'object') {
-            if (!target[key]) target[key] = {};
-            deepMerge(target[key], source[key]);
+        if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+            if (!target[key] || typeof target[key] !== 'object') {
+                target[key] = {};
+            }
+            deepMerge(target[key] as Record<string, unknown>, source[key] as Record<string, unknown>);
         } else {
             target[key] = source[key];
         }
     }
+
     return target;
 };
 

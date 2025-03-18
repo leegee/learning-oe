@@ -22,9 +22,9 @@ const DynamicVocab = ({ card, lesson, onCorrect, onIncorrect, onComplete }: Dyna
     console.log(lesson.cards);
 
     const vocab = useMemo(() => {
-        let newVocab: { [key: string]: string } = {};
+        const newVocab: { [key: string]: string } = {};
 
-        for (let thisCard of lesson.cards.filter(card => ['vocab', 'blanks'].includes(card.class))) {
+        for (const thisCard of lesson.cards.filter(card => ['vocab', 'blanks'].includes(card.class))) {
             if (thisCard.class === 'blanks' && thisCard.qlang === card.qlang) {
                 const blankWords = thisCard.words.filter(wordObj => wordObj.correct);
                 blankWords.forEach(blank => {
